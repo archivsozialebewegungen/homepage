@@ -1,0 +1,413 @@
+            <!-- Begin intro -->
+            <div class="section-bg intro">
+                <div class="intro-slider flickity-dots-absolute carousel"
+                    data-flickity='{ "bgLazyLoad": 1, "bgLazyLoad": true, "fade": true, "autoPlay": true }'>
+
+                    <div class="intro-item carousel-cell" data-flickity-bg-lazyload="assets/img/bg-archive.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="intro-box">
+                                        <div class="section-heading shm-none">
+                                            <h1>Archiv Soziale Bewegungen</h1>
+                                            <p class="section-desc">Das Freiburger Archiv Soziale Bewegungen e.V.
+                                                sammelt seit 1983 Bücher, Zeitungen, Zeitschriften, Broschüren,
+                                                Flugblätter, Fotos, Plakate, Transparente, Protokolle und andere
+                                                Verlautbarungen und Überreste der Neuen Sozialen Bewegungen seit 1945.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="intro-item carousel-cell" data-flickity-bg-lazyload="assets/img/bg-archive-2.jpg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="intro-box">
+                                        <div class="section-heading shm-none">
+                                            <h1>Vor 50 Jahren</h1>
+                                            <p class="section-desc">Was geschah exakt diese Woche vor 50 Jahren? Wir
+                                                haben die Zeitgeschichte für Sie aufbereitet.</p>
+                                        </div>
+                                        <div class="wrap-btn intro-btns">
+                                            <a href="coming-soon.html" class="btn btn-with-icon btn-small ripple">
+                                                <span id="history-button"></span>
+                                                <svg class="btn-icon-right" viewBox="0 0 13 9" width="13" height="9">
+                                                    <use xlink:href="assets/img/sprite.svg#arrow-right"></use>
+                                                </svg>
+                                                <span class="el-ripple-circle"
+                                                    style="left: -431px; top: -670.7px;"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End intro -->
+
+            <!-- Begin counter section -->
+            <section class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">Auf einen Blick</div>
+                                <h2>Das Archiv in Zahlen</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row items spincrement-container">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12 item">
+                            <div class="counter-col item-style">
+                                <div class="counter-col-ico">
+                                    <i class="material-icons material-icons-outlined md-36">history</i>
+                                </div>
+                                <div id="experience-counter" class="counter-col-numb spincrement" data-from="0"
+                                    data-to="">0</div>
+                                <h4 class="counter-col-heading">Jahre an Erfahrung</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12 item">
+                            <div class="counter-col item-style">
+                                <div class="counter-col-ico">
+                                    <i class="material-icons material-icons-outlined md-36">auto_stories</i>
+                                </div>
+                                <div class="counter-col-numb">> <span class="spincrement" data-from="0"
+                                        data-to="1">0</span>.000</div>
+                                <h4 class="counter-col-heading">Zeitschriften & Broschüren</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12 item">
+                            <div class="counter-col item-style">
+                                <div class="counter-col-ico">
+                                    <i class="material-icons material-icons-outlined md-36">send</i>
+                                </div>
+                                <div class="counter-col-numb">> <span class="spincrement" data-from="0"
+                                        data-to="100">0</span>.000</div>
+                                <h4 class="counter-col-heading">Flugblätter</h4>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12 item">
+                            <div class="counter-col item-style">
+                                <div class="counter-col-ico">
+                                    <i class="material-icons material-icons-outlined md-36">collections</i>
+                                </div>
+                                <div class="counter-col-numb ">Tausende</div>
+                                <h4 class="counter-col-heading">Plakate & Fotos</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- End counter section -->
+
+            <!-- Begin latest news -->
+            <section class="section section-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">Aktuelles</div>
+                                <h2>Neuigkeiten</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 item">
+                            <!-- Begin news item -->
+                            <article class="news-item item-style">
+                                <a href="news-single.html" class="news-item-img">
+                                    <img src="assets/img/news/corona-s.jpg">
+                                </a>
+                                <div class="news-item-info">
+                                    <div class="news-item-date">01.06.2021</div>
+                                    <h4 class="news-item-heading item-heading">
+                                        <a href="news-single.html" title="">Öffnungszeiten & Besucherzahlen</a>
+                                    </h4>
+                                    <div class="news-item-desc">
+                                        <p>Wir öffnen das Archiv - unter Auflagen vorsichtig - wieder für
+                                            Publikumsverkehr.</p>
+                                    </div>
+                                </div>
+                            </article><!-- End news item -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 item">
+                            <!-- Begin news item -->
+                            <article class="news-item item-style">
+                                <a href="news-single.html" class="news-item-img">
+                                    <img src="assets/img/news/beckmann-s.jpg">
+                                </a>
+                                <div class="news-item-info">
+                                    <div class="news-item-date">27.04.2019</div>
+                                    <h4 class="news-item-heading item-heading">
+                                        <a href="news-single.html" title="">Film & Buchvorstellung</a>
+                                    </h4>
+                                    <div class="news-item-desc">
+                                        <p>Selbstverwaltung zwischen Management und «Commauté». Mit dem Autor Jens
+                                            Beckmann.</p>
+                                    </div>
+                                </div>
+                            </article><!-- End news item -->
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-12 item">
+                            <!-- Begin news item -->
+                            <article class="news-item item-style">
+                                <a href="news-single.html" class="news-item-img">
+                                    <img src="assets/img/news/fr-st-zt-s.jpg">
+                                </a>
+                                <div class="news-item-info">
+                                    <div class="news-item-date">01.01.2019</div>
+                                    <h4 class="news-item-heading item-heading">
+                                        <a href="news-single.html" title="">Freiburger Studenten Zeitung</a>
+                                    </h4>
+                                    <div class="news-item-desc">
+                                        <p>Freiburger Studenten Zeitung Digitale Gesamtausgabe 1951 - 1972
+                                            fertiggestellt. </p>
+                                    </div>
+                                </div>
+                            </article><!-- End news item -->
+                        </div>
+                        <div class="col-12">
+                            <div class="section-btns justify-content-center">
+                                <a href="news.html" class="btn btn-with-icon btn-w240 ripple">
+                                    <span>Alle Neuigkeiten</span>
+                                    <svg class="btn-icon-right" viewBox="0 0 13 9" width="13" height="9">
+                                        <use xlink:href="assets/img/sprite.svg#arrow-right"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- End latest news -->
+
+            <!-- Begin our services -->
+            <section class="section services">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">Interessante Links</div>
+                                <h2>Besonderheiten</h2>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6 col-12 item">
+                            <!-- Begin services item -->
+                            <a href="spenden.html" class="services-item services-item-row item-style">
+                                <div class="services-item-ico">
+                                    <i class="material-icons material-icons-outlined md-48">card_giftcard</i>
+                                </div>
+                                <div class="services-item-ico-bg">
+                                    <i class="material-icons material-icons-outlined">card_giftcard</i>
+                                </div>
+                                <div class="services-item-info">
+                                    <h4 class="services-item-heading">Sponsoren, Spenden & Förderkreis</h4>
+                                    <div class="services-item-desc">Das Archiv dankt den Sponsoren und freut sich über
+                                        Ihre Spende.</div>
+                                </div>
+                            </a><!-- End services item -->
+                        </div>
+                        <div class="col-xl-4 col-md-6 col-12 item">
+                            <!-- Begin services item -->
+                            <a href="coming-soon.html" class="services-item services-item-row item-style">
+                                <div class="services-item-ico">
+                                    <i class="material-icons material-icons-outlined md-48">history</i>
+                                </div>
+                                <div class="services-item-ico-bg">
+                                    <i class="material-icons material-icons-outlined">history</i>
+                                </div>
+                                <div class="services-item-info">
+                                    <h4 class="services-item-heading">Vor 50 Jahren</h4>
+                                    <div class="services-item-desc">Was geschah exakt vor 50 Jahren im <span id="date-text"></span>? Wir
+                                        haben das Zeitgeschehen für Sie aufbereitet.</div>
+                                </div>
+                            </a><!-- End services item -->
+                        </div>
+                        <div class="col-xl-4 col-md-12 col-12 item">
+                            <!-- Begin services item -->
+                            <a href="coming-soon.html" class="services-item services-item-row item-style">
+                                <div class="services-item-ico">
+                                    <i class="material-icons material-icons-outlined md-48">find_in_page</i>
+                                </div>
+                                <div class="services-item-ico-bg">
+                                    <i class="material-icons material-icons-outlined">find_in_page</i>
+                                </div>
+                                <div class="services-item-info">
+                                    <h4 class="services-item-heading">Möglichkeiten der Recherche</h4>
+                                    <div class="services-item-desc">Wir bieten Ihnen im Archiv für Ihre Recherche vielerlei Möglichkeiten an.
+                                    </div>
+                                </div>
+                            </a><!-- End services item -->
+                        </div>
+                    </div>
+                </div>
+            </section><!-- End our services -->
+
+            <!-- Begin reviews -->
+            <section class="section section-bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">Rezensionen von Archivnutzern</div>
+                                <h2>Was unsere Besucher sagen</h2>
+                            </div>
+                            <div class="reviews-carusel"
+                                data-flickity='{ "imagesLoaded": true, "lazyLoad": true, "groupCells": true, "contain": true, "prevNextButtons": false }'>
+                                <div class="reviews-col">
+                                    <div class="reviews-item item-style">
+                                        <div class="reviews-item-header">
+                                            <div class="reviews-item-img">
+                                                <img data-flickity-lazyload="assets/img/auth-img-1.jpg"
+                                                    src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                                                    alt="">
+                                            </div>
+                                            <div class="reviews-item-info">
+                                                <h4 class="reviews-item-name">Catherine Williams</h4>
+                                                <div class="reviews-item-position">Regular client</div>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-item-text">
+                                            <p>PathSoft offers a high caliber of resources skilled in Microsoft
+                                                Azure.NET, mobile and Quality Assurance. They became our true business
+                                                partners over the past three years.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="reviews-col">
+                                    <div class="reviews-item item-style">
+                                        <div class="reviews-item-header">
+                                            <div class="reviews-item-img">
+                                                <img data-flickity-lazyload="assets/img/auth-img-2.jpg"
+                                                    src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                                                    alt="">
+                                            </div>
+                                            <div class="reviews-item-info">
+                                                <h4 class="reviews-item-name">Rupert Wood</h4>
+                                                <div class="reviews-item-position">Regular client</div>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-item-text">
+                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta deserunt
+                                                quia et odio minima fuga optio quibusdam, aut eveniet atque ut mollitia
+                                                dolores numquam ducimus velit vel repudiandae veritatis veniam!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="reviews-col">
+                                    <div class="reviews-item item-style">
+                                        <div class="reviews-item-header">
+                                            <div class="reviews-item-img">
+                                                <img data-flickity-lazyload="assets/img/auth-img-3.jpg"
+                                                    src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                                                    alt="">
+                                            </div>
+                                            <div class="reviews-item-info">
+                                                <h4 class="reviews-item-name">Samantha Brown</h4>
+                                                <div class="reviews-item-position">Regular client</div>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-item-text">
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa
+                                                impedit nisi aliquid nam expedita vel libero maxime reiciendis vitae
+                                                aliquam ad quas, harum laborum, perferendis iure aut nulla saepe.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="reviews-col">
+                                    <div class="reviews-item item-style">
+                                        <div class="reviews-item-header">
+                                            <div class="reviews-item-img">
+                                                <img data-flickity-lazyload="assets/img/auth-img-2.jpg"
+                                                    src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                                                    alt="">
+                                            </div>
+                                            <div class="reviews-item-info">
+                                                <h4 class="reviews-item-name">Rupert Wood</h4>
+                                                <div class="reviews-item-position">Regular client</div>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-item-text">
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+                                                possimus, doloremque explicabo ullam fuga sint natus impedit!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="reviews-col">
+                                    <div class="reviews-item item-style">
+                                        <div class="reviews-item-header">
+                                            <div class="reviews-item-img">
+                                                <img data-flickity-lazyload="assets/img/auth-img-3.jpg"
+                                                    src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+                                                    alt="">
+                                            </div>
+                                            <div class="reviews-item-info">
+                                                <h4 class="reviews-item-name">Samantha Brown</h4>
+                                                <div class="reviews-item-position">Regular client</div>
+                                            </div>
+                                        </div>
+                                        <div class="reviews-item-text">
+                                            <p>PathSoft offers a high caliber of resources skilled in Microsoft
+                                                Azure.NET, mobile and Quality Assurance. They became our true business
+                                                partners over the past three years.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- End reviews -->
+
+            <!-- Begin Contact -->
+            <section class="section contact" id="kontakt">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">So können Sie uns erreichen</div>
+                                <h2>Kontaktieren Sie uns</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 content-item">
+                            <div class="contacts-info-item item-style" style="padding: 0">
+                                <div id="map" style="width: auto; height: 250px"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 content-item">
+                            <div class="contacts-info-item item-style">
+                                <div class="contacts-info-item-ico">
+                                    <i class="material-icons md-60 footer-contact-tel">smartphone</i>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <a href="tel:+4976133362" class="formingHrefTel">Telefon: 0761 / 333 62</a>
+                                    </div>
+                                    <div>
+                                        <a" class="formingHrefTel">Fax: 0761 / 20 24 506</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 content-item">
+                            <div class="contacts-info-item item-style">
+                                <div class="contacts-info-item-ico">
+                                    <i class="material-icons md-60 footer-contact-email">email</i>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <a
+                                            href="mailto:ArchivSozialeBewegungen@gmx.de">ArchivSozialeBewegungen@gmx.de</a>
+                                        <br />
+                                        <span>Adlerstraße 12, 79098 Freiburg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- End Contact -->
+
+        </div>
+

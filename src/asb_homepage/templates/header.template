@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Archiv Soziale Bewegungen</title>
+
+    <meta name="description" content="Description">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+
+    <link rel="icon" href="assets/img/favicon/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/css/libs.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preload" href="assets/fonts/istok-web-v15-latin/istok-web-v15-latin-regular.woff2" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/istok-web-v15-latin/istok-web-v15-latin-700.woff2" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/montserrat-v15-latin/montserrat-v15-latin-700.woff2" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/montserrat-v15-latin/montserrat-v15-latin-600.woff2" as="font"
+        type="font/woff2" crossorigin>
+
+    <link rel="preload" href="assets/fonts/material-design-icons/material-design-icons.woff2" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/material-design-icons/material-design-icons-outlined.woff2" as="font"
+        type="font/woff2" crossorigin>
+@additionalassets@
+</head>
+
+<body>
+
+    <main class="main">
+
+        <div class="main-inner">
+
+            <!-- Begin mobile main menu -->
+            <nav class="mob-main-mnu">
+                <div class="mob-main-mnu-content">
+                    <ul class="mob-main-mnu-list">
+                        <li>
+                            <a href="index.html">Home</a>
+                            <div class="mmm-btn"><i class="material-icons md-24">expand_more</i></div>
+                            <div class="mob-main-submnu">
+                                <div class="mob-main-submnu-item">
+                                    <ul>
+                                        <li><a href="index.html">Home 1</a></li>
+                                        <li><a href="home-2.html">Home 2</a></li>
+                                        <li><a href="home-3.html">Home 3</a></li>
+                                        <li><a href="home-4.html">Home 4</a></li>
+                                        <li><a href="home-shop-1.html">Home shop 1</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="services.html">Services</a>
+                            <div class="mmm-btn"><i class="material-icons md-24">expand_more</i></div>
+                            <div class="mob-main-submnu">
+                                <div class="mob-main-submnu-item">
+                                    <ul>
+                                        <li><a href="services.html">Services</a></li>
+                                        <li><a href="services-2.html">Services 2</a></li>
+                                        <li><a href="services-3.html">Services 3</a></li>
+                                        <li><a href="services-4.html">Services 4</a></li>
+                                        <li><a href="single-services.html">Single service</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#!">Pages</a>
+                            <div class="mmm-btn"><i class="material-icons md-24">expand_more</i></div>
+                            <div class="mob-main-submnu">
+                                <div class="mob-main-submnu-item">
+                                    <h5 class="mob-main-submnu-item-title">Features</h5>
+                                    <ul>
+                                        <li><a href="ui.html">UI elements</a></li>
+                                        <li><a href="index-4.html">Header/Footer Default</a></li>
+                                        <li><a href="index-2.html">Header/Footer Minimal</a></li>
+                                        <li><a href="index-3.html">Header/Footer Center</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mob-main-submnu-item">
+                                    <h5 class="mob-main-submnu-item-title">Additional Pages</h5>
+                                    <ul>
+                                        <li><a href="testimonials.html">Testimonials</a></li>
+                                        <li><a href="about-us.html">About us</a></li>
+                                        <li><a href="search-results.html">Search results</a></li>
+                                        <li><a href="pricing.html">Pricing</a></li>
+                                        <li><a href="coming-soon.html">Coming Soon</a></li>
+                                        <li><a href="single-project.html">Single project</a></li>
+                                        <li><a href="team.html">Our Team</a></li>
+                                        <li><a href="team-2.html">Our Team 2</a></li>
+                                        <li><a href="faq.html">FAQ</a></li>
+                                        <li><a href="brands.html">Brands</a></li>
+                                        <li><a href="forms.html">Forms</a></li>
+                                        <li><a href="privacy-policy.html">Privacy policy</a></li>
+                                        <li><a href="terms-and-conditions.html">Terms and Conditions</a></li>
+                                        <li><a href="404.html">404 Page</a></li>
+                                        <li><a href="404-2.html">404 Page 2</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#!">Shop</a>
+                            <div class="mmm-btn"><i class="material-icons md-24">expand_more</i></div>
+                            <div class="mob-main-submnu">
+                                <div class="mob-main-submnu-item">
+                                    <h5 class="mob-main-submnu-item-title">Shop layouts</h5>
+                                    <ul>
+                                        <li><a href="shop-fullwidth.html">Shop fullwidth</a></li>
+                                        <li><a href="shop.html">Shop left sidebar</a></li>
+                                        <li><a href="shop-right-sidebar.html">Shop right sidebar</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mob-main-submnu-item">
+                                    <h5 class="mob-main-submnu-item-title">Product Pages</h5>
+                                    <ul>
+                                        <li><a href="product-single.html">Single Product</a></li>
+                                        <li><a href="product-single2.html">Single Product 2</a></li>
+                                        <li><a href="product-variable.html">Variable Product</a></li>
+                                        <li><a href="product-group.html">Group Product</a></li>
+                                        <li><a href="product-affiliate.html">Affiliate Product</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mob-main-submnu-item">
+                                    <h5 class="mob-main-submnu-item-title">Product Style</h5>
+                                    <ul>
+                                        <li><a href="shop.html">Product Style 1</a></li>
+                                        <li><a href="shop2.html">Product Style 2</a></li>
+                                        <li><a href="shop3.html">Product Style 3</a></li>
+                                        <li><a href="shop4.html">Product Style 4</a></li>
+                                        <li><a href="shop-list.html">Product Style 5</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mob-main-submnu-item">
+                                    <h5 class="mob-main-submnu-item-title">Shop pages</h5>
+                                    <ul>
+                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="wishlist.html">Wishlist</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="gallery.html">Gallery</a>
+                            <div class="mmm-btn"><i class="material-icons md-24">expand_more</i></div>
+                            <div class="mob-main-submnu">
+                                <div class="mob-main-submnu-item">
+                                    <ul>
+                                        <li><a href="gallery.html">Grid Padding Gallery</a></li>
+                                        <li><a href="gallery-2.html">Grid No Padding Gallery</a></li>
+                                        <li><a href="gallery-3.html">Grid Masonry</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="news.html">News</a>
+                            <div class="mmm-btn"><i class="material-icons md-24">expand_more</i></div>
+                            <div class="mob-main-submnu">
+                                <div class="mob-main-submnu-item">
+                                    <ul>
+                                        <li><a href="news.html">List Blog</a></li>
+                                        <li><a href="news-grid.html">Grid Blog</a></li>
+                                        <li><a href="news-grid-2.html">Grid Blog 2</a></li>
+                                        <li><a href="news-grid-3.html">Grid Blog 3</a></li>
+                                        <li><a href="news-post.html">News Post</a></li>
+                                        <li><a href="news-timeline.html">News Timeline</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="contact-us.html">Contact Us</a>
+                            <div class="mmm-btn"><i class="material-icons md-24">expand_more</i></div>
+                            <div class="mob-main-submnu">
+                                <div class="mob-main-submnu-item">
+                                    <ul>
+                                        <li><a href="contact-us.html">Contact Us</a></li>
+                                        <li><a href="contact-us-2.html">Contact Us 2</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mob-main-mnu-footer">
+                    <ul class="mob-main-mnu-lang">
+                        <li class="active"><a href="#!"><span>En</span></a></li>
+                        <li><a href="#!"><span>Sp</span></a></li>
+                        <li><a href="#!"><span>It</span></a></li>
+                        <li><a href="#!"><span>Uk</span></a></li>
+                        <li><a href="#!"><span>Ru</span></a></li>
+                    </ul>
+                </div>
+            </nav><!-- End mobile main menu -->
+
+            <!-- Begin header -->
+            <header class="header">
+                <!-- Begin header top -->
+                <nav class="header-top">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto">
+                                <!-- Begin header top info -->
+                                <ul class="header-top-info">
+                                    <li>
+                                        <a href="mailto:ArchivSozialeBewegungen@gmx.de">
+                                            <i class="material-icons md-20">mail_outline</i>
+                                            <span>Kontakt per E-Mail</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="formingHrefTel">
+                                            <i class="material-icons md-20">support_agent</i>
+                                            <span>0761 / 333 62</span>
+                                        </a>
+                                    </li>
+                                </ul><!-- Ennd header top info -->
+                            </div>
+                        </div>
+                    </div>
+                </nav><!-- End header top -->
+                <!-- Begin header fixed -->
+                <nav class="header-fixed">
+                    <div class="container">
+                        <div class="row flex-nowrap align-items-center justify-content-between">
+                            <div class="col-auto d-block d-lg-none header-fixed-col">
+                                <div class="main-mnu-btn">
+                                    <span class="bar bar-1"></span>
+                                    <span class="bar bar-2"></span>
+                                    <span class="bar bar-3"></span>
+                                    <span class="bar bar-4"></span>
+                                </div>
+                            </div>
+                            <div class="col-auto header-fixed-col">
+                                <!-- Begin logo -->
+                                <a href="index.html" class="logo logo-ico-widht-text" title="Archiv soziale Bewegungen">
+                                    <img class="lazy logo-ico" data-src="assets/img/logo.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="col-lg col-auto col-static header-fixed-col">
+                                <div class="row flex-nowrap align-items-center justify-content-end">
+                                    <div class="col-auto header-fixed-col d-none d-lg-block col-static">
+                                        <!-- Begin main menu -->
+                                        <nav class="main-mnu">
+                                            <ul class="main-mnu-list">
+                                                <li class="main-mnu-item-has-child">
+                                                    <a href="index.html" data-title="Home">
+                                                        <span>Home</span>
+                                                    </a>
+                                                </li>
+                                                <li class="main-mnu-item-has-child">
+                                                    <a href="services.html" data-title="Service">
+                                                        <span>Service</span>
+                                                    </a>
+                                                </li>
+                                                <li class="main-mnu-item-has-child open main-mnu-item-mega-mnu">
+                                                    <a href="bestaende.html" data-title="Bestände">
+                                                        <span>Bestände</span>
+                                                        <i class="material-icons">expand_more</i>
+                                                    </a>
+                                                    <ul>
+                                                        <li><a href="btable.html"
+                                                                data-title="Broschüren"><span>Broschüren</span></a></li>
+                                                        <li><a href="tables.html"
+                                                                data-title="Buttons"><span>Buttons</span></a>
+                                                        </li>
+                                                        <li><a href="tables.html"
+                                                                data-title="Feministischer Bestand"><span>Feministischer
+                                                                    Bestand</span></a></li>                                                        
+                                                        <li><a href="tables.html" data-title="Filme & Fotos"><span>Filme & Fotos</span></a>
+                                                        </li>
+                                                        <li><a href="ztable.html"
+                                                                data-title="Zeitschriften"><span>Zeitschriften</span></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="main-mnu-item-has-child">
+                                                    <a href="publikationen.html" data-title="Publikationen">
+                                                        <span>Publikationen</span>
+                                                    </a>
+                                                </li>
+                                                <li class="main-mnu-item-has-child">
+                                                    <a href="index.html#kontakt" data-title="Kontakt">
+                                                        <span>Kontakt</span>
+                                                    </a>
+                                                </li>
+                                                <li class="main-mnu-item-has-child">
+                                                    <a href="coming-soon.html" data-title="Über das Archiv">
+                                                        <span>Über das Archiv</span>
+                                                        <i class="material-icons">expand_more</i>
+                                                    </a>
+                                                    <ul>
+                                                        <li><a href="coming-soon.html"
+                                                                data-title="Geschichte"><span>Geschichte</span></a></li>
+                                                                <li><a href="coming-soon.html"
+                                                                    data-title="Recherchemöglichkeiten"><span>Recherchemöglichkeiten</span></a></li>
+                                                        <li><a href="coming-soon.html"
+                                                                data-title="Spenden & Sponsoren"><span>Spenden &
+                                                                    Sponsoren</span></a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </nav><!-- End main menu -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav><!-- End header fixed -->
+            </header><!-- End header -->

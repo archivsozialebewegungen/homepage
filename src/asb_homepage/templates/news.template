@@ -1,0 +1,114 @@
+<!-- Begin bread crumbs -->
+<nav class="bread-crumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="bread-crumbs-list">
+                    <li>
+                        <a href="index.html">Home</a>
+                        <i class="material-icons md-18">chevron_right</i>
+                    </li>
+                    <li><a href="#!">News</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav><!-- End bread crumbs -->
+
+			<!-- Begin main content -->
+			<div class="section">
+				<div class="container">
+					<div class="row content-items">
+						<div class="col-lg-12 col-12 content-item">
+							<div class="section-heading heading-center">
+								<div class="section-subheading">Neuigkeiten rund um das Archiv</div>
+								<h1>News</h1>
+							</div>
+							<div class="news-list items">
+								<!-- Begin news item -->
+								<article class="news-wide-item item">
+									<a href="news-single.html" class="news-wide-item-img img-style">
+										<img src="assets/img/news/corona-s.jpg">
+									</a>
+									<div class="news-wide-item-info">
+										<h4 class="news-wide-item-heading item-heading">
+											<a href="news-single.html">Öffnungszeiten & Besucherzahlen</a>
+										</h4>
+										<div class="news-wide-item-row">
+											<div class="news-wide-item-date">1. Juni 2021</div>
+											<div class="news-wide-item-author">
+												by <a href="#!">Michael Koltan</a>
+											</div>
+										</div>
+										<div class="news-wide-item-desc">
+											<p>Wir öffnen das Archiv - vorsichtig - wieder für Publikumsverkehr. Allerdings nur für maximal 1 Person zur selben Zeit. Deshalb bitten wir um Voranmeldung entweder per email an archivsozialebewegungen@gmx.de oder telefonisch unter 0761/33362. Besuche sind von Montag bis Donnerstag möglich.</p>
+										</div>
+										<div class="wrapp-btn-link">
+											<a href="news-single.html" class="btn-link">
+												<span>Mehr erfahren</span>
+												<svg class="btn-link-ico btn-link-ico-right" viewBox="0 0 13 9" width="13" height="9" width="13px" height="9px"><use xlink:href="assets/img/sprite.svg#arrow-right"></use></svg>
+											</a>
+										</div>
+									</div>
+								</article><!-- End news item -->
+
+								<!-- Begin news item -->
+								<article class="news-wide-item item">
+									<a href="news-single.html" class="news-wide-item-img img-style">
+										<img src="assets/img/news/beckmann-s.jpg">
+									</a>
+									<div class="news-wide-item-info">
+										<h4 class="news-wide-item-heading item-heading">
+											<a href="news-single.html">Film & Buchvorstellung</a>
+										</h4>
+										<div class="news-wide-item-row">
+											<div class="news-wide-item-date">27. April 2019</div>
+											<div class="news-wide-item-author">
+												by <a href="#!">Michael Koltan</a>
+											</div>
+										</div>
+										<div class="news-wide-item-desc">
+											<p>Als die Arbeiter/-innen der Uhren- fabrik LIP in Besançon 1973 ihr Betriebsgelände besetzten, hallte ihr Slogan durch Frankreich und über die Grenze: «On fabrique, on vend, on se paie!» Vom Konkursverwalter um ihre Löhne gebracht...</p>
+										</div>
+										<div class="wrapp-btn-link">
+											<a href="news-single.html" class="btn-link">
+												<span>Mehr erfahren</span>
+												<svg class="btn-link-ico btn-link-ico-right" viewBox="0 0 13 9" width="13" height="9" width="13px" height="9px"><use xlink:href="assets/img/sprite.svg#arrow-right"></use></svg>
+											</a>
+										</div>
+									</div>
+								</article><!-- End news item -->
+
+                                <!-- Begin news item -->
+								<article class="news-wide-item item">
+									<a href="news-single.html" class="news-wide-item-img img-style">
+										<img src="assets/img/news/fr-st-zt-s.jpg">
+									</a>
+									<div class="news-wide-item-info">
+										<h4 class="news-wide-item-heading item-heading">
+											<a href="news-single.html">Freiburger Studenten Zeitung</a>
+										</h4>
+										<div class="news-wide-item-row">
+											<div class="news-wide-item-date">1. Januar 2019</div>
+											<div class="news-wide-item-author">
+												by <a href="#!">Michael Koltan</a>
+											</div>
+										</div>
+										<div class="news-wide-item-desc">
+											<p>Schon seit einigen Jahren beobachteten wir den physischen Verfall unserer Ausgaben der Freiburger Studenten Zeitung. Zum Universitätsjubiläum konnten wir die Unterstützung des Akademischen Rektorats, der UB und des Uniarchivs gewinnen, erstmals eine Gesamtausgabe der FSZ zusammenstellen und diese digitalisieren...</p>
+										</div>
+										<div class="wrapp-btn-link">
+											<a href="news-single.html" class="btn-link">
+												<span>Mehr erfahren</span>
+												<svg class="btn-link-ico btn-link-ico-right" viewBox="0 0 13 9" width="13" height="9" width="13px" height="9px"><use xlink:href="assets/img/sprite.svg#arrow-right"></use></svg>
+											</a>
+										</div>
+									</div>
+								</article><!-- End news item -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- End main content -->
+
+		</div>

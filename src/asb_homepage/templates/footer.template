@@ -1,0 +1,117 @@
+        <!-- Begin footer -->
+        <footer class="footer">
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row items">
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-12 item">
+                            <!-- Begin company info -->
+                            <div class="footer-company-info">
+                                <div class="footer-company-top">
+                                    <a href="index.html" class="logo logo-ico-widht-text"
+                                        title="Archiv Soziale Bewegungen">
+                                        <img class="lazy logo-ico" data-src="assets/img/logo.jpg" alt="">
+                                    </a>
+                                    <div class="footer-company-desc">
+                                        <p>Das Freiburger Archiv Soziale Bewegungen e.V. sammelt seit 1983 Bücher,
+                                            Zeitungen, Zeitschriften, Broschüren, Flugblätter, Fotos, Plakate,
+                                            Transparente, Protokolle und andere Verlautbarungen und Überreste der Neuen
+                                            Sozialen Bewegungen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End company info -->
+                        </div>
+                        <div class="col-xl-3 offset-xl-1 col-lg-4 col-md-5 col-12 item">
+                            <div class="footer-item">
+                                <h4 class="footer-item-heading">Navigation</h4>
+                                <nav class="footer-nav">
+                                    <ul class="footer-mnu">
+                                        <li><a href="index.html" class="hover-link"
+                                                data-title="Home"><span>Home</span></a></li>
+                                        <li><a href="services.html" class="hover-link"
+                                                data-title="Service"><span>Service</span></a></li>
+                                        <li><a href="bestaende.html" class="hover-link"
+                                                data-title="Bestände"><span>Bestände</span></a></li>
+                                        <li><a href="publikationen.html" class="hover-link"
+                                                data-title="Publikationen"><span>Publikationen</span></a></li>
+                                        <li><a href="index.html#kontakt" class="hover-link"
+                                                data-title="Kontakt"><span>Kontakt</span></a></li>
+                                        <li><a href="coming-soon.html" class="hover-link"
+                                                data-title="Über das Archiv"><span>Über das Archiv</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-lg-4 col-12 item">
+                            <div class="footer-item">
+                                <h4 class="footer-item-heading">Kontaktinformationen</h4>
+                                <ul class="footer-contacts">
+                                    <li>
+                                        <i class="material-icons md-22">location_on</i>
+                                        <div class="footer-contact-info">
+                                            Adlerstraße 12, 79098 Freiburg
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="material-icons md-22 footer-contact-tel">smartphone</i>
+                                        <div class="footer-contact-info">
+                                            Tel: +49 761/33362, Fax: +49 761/2024506
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="material-icons md-22 footer-contact-email">email</i>
+                                        <div class="footer-contact-info">
+                                            <a
+                                                href="mailto:ArchivSozialeBewegungen@gmx.de">ArchivSozialeBewegungen@gmx.de</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row justify-content-between items">
+                        <div class="col-md-auto col-12 item">
+                            <nav class="footer-links">
+                                <ul>
+                                    <li><a href="impressum.html">Impressum</a></li>
+                                    <li><a href="http://www.LePier.de" target="_blank">Work by LePier</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="col-md-auto col-12 item">
+                            <div class="copyright">© 2021 Archiv Soziale Bewegungen Freiburg</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer><!-- End footer -->
+
+    </main><!-- End main -->
+
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/lozad/lozad.min.js"></script>
+    <script src="assets/libs/device/device.js"></script>
+    <script src="assets/libs/ScrollToFixed/jquery-scrolltofixed-min.js"></script>
+    <script src="assets/libs/spincrement/jquery.spincrement.min.js"></script>
+    <script src="assets/libs/jquery-popup-overlay-gh-pages/jquery.popupoverlay.js"></script>
+    <script src="assets/libs/jquery-validation-1.19.3/jquery.validate.min.js"></script>
+    <script src="assets/libs/autosize-master/autosize.min.js"></script>
+    <script src="assets/libs/flickity/flickity.pkgd.min.js"></script>
+    <script src="assets/libs/flickity/flickity-imagesloaded.js"></script>
+    <script src="assets/libs/flickity/bg-lazyload.js"></script>
+    <script src="assets/libs/flickity/flickity-fade.js"></script>
+    <script src="assets/libs/isotope/isotope.pkgd.min.js"></script>
+    <script src="assets/libs/lightGallery/js/picturefill.min.js"></script>
+    <script src="assets/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="assets/libs/lightGallery/js/jquery.mousewheel.min.js"></script>
+    <script src="assets/libs/jquery-ui-range/jquery-ui.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+@additionalscripts@
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+            <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>
+                                <li><a href="#!">Bestände</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav><!-- End bread crumbs -->
+
+            <!-- Begin main content -->
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">Die Bestände des Archivs</div>
+                                <h1>Bestände</h1>
+                            </div>
+                            <p>
+                                Das Archiv besitzt und verwaltet inzwischen mehr als 100.000 Flugblätter, über 1.000
+                                Zeitschriftentitel, jeweils etwa 4.000 Broschüren und Plakate, Fotos, Transparente und
+                                außerdem Ton- und Filmdokumente. In der Regel handelt es sich um Material aus dem
+                                Freiburger Raum, nur die Zeitschriften machen eine Ausnahme: Hier wird überregional
+                                gesammelt.
+
+                                Mittels einer differenzierten inhaltlichen Systematik ist es möglich, sehr präzise auf
+                                dieses Archivmaterial zuzugreifen. Die Archivalien sind -- größtenteils in
+                                ehrenamtlicher Arbeit -- gründlich erschlossen. Das Archiv kann wissenschaftlichen
+                                Interessenten eine in dieser Art einmalige Sammlung von Dokumenten präsentieren, denn
+                                die Beschränkung auf eine Region erlaubt es, heute einen nahezu kompletten Bestand
+                                nachzuweisen, der - von einigen Lücken in den 50er und 60er Jahren abgesehen -- alle
+                                wichtigen, in der Region erschienenen Publikationen aus dem Bereich der Sozialen
+                                Bewegungen dokumentiert. Die Einbettung dieser regionalen Publikationen n einen größeren
+                                Kontext ist dadurch gewährleistet, daß das Archiv in seinem Zeitschriftenbereich fast
+                                alle einschlägigen Publikationen aus dem gesamten Bundesgebiet sammelt. Etliche davon
+                                sind bundesweit nur bei uns nachgewiesen.
+
+                                Darüberhinaus wurden als geschlossene Sammlungen die Bestände des Feministischen Archvis
+                                (bis 2003), die Tonbänder von Radio Vert Fessenheim (1977 ff.), und das Archiv der
+                                Baden-Württembergischen Jungdemokraten (fünfziger Jahre bis 1983) übernommen.
+
+                                Seit 1986 wird das laufende Material auch regelmäßig in gedruckter bzw. seit 1998 in
+                                digitalisierter Form publiziert. Nähere Hinweise finden Sie bei der Chronologie bzw.
+                                beim Projekt Alexandria.
+
+                                Das Archiv ist eine Präsenzbibliothek und an zwei Tagen für die Öffentlichkeit
+                                zugänglich. Jährlich werden etwa 600 Besucher betreut, darunter auch Doktoranden,
+                                Journalisten, Studenten und Privatpersonen aus europäischen und außereuropäischen
+                                Ländern. Über die ZDB-Berlin ist das Archiv mit der nationalen und internationalen
+                                Fernleihe verbunden.
+                            </p>
+                            <div class="accordion">
+                                <div class="row gutters-default">
+                                    <div class="col-lg-6 col-12">
+                                        <ul class="accordion-list">  
+                                            <li class="accordion-item section-bg">
+                                                <div class="accordion-trigger">Broschüren</div>
+                                                <div class="accordion-content content">
+                                                    <ul>
+                                                        <li><a href="btable.html">Alphabetisches/thematisches
+                                                                Online-Verzeichnis der Broschüren.</a></li>
+                                                        <li><a href="pdf/broschueren.pdf">Komplettverzeichnis der Broschüren als
+                                                                pdf-Datei</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="accordion-item section-bg">
+                                                <div class="accordion-trigger">Buttons</div>
+                                                <div class="accordion-content content">
+                                                    <p>TBD</p>
+                                                </div>
+                                            </li>                                           
+                                            <li class="accordion-item section-bg">
+                                                <div class="accordion-trigger">Feministischer Bestand</div>
+                                                <div class="accordion-content content">
+                                                    <p>TBD
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <ul class="accordion-list">
+                                            <li class="accordion-item section-bg">
+                                                <div class="accordion-trigger">Filme & Fotos</div>
+                                                <div class="accordion-content content">
+                                                    <p>TBD</p>
+                                                </div>
+                                            </li>
+                                            <li class="accordion-item section-bg">
+                                                <div class="accordion-trigger">Sonstige Archivalien</div>
+                                                <div class="accordion-content content">
+                                                    <p>TBD</p>
+                                                </div>
+                                            </li>
+                                            <li class="accordion-item section-bg">
+                                                <div class="accordion-trigger">Zeitschriften</div>
+                                                <div class="accordion-content content">
+                                                    <p>Das Archiv verfügt über eine breite Sammlung an Zeitschriften.
+                                                        Hier haben wir uns entschieden, das Regionalitätsprinzip
+                                                        aufzubrechen, das heißt, bei Zeitschriften werden nicht nur
+                                                        Publikationen aus dem badischen Raum gesammelt, sondern die
+                                                        Sammlungstätigkeit umfaßt den kompletten Bereich der sozialen
+                                                        Bewegungen - soweit das die Mittel des Archivs erlauben.
+
+                                                        Bei den einzelnen Titeln kann die Vollständigkeit des Bestands
+                                                        stark variieren kann: Während viele Zeitschriften komplett mit
+                                                        allen Jahrgängen vorhanden sind, stehen von anderen nur einzelne
+                                                        Exemplare in den Regalen.
+
+                                                        Viele, aber nicht alle Zeitschriften sind bei der ZDB gemeldet.
+                                                        Kopien von Artikeln aus diesen Zeitschriften sind direkt über
+                                                        das Fernleihenetz der deutschen Bibliotheken zu beziehen (das
+                                                        Archiv hat das Bibliothekssigel Frei 202). Scans einzelner
+                                                        Artikel können auch direkt beim Archiv bestellt werden. Auf der
+                                                        Service-Seite sind die Konditionen aufgeführt.
+                                                    </p>
+                                                    <ul>
+                                                        <li><a href="ztable.html">Alphabetisches/thematisches
+                                                                online-Verzeichnis der Titel</a></li>
+                                                        <li><a href="pdf/zeitschriften.pdf">Vollständiges Verzeichnis als PDF
+                                                                Datei</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End main content -->
+
+        </div>

@@ -1,0 +1,55 @@
+            <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>
+                                <li>
+                                    <a href="bestaende.html">Bestände</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>
+                                <li><a href="#!">Broschüren</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav><!-- End bread crumbs -->
+
+            <!-- Begin main content -->
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <h1>Broschüren</h1>
+                            </div>
+
+                            <table id="table" class="display" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Titel
+                                        </th>
+                                        <th class="no-sort">
+                                            Systematik
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+@tablebody@
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Titel</th>
+                                        <th>Systematik</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End main content -->

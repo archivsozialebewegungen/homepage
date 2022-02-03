@@ -1,0 +1,35 @@
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
+        async></script>
+
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of the Archive
+            const archive = { lat: 47.99359679355578, lng: 7.840623815342047 };
+            // The map, centered at Archive
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: archive,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: archive,
+                map: map,
+            });
+        }
+
+        var experience = new Date().getFullYear() - 1983;
+        $("#experience-counter").attr("data-to", experience);
+        
+        function generateButtonText() {
+            var today = new Date();
+            var months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September',
+                    'Oktober', 'November', 'Dezember'];
+            var dateText = months[today.getMonth()] + " " + (today.getFullYear() - 50);
+            var buttonText = "Mehr zum " + dateText;
+            $("#history-button").text(buttonText);
+            $("#date-text").text(dateText);
+        }
+        generateButtonText();
+    </script>

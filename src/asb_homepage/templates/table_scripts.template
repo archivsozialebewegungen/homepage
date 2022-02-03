@@ -1,0 +1,138 @@
+    <script src="assets/DataTables-1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="assets/DataTables-1.10.25/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+
+                "pageLength": 25,
+
+                "columnDefs": [{
+                    "targets": 'no-sort',
+                    "orderable": false,
+                }],
+
+                initComplete: function () {
+                    var i = 0;
+                    this.api().columns().every(function () {
+
+                        if (i != 0) {
+                            var column = this;
+
+                            var select = $('<select><option value="">Alle Kategorien</option></select>')
+                                .appendTo($(column.header()).empty())
+                                .on('change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                        $(this).val()
+                                    );
+
+                                    column
+                                        .search(val ? '^' + val + '$' : '', true, false)
+                                        .draw();
+                                });
+
+                            column.data().unique().sort().each(function (d, j) {
+                                select.append('<option value="' + d + '">' + d + '</option>')
+                            });
+                        }
+                        i = i + 1;
+                    });
+                },
+
+                language: {
+                    "sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+                    "sInfo": "_START_ bis _END_ von _TOTAL_ Titeln",
+                    "sInfoEmpty": "Keine Daten vorhanden",
+                    "sInfoFiltered": "(gefiltert von _MAX_ Titeln)",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ Titel anzeigen",
+                    "sLoadingRecords": "Wird geladen ..",
+                    "sProcessing": "Bitte warten ..",
+                    "sSearch": "In Titeln suchen",
+                    "sZeroRecords": "Keine Titel vorhanden",
+                    "oPaginate": {
+                        "sFirst": "Erste",
+                        "sPrevious": "Zurück",
+                        "sNext": "Nächste",
+                        "sLast": "Letzte"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": aktivieren, um Spalte aufsteigend zu sortieren",
+                        "sSortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+                    },
+                    "select": {
+                        "rows": {
+                            "_": "%d Zeilen ausgewählt",
+                            "1": "1 Zeile ausgewählt"
+                        }
+                    },
+                    "buttons": {
+                        "print": "Drucken",
+                        "colvis": "Spalten",
+                        "copy": "Kopieren",
+                        "copyTitle": "In Zwischenablage kopieren",
+                        "copyKeys": "Taste <i>ctrl</i> oder <i>\u2318</i> + <i>C</i> um Tabelle<br>in Zwischenspeicher zu kopieren.<br><br>Um abzubrechen die Nachricht anklicken oder Escape drücken.",
+                        "copySuccess": {
+                            "_": "%d Zeilen kopiert",
+                            "1": "1 Zeile kopiert"
+                        },
+                        "pageLength": {
+                            "-1": "Zeige alle Zeilen",
+                            "_": "Zeige %d Zeilen"
+                        }
+                    }
+                }
+            });
+
+
+            /*$('#table').DataTable({
+
+                "pageLength": 25,
+                "columnDefs": [
+                    { "targets": [1], "searchable": false }
+                ],
+                language: {
+                    "sEmptyTable": "Keine Daten in der Tabelle vorhanden",
+                    "sInfo": "_START_ bis _END_ von _TOTAL_ Titeln",
+                    "sInfoEmpty": "Keine Daten vorhanden",
+                    "sInfoFiltered": "(gefiltert von _MAX_ Titeln)",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ Titel anzeigen",
+                    "sLoadingRecords": "Wird geladen ..",
+                    "sProcessing": "Bitte warten ..",
+                    "sSearch": "In Titeln suchen",
+                    "sZeroRecords": "Keine Titel vorhanden",
+                    "oPaginate": {
+                        "sFirst": "Erste",
+                        "sPrevious": "Zurück",
+                        "sNext": "Nächste",
+                        "sLast": "Letzte"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": aktivieren, um Spalte aufsteigend zu sortieren",
+                        "sSortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+                    },
+                    "select": {
+                        "rows": {
+                            "_": "%d Zeilen ausgewählt",
+                            "1": "1 Zeile ausgewählt"
+                        }
+                    },
+                    "buttons": {
+                        "print": "Drucken",
+                        "colvis": "Spalten",
+                        "copy": "Kopieren",
+                        "copyTitle": "In Zwischenablage kopieren",
+                        "copyKeys": "Taste <i>ctrl</i> oder <i>\u2318</i> + <i>C</i> um Tabelle<br>in Zwischenspeicher zu kopieren.<br><br>Um abzubrechen die Nachricht anklicken oder Escape drücken.",
+                        "copySuccess": {
+                            "_": "%d Zeilen kopiert",
+                            "1": "1 Zeile kopiert"
+                        },
+                        "pageLength": {
+                            "-1": "Zeige alle Zeilen",
+                            "_": "Zeige %d Zeilen"
+                        }
+                    }
+                }
+            });*/
+        });
+    </script>

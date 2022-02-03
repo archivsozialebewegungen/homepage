@@ -1,0 +1,151 @@
+            <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>
+                                <li><a href="#!">Service</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav><!-- End bread crumbs -->
+
+            <!-- Begin main content -->
+            <div class="section">
+                <div class="container">
+                    <div class="row items">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">Unser Angebot</div>
+                                <h1>Services</h1>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 item">
+                            <!-- Begin services item -->
+                            <a class="services-item item-style">
+                                <div class="services-item-ico">
+                                    <i class="material-icons material-icons-outlined md-48">schedule</i>
+                                </div>
+                                <div class="services-item-ico-bg">
+                                    <i class="material-icons material-icons-outlined">schedule</i>
+                                </div>
+                                <h4 class="services-item-heading">Öffnungszeiten</h4>
+                                <div class="services-item-desc">Das Archiv ist in der Regel Mittwochs zwischen 10 und 15 Uhr geöffnet, am Donnerstag zwischen 11 und 18 Uhr. Aber auch an anderen Tagen und zu anderen Zeiten ist oft jemand da. Ein Anruf unter +49 761/33362 lohnt sich.
+                                </div>
+                            </a><!-- End services item -->
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 item">
+                            <!-- Begin services item -->
+                            <a class="services-item item-style">
+                                <div class="services-item-ico">
+                                    <i class="material-icons material-icons-outlined md-48">touch_app</i>
+                                </div>
+                                <div class="services-item-ico-bg">
+                                    <i class="material-icons material-icons-outlined">touch_app</i>
+                                </div>
+                                <h4 class="services-item-heading">Archivnutzung</h4>
+                                <div class="services-item-desc">Die Nutzung des Archivs während der Öffnungszeiten ist grundsätzlich kostenlos. Während der anderen Zeiten berechnen wir pro Stunde 15,- EUR. In besonderen Fällen kann auf diese Regel verzichtet werden.</div>
+                            </a><!-- End services item -->
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-12 item">
+                            <!-- Begin services item -->
+                            <a class="services-item item-style">
+                                <div class="services-item-ico">
+                                    <i class="material-icons material-icons-outlined md-48">local_shipping</i>
+                                </div>
+                                <div class="services-item-ico-bg">
+                                    <i class="material-icons material-icons-outlined">local_shipping</i>
+                                </div>
+                                <h4 class="services-item-heading">Fernleihe</h4>
+                                <div class="services-item-desc">Über den Leihverkehr der deutschen Bibliotheken können ausschließlich Kopien aus den nachgewiesenen Zeitschriften geordert werden. Textdateien gewünschter Artikel aus allen hier lagernden Zeitschriften können aber auch direkt via Email bezogen werden.</div>
+                            </a><!-- End services item -->
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-12 item">
+                            <!-- Begin services item -->
+                            <a class="services-item item-style">
+                                <div class="services-item-ico">
+                                    <i class="material-icons material-icons-outlined md-48">plagiarism</i>
+                                </div>
+                                <div class="services-item-ico-bg">
+                                    <i class="material-icons material-icons-outlined">plagiarism</i>
+                                </div>
+                                <h4 class="services-item-heading">Recherche</h4>
+                                <div class="services-item-desc">Auf Wunsch erstellen wir Dossiers oder führen themenbezogene Recherchen durch. Die Kosten richten sich nach dem Arbeitsaufwand und werden pro Stunde mi 35.- EUR berechnet. Bei der Erstellung von CD-ROM's fallen zusätzliche Produktionskosten an.</div>
+                            </a><!-- End services item -->
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section section-bg">
+				<div class="container">
+					<div class="row items">
+						<div class="col-12">
+							<div class="section-heading heading-center">
+                                <div class="section-subheading">KOPIEN KÖNNEN IM ARCHIV SELBST ERSTELLT - ODER IN AUFTRAG GEGEBEN WERDEN</div>
+                                <h1>Kopien</h1>
+                            </div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-12 item">
+							<!-- Begin pricing item -->
+							<div class="pricing-item item-style">
+								<header class="pricing-item-header">
+									<div class="pricing-item-heading">Selbsterstellt</div>
+									<div class="pricing-item-price">0,20 EUR</div>
+								</header>
+								<div class="pricing-item-content">
+									<ul class="pricing-item-list">
+										<li class="active">
+											<i class="material-icons md-24">check</i>
+											DINA4 Kopie
+										</li>
+									</ul>
+								</div>
+							</div><!-- End pricing item -->
+						</div>
+						<div class="col-lg-4 col-md-6 col-12 item">
+							<!-- Begin pricing item -->
+							<div class="pricing-item item-style">
+								<header class="pricing-item-header">
+									<div class="pricing-item-heading">Angefertigt</div>
+									<div class="pricing-item-price">0,35 EUR</div>
+								</header>
+								<div class="pricing-item-content">
+									<ul class="pricing-item-list">
+										<li class="active">
+											<i class="material-icons md-24">check</i>
+											DINA4 Kopie
+										</li>
+									</ul>
+								</div>
+							</div><!-- End pricing item -->
+						</div>
+						<div class="col-lg-4 col-md-12 col-12 item">
+							<!-- Begin pricing item -->
+							<div class="pricing-item item-style">
+								<header class="pricing-item-header">
+									<div class="pricing-item-heading">Für Fördermitglieder</div>
+									<div class="pricing-item-price">0,10 EUR</div>
+								</header>
+								<div class="pricing-item-content">
+									<ul class="pricing-item-list">
+										<li class="active">
+											<i class="material-icons md-24">check</i>
+											DINA4 Kopie
+										</li>
+									</ul>
+								</div>
+							</div><!-- End pricing item -->
+						</div>
+					</div>
+				</div>
+			</div><!-- End main content -->
+
+            <!-- End main content -->
+
+        </div>
