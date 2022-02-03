@@ -1,0 +1,3 @@
+[submodule "Zeitschriften"]
+	path = Zeitschriften
+	url = https://github.com/archivsozialebewegungen/Zeitschriften.git
