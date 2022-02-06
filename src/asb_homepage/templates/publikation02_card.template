@@ -1,0 +1,33 @@
+                                <div class="col-12 col-sm-6 col-md-12 card-item-wide">
+                                    <!-- Begin card -->
+                                    <div class="item-style card">
+                                        <header class="card-header">
+                                            <a href="publikation@pubnr@.html" class="card-image">
+                                                <img src="assets/img/publikationen/gwg.jpg" />
+                                            </a> 
+                                        </header>
+                                        <div class="card-info card-info-wide">
+                                            <div class="card-info-main">
+                                                <h3 class="item-heading card-heading card-wide-item">
+                                                    <a href="publikation@pubnr@.html" title="Gleich wird's grün">Gleich wird's grün</a>
+                                                </h3>
+                                                <div class="card-posted-in card-wide-item">
+                                                    <a href="publikation@pubnr@.html" class="card-category" title="CD-ROM">CD-ROM</a>
+                                                </div>
+                                                <div class="card-prices card-wide-item">
+                                                    <div class="card-price">15 EUR</div>
+                                                </div>
+                                                <div class="card-desc card-wide-item">
+                                                    <p>
+                                                        Das Archiv Soziale Bewegungen hat eine CD-ROM erstellt, die über 550 Dokumente zugänglich macht. Sie enthält Flugblätter, Fotos, Filme, städtische Akten und Interviews mit Akteuren vom Protest des 1. Februar 1968.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <a href="publikation@pubnr@.html" class="btn btn-small ripple">
+                                                    <span>Zur Publikation</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><!-- End card -->
+                                </div>

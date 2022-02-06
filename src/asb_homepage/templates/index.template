@@ -245,6 +245,7 @@
             </section><!-- End our services -->
 
             <!-- Begin reviews -->
+            <!--
             <section class="section section-bg">
                 <div class="container">
                     <div class="row">
@@ -358,7 +359,9 @@
                         </div>
                     </div>
                 </div>
-            </section><!-- End reviews -->
+            </section>
+            -->
+            <!-- End reviews -->
 
             <!-- Begin Contact -->
             <section class="section contact" id="kontakt">

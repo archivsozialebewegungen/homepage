@@ -20,14 +20,15 @@ class Exporter:
         self.zeitschriften_dao = zeitschrifen_dao
         self.broschueren_dao = broschueren_dao
         self.systmatik_dao = systematik_dao
-        self.outdir = "/tmp/out"
+        self.outdir = "/var/www/html"
         if not path.isdir(self.outdir):
-            makedirs("/tmp/out")
+            makedirs(self.outdir)
     
     def run(self):
         
         self.write_static()
         self.write_default_files()
+        self.write_publikationen()
         #self.write_zeitschriften()
         #self.write_broschueren()
         
@@ -38,7 +39,7 @@ class Exporter:
         
     def write_default_files(self):
         
-        file_bases = ("index", "news", "services", "bestaende", "publikationen", "coming-soon")
+        file_bases = ("index", "news", "services", "bestaende", "coming-soon")
         
         for file_base in file_bases:
             template = self.load_full_template(file_base)
@@ -46,6 +47,30 @@ class Exporter:
             file.write(template)
             file.close()
             
+    def write_publikationen(self):
+        
+        counter = 0
+        cards = ""
+        while True:
+            counter += 1
+            print("publikation%02d_card.template" % counter)
+            if not path.exists(path.join(self.template_dir, "publikation%02d_card.template" % counter)):
+                break
+            cards += self.load_template("card", ("publikation%02d" % counter,))
+            cards = cards.replace("@pubnr@", "%02d" % counter, 4)
+            template = self.load_full_template("publikation%02d" % counter, "ecommerce", "ecommerce")
+            self.write_html_file("publikation%02d.html" % counter, template)
+            
+        template = self.load_full_template("publikationen", "ecommerce", "ecommerce")
+        template = template.replace("@cards@", cards)
+        self.write_html_file("publikationen.html", template)
+        
+        
+    def write_html_file(self, name, content):    
+        
+        file = open(path.join(self.outdir, name), "w")
+        file.write(content)
+        file.close()
         
     def write_zeitschriften(self):
         

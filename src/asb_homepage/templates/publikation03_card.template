@@ -1,0 +1,33 @@
+                                <div class="col-12 col-sm-6 col-md-12 card-item-wide">
+                                    <!-- Begin card -->
+                                    <div class="item-style card">
+                                        <header class="card-header">
+                                            <a href="publikation@pubnr@.html" class="card-image">
+                                                <i class="material-icons md-72">hide_image</i>
+                                            </a> 
+                                        </header>
+                                        <div class="card-info card-info-wide">
+                                            <div class="card-info-main">
+                                                <h3 class="item-heading card-heading card-wide-item">
+                                                    <a href="publikation@pubnr@.html" title="Kein Tag ohne KTS!">Kein Tag ohne KTS!</a>
+                                                </h3>
+                                                <div class="card-posted-in card-wide-item">
+                                                    <a href="publikation@pubnr@.html" class="card-category" title="CD-ROM">CD-ROM</a>
+                                                </div>
+                                                <div class="card-prices card-wide-item">
+                                                    <div class="card-price">15 EUR</div>
+                                                </div>
+                                                <div class="card-desc card-wide-item">
+                                                    <p>
+                                                        Ein handgeschriebener Zettel der KTS-Ini lud zur ersten Kulturwoche aufs Vauban-Gelände.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <a href="publikation@pubnr@.html" class="btn btn-small ripple">
+                                                    <span>Zur Publikation</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><!-- End card -->
+                                </div>
