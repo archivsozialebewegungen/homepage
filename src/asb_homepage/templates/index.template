@@ -375,7 +375,10 @@
                         </div>
                         <div class="col-md-4 col-12 content-item">
                             <div class="contacts-info-item item-style" style="padding: 0">
+                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2670.074333888167!2d7.8383922150261816!3d47.99295057921221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47911b605e9f5c15%3A0x88d8514cb24521e0!2sArchiv%20Soziale%20Bewegungen!5e0!3m2!1sde!2sde!4v1644162226034!5m2!1sde!2sde" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <!--    
                                 <div id="map" style="width: auto; height: 250px"></div>
+                                -->
                             </div>
                         </div>
                         <div class="col-md-4 col-12 content-item">
