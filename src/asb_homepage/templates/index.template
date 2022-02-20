@@ -29,11 +29,11 @@
                                     <div class="intro-box">
                                         <div class="section-heading shm-none">
                                             <h1>Vor 50 Jahren</h1>
-                                            <p class="section-desc">Was geschah exakt diese Woche vor 50 Jahren? Wir
+                                            <p class="section-desc">Was geschah in der Region vor 50 Jahren? Wir
                                                 haben die Zeitgeschichte für Sie aufbereitet.</p>
                                         </div>
                                         <div class="wrap-btn intro-btns">
-                                            <a href="coming-soon.html" class="btn btn-with-icon btn-small ripple">
+                                            <a href="vor_fuenf_jahren/index.html" target="_blank" class="btn btn-with-icon btn-small ripple">
                                                 <span id="history-button"></span>
                                                 <svg class="btn-icon-right" viewBox="0 0 13 9" width="13" height="9">
                                                     <use xlink:href="assets/img/sprite.svg#arrow-right"></use>
@@ -210,7 +210,7 @@
                         </div>
                         <div class="col-xl-4 col-md-6 col-12 item">
                             <!-- Begin services item -->
-                            <a href="coming-soon.html" class="services-item services-item-row item-style">
+                            <a href="vor_fuenf_jahren/index.html" target="_blank" class="services-item services-item-row item-style">
                                 <div class="services-item-ico">
                                     <i class="material-icons material-icons-outlined md-48">history</i>
                                 </div>
@@ -219,7 +219,7 @@
                                 </div>
                                 <div class="services-item-info">
                                     <h4 class="services-item-heading">Vor 50 Jahren</h4>
-                                    <div class="services-item-desc">Was geschah exakt vor 50 Jahren im <span id="date-text"></span>? Wir
+                                    <div class="services-item-desc">Was geschah in der Region vor 50 Jahren im <span id="date-text"></span>? Wir
                                         haben das Zeitgeschehen für Sie aufbereitet.</div>
                                 </div>
                             </a><!-- End services item -->
@@ -375,10 +375,7 @@
                         </div>
                         <div class="col-md-4 col-12 content-item">
                             <div class="contacts-info-item item-style" style="padding: 0">
-                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2670.074333888167!2d7.8383922150261816!3d47.99295057921221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47911b605e9f5c15%3A0x88d8514cb24521e0!2sArchiv%20Soziale%20Bewegungen!5e0!3m2!1sde!2sde!4v1644162226034!5m2!1sde!2sde" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                            <!--    
-                                <div id="map" style="width: auto; height: 250px"></div>
-                                -->
+                            <iframe width="347" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=7.839222550392152%2C47.99256578010926%2C7.8412771224975595%2C47.99351174000086&amp;layer=mapnik&amp;marker=47.993038762222696%2C7.840249836444855" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=47.99304&amp;mlon=7.84025#map=19/47.99304/7.84025">Größere Karte anzeigen</a></small>
                             </div>
                         </div>
                         <div class="col-md-4 col-12 content-item">

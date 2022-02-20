@@ -1,3 +1,9 @@
 [submodule "Zeitschriften"]
 	path = Zeitschriften
 	url = https://github.com/archivsozialebewegungen/Zeitschriften.git
+[submodule "AlexandriaBase"]
+	path = AlexandriaBase
+	url = https://github.com/archivsozialebewegungen/AlexandriaBase.git
+[submodule "AlexandriaPlugins"]
+	path = AlexandriaPlugins
+	url = https://github.com/archivsozialebewegungen/AlexandriaPlugins.git

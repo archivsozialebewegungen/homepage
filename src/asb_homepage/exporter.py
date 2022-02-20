@@ -20,6 +20,13 @@ from reportlab.rl_settings import defaultPageSize
 from reportlab.lib.pagesizes import A4
 from datetime import date
 import locale
+from alexplugins.cdexporter.base import CDExporterBasePluginModule, ExportInfo,\
+    CDDataAssembler, GenerationEngine
+import datetime
+from alexandriabase import AlexBaseModule
+from alexandriabase.daos import DaoModule
+from alexandriabase.domain import AlexDate
+from alexandriabase.services import ServiceModule
 
 @singleton
 class BroschuerenExporter():
@@ -188,7 +195,8 @@ class Exporter:
                  broschueren_dao: BroschDao,
                  systematik_dao: SystematikDao,
                  broschueren_exporter: BroschuerenExporter,
-                 zeitschriften_exporter: ZeitschriftenExporter):
+                 zeitschriften_exporter: ZeitschriftenExporter,
+                 cd_generation_engine: GenerationEngine):
         
         self.template_dir = path.join(path.dirname(__file__), "templates")
         self.zeitschriften_dao = zeitschrifen_dao
@@ -196,10 +204,12 @@ class Exporter:
         self.systmatik_dao = systematik_dao
         self.broschueren_exporter = broschueren_exporter
         self.zeitschriften_exporter = zeitschriften_exporter
+        self.cd_generation_engine = cd_generation_engine
         self.outdir = "/var/www/html"
         self.pdfdir = path.join(self.outdir, "pdf")
         if not path.isdir(self.pdfdir):
             makedirs(self.pdfdir)
+            
     
     def run(self):
         
@@ -207,10 +217,11 @@ class Exporter:
         self.write_default_files()
         self.write_publikationen()
         #self.write_broschueren_pdf()
-        self.write_zeitschriften_pdf()
+        #self.write_zeitschriften_pdf()
         
         #self.write_zeitschriften()
         #self.write_broschueren()
+        self.write_vor_fuenf_jahren()
         
     def write_static(self):
         
@@ -276,6 +287,44 @@ class Exporter:
         self.file = open("%s/btable.html" % self.outdir, "w")
         self.file.write(template)
         self.file.close()
+        
+    def write_vor_fuenf_jahren(self):
+ 
+        today = datetime.date.today()
+        current_year = next_year = today.year - 50
+        current_month = today.month
+        next_month = current_month + 1
+        if next_month == 13:
+            next_month = 1
+            next_year += 1
+        export_info = ExportInfo()
+        export_info.start_date = self.python_date_to_alexdate(datetime.date(current_year, current_month, 1))
+        export_info.end_date = self.python_date_to_alexdate(datetime.date(next_year, next_month, 1) - datetime.timedelta(days=1))
+        export_info.cd_name = "vor_fuenf_jahren"
+        
+        export_info.pagecontent['startpage'] = """
+Der Monat vor 50 Jahren
+=======================
+
+Seit den 90er Jahren des vorigen Jahrhunderts baut das
+Archiv soziale Bewegungen eine Datenbank auf, die
+einerseits eine Chronologie der Bewegungsgeschichte im
+Südwesten beinhaltet, andererseits eine Fülle digitalisierter
+Dokumente, die mit dieser Chronologie verknüpft sind.
+
+Hier zeigen wir immer die Einträge eines Monats, der
+50 Jahre zurückliegt, aktuell also vom %s %s.
+
+Klicken Sie auf <a href="#/events">Ereignisse</a> oder auf
+<a href="#/documents">Dokumente</a> um in der Geschichte
+von vor 50 Jahren zu stöbern.
+        """ % (today.strftime("%B"), current_year)
+        
+        self.cd_generation_engine.run(export_info)
+        
+    def python_date_to_alexdate(self, date: datetime.date):
+        
+        return AlexDate(date.year, date.month, date.day)
         
     def load_full_template(self, name, assets_template=None, scripts_template=None):
         
@@ -362,7 +411,7 @@ class Exporter:
 if __name__ == '__main__':
  
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")    
-    injector = Injector([AlexandriaDbModule])
+    injector = Injector([AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule])
     
     exporter = injector.get(Exporter)
     exporter.run()
