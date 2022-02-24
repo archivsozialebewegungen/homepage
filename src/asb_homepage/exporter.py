@@ -16,17 +16,59 @@ from reportlab.platypus.doctemplate import SimpleDocTemplate
 from reportlab.platypus.flowables import Spacer
 from reportlab.lib.units import mm
 from reportlab.platypus.paragraph import Paragraph
-from reportlab.rl_settings import defaultPageSize
 from reportlab.lib.pagesizes import A4
 from datetime import date
 import locale
 from alexplugins.cdexporter.base import CDExporterBasePluginModule, ExportInfo,\
-    CDDataAssembler, GenerationEngine
+    GenerationEngine
 import datetime
 from alexandriabase import AlexBaseModule
 from alexandriabase.daos import DaoModule
 from alexandriabase.domain import AlexDate
 from alexandriabase.services import ServiceModule
+from asb_homepage.ButtonsExporter import ButtonsExporter
+from pathlib import Path
+from shutil import copyfile
+import pysftp
+
+class NewsReader():
+    
+    def __init__(self):
+        
+        self.news_dir = path.join(path.dirname(__file__), "templates", "news")
+        self.sections = ('image', "heading", "date", "author", "shortteaser", "teaser", "text")
+        
+    def read(self):
+        
+        index = 0
+        news = []
+        while True:
+            index += 1
+            file_name = path.join(self.news_dir, "news%03d.info" % index)
+            print(file_name)
+            if not path.exists(file_name):
+                break
+            news.append(self.read_news(file_name))
+        return news
+                             
+    def read_news(self, filename):
+        
+        news_section = 0
+        news_item = {}
+        news_item[self.sections[0]] = ""
+            
+        with open(filename) as news_file:
+            for line in news_file.readlines():
+                if line.strip() == "" and news_section < len(self.sections) - 1:
+                    news_item[self.sections[news_section]] = news_item[self.sections[news_section]][:-1]  
+                    news_section += 1
+                    news_item[self.sections[news_section]] = ""
+                else:
+                    news_item[self.sections[news_section]] += line
+            
+        return news_item
+        
+        
 
 @singleton
 class BroschuerenExporter():
@@ -196,6 +238,8 @@ class Exporter:
                  systematik_dao: SystematikDao,
                  broschueren_exporter: BroschuerenExporter,
                  zeitschriften_exporter: ZeitschriftenExporter,
+                 buttons_exporter: ButtonsExporter,
+                 news_reader: NewsReader,
                  cd_generation_engine: GenerationEngine):
         
         self.template_dir = path.join(path.dirname(__file__), "templates")
@@ -204,33 +248,72 @@ class Exporter:
         self.systmatik_dao = systematik_dao
         self.broschueren_exporter = broschueren_exporter
         self.zeitschriften_exporter = zeitschriften_exporter
+        self.buttons_exporter = buttons_exporter
+        self.news_reader = news_reader
         self.cd_generation_engine = cd_generation_engine
         self.outdir = "/var/www/html"
         self.pdfdir = path.join(self.outdir, "pdf")
+        self.imgdir = path.join(self.outdir, "img")
         if not path.isdir(self.pdfdir):
             makedirs(self.pdfdir)
+        if not path.isdir(self.imgdir):
+            makedirs(self.imgdir)
+    
+    def upload(self):
+        
+        with pysftp.Connection('ssh.strato.de', username='archivsozialebewegungen.de', password='', port=22) as sftp:
+            try:
+                sftp.mkdir("neu")
+            except IOError:
+                pass
             
+            with sftp.cd('neu'):             # temporarily chdir to public
+                self.upload_dir(self.outdir, sftp)
+        
+    def upload_dir(self, directory, sftp):
+        
+        directory_path = Path(directory)
+        for file in list(directory_path.iterdir()):
+            if file.is_dir():
+                try:
+                    sftp.mkdir(file.name)
+                except IOError:
+                    pass
+                with sftp.cd(file.name):
+                    self.upload_dir(path.join(directory, file.name), sftp)
+            else:
+                sftp.put(path.join(directory, file.name))
     
     def run(self):
         
         self.write_static()
         self.write_default_files()
-        self.write_publikationen()
+        #self.write_publikationen()
+        self.write_news()
         #self.write_broschueren_pdf()
         #self.write_zeitschriften_pdf()
         
         #self.write_zeitschriften()
         #self.write_broschueren()
-        self.write_vor_fuenf_jahren()
+        #self.write_buttons_pdf()
+        #self.write_vor_fuenf_jahren()
         
     def write_static(self):
         
         with zipfile.ZipFile(path.join(self.template_dir, "assets.zip"), 'r') as zip_ref:
             zip_ref.extractall(self.outdir)
         
+        pdfdir = Path(path.join(self.template_dir, "pdf"))
+        for file in list(pdfdir.glob('*.pdf')):
+            copyfile(file, path.join(self.pdfdir, file.name))
+
+        imgdir = Path(path.join(self.template_dir, "img"))
+        for file in list(imgdir.glob('*')):
+            copyfile(file, path.join(self.imgdir, file.name))
+                
     def write_default_files(self):
         
-        file_bases = ("index", "news", "services", "bestaende", "coming-soon")
+        file_bases = ("index", "services", "bestaende", "buttons", "feministischesarchiv", "spenden", "coming-soon")
         
         for file_base in file_bases:
             template = self.load_full_template(file_base)
@@ -247,7 +330,7 @@ class Exporter:
             print("publikation%02d_card.template" % counter)
             if not path.exists(path.join(self.template_dir, "publikation%02d_card.template" % counter)):
                 break
-            cards += self.load_template("card", ("publikation%02d" % counter,))
+            cards += self._load_template_parts("card", ("publikation%02d" % counter,))
             cards = cards.replace("@pubnr@", "%02d" % counter, 4)
             template = self.load_full_template("publikation%02d" % counter, "ecommerce", "ecommerce")
             self.write_html_file("publikation%02d.html" % counter, template)
@@ -255,7 +338,43 @@ class Exporter:
         template = self.load_full_template("publikationen", "ecommerce", "ecommerce")
         template = template.replace("@cards@", cards)
         self.write_html_file("publikationen.html", template)
+    
+    def write_news(self):
         
+        template = self.load_full_template("news")
+        
+        articles = self.get_articles()
+        
+        template = template.replace("@articles@", articles)
+        
+        self.write_html_file("news.html", template)
+        self.write_single_article_files()
+        
+    def write_single_article_files(self):
+        
+        news = self.news_reader.read()
+        for i in range(0,len(news)):
+            template = self.load_full_template("news-single")
+            news_item = news[i]
+            for section in self.news_reader.sections:
+                template = template.replace("@%s@" % section, news_item[section].replace("\n\n", "</p><p>"))
+            self.write_html_file("news-single-%03d.html" % (i + 1), template)
+    
+    def get_articles(self):
+        
+        html = ""
+        
+        news = self.news_reader.read()
+        for i in range(0,len(news)):
+            template = self.load_template("news_item")
+            news_item = news[-1-i]
+            for section in self.news_reader.sections:
+                template = template.replace("@%s@" % section, news_item[section])
+            template = template.replace('@link@', "news-single-%03d.html" % (len(news) - i))
+            html += template
+            
+        return html
+            
     def write_broschueren_pdf(self):
         
         self.broschueren_exporter.export(filename = path.join(self.pdfdir, "broschueren.pdf"))
@@ -263,6 +382,10 @@ class Exporter:
     def write_zeitschriften_pdf(self):
         
         self.zeitschriften_exporter.export(filename = path.join(self.pdfdir, "zeitschriften.pdf"))
+                
+    def write_buttons_pdf(self):
+        
+        self.buttons_exporter.export(filename = path.join(self.pdfdir, "buttons.pdf"))
                 
     def write_html_file(self, name, content):    
         
@@ -335,15 +458,15 @@ von vor 50 Jahren zu stöbern.
         with open(path.join(self.template_dir, "footer.template")) as template_file:
             template += template_file.read()
         
-        assets = self.load_template("assets", (assets_template, name))
-        scripts = self.load_template("scripts", (scripts_template, name))
+        assets = self._load_template_parts("assets", (assets_template, name))
+        scripts = self._load_template_parts("scripts", (scripts_template, name))
         
         template = template.replace('@additionalassets@', assets)
         template = template.replace('@additionalscripts@', scripts)
         
         return template
     
-    def load_template(self, template_type, names):
+    def _load_template_parts(self, template_type, names):
         
         for name in names:
             if name is None:
@@ -354,6 +477,15 @@ von vor 50 Jahren zu stöbern.
                     template = template_file.read()
                 return template
         return ""
+    
+    def load_template(self, name):
+
+        path_name = path.join(self.template_dir, "%s.template" % name)
+        
+        with open(path_name) as template_file:
+            template = template_file.read()
+    
+        return template
     
     def create_ztable(self):
         
@@ -415,3 +547,5 @@ if __name__ == '__main__':
     
     exporter = injector.get(Exporter)
     exporter.run()
+    #exporter.upload()
+    

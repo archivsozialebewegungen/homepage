@@ -1,0 +1,193 @@
+            <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="index.html">Über das Archiv</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>                                
+                                <li><a href="#!">Sponsoren, Spenden & Förderkreis</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav><!-- End bread crumbs -->
+
+            <!-- Begin main content -->
+            <div class="section">
+                <div class="container">
+                    <div class="row items">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">Die Möglichmacher</div>
+                                <h1>Unere Sponsoren</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 content-item">
+                            <div class="contacts-info-item item-style sponsor-box">
+                                <div class="contacts-info-item-ico">
+                                    <a href="https://www.brillenladen.net/" target="_blank">
+                                        <img src="assets/img/sponsoren/brillenladen.jpg" class="sponsor-logo"/>
+                                    </a>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <h4><a href="https://www.brillenladen.net/" target="_blank">Brillenladen im Stühlinger</a></h4>
+                                        <span>Klarastraße. 39</span><br />
+                                        <span>79106 Freiburg</span><br />
+                                        <span>Tel: +49 761 280537</span><br />
+                                        <a href="https://www.brillenladen.net/" target="_blank">brillenladen.net</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 content-item">
+                            <div class="contacts-info-item item-style sponsor-box">
+                                <div class="contacts-info-item-ico">
+                                    <a href="http://www.zumkeller-gaerten.de/" target="_blank">
+                                        <img src="assets/img/sponsoren/zumkeller.jpg" class="sponsor-logo"/>
+                                    </a>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <h4><a href="http://www.zumkeller-gaerten.de/" target="_blank">Gartenbau Zumkeller</a></h4>
+                                        <span>Mühlenweg 2A</span><br />
+                                        <span>79249 Merzhausen</span><br />
+                                        <span>Tel: +49 761 408684</span><br />
+                                        <a href="http://www.zumkeller-gaerten.de/" target="_blank">zumkeller-gaerten.de</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="col-md-3 col-12 content-item">
+                            <div class="contacts-info-item item-style sponsor-box">
+                                <div class="contacts-info-item-ico">
+                                    <a href="http://www.exlibris-archiv.de/" target="_blank">
+                                        <img src="assets/img/sponsoren/no-image.jpg" class="sponsor-logo"/>
+                                    </a>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <h4><a href="http://www.exlibris-archiv.de/" target="_blank">Antiquariat Rieger</a></h4>
+                                        <span>Gruberhof 8</span><br />
+                                        <span>79110 Freiburg</span><br />
+                                        <span>Tel: +49 761 892350</span><br />
+                                        <a href="http://www.exlibris-archiv.de/" target="_blank">exlibris-archiv.de</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 content-item">
+                            <div class="contacts-info-item item-style sponsor-box">
+                                <div class="contacts-info-item-ico">
+                                    <a href="http://www.zapf.de/" target="_blank">
+                                        <img src="assets/img/sponsoren/zapf.jpg" class="sponsor-logo"/>
+                                    </a>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <h4><a href="http://www.zapf.de/" target="_blank">Zett Umzüge GmbH</a></h4>
+                                        <span>Oltmannsstraße 34</span><br />
+                                        <span>79100 Freiburg</span><br />
+                                        <span>Tel: +49 761 459900</span><br />
+                                        <a href="http://www.zapf.de/" target="_blank">zapf.de</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section section-bg">
+				<div class="container">
+					<div class="row items">
+						<div class="col-12">
+							<div class="section-heading heading-center">
+                                <div class="section-subheading">Wer das Archiv unterstützen will, der kann das tun</div>
+                                <h1>Spenden</h1>
+                            </div>
+						</div>
+                        <div class="col-6">
+                            <h4>Einmalige Spende</h4>
+                            <div class="alerts alerts-static">                               
+                                <div class="alert " role="alert">
+                                    <div class="alert-text">
+                                        IBAN: DE27 6805 0101 0002 0655 62
+                                    </div>
+                                </div>
+                                <div class="alert " role="alert">
+                                    <div class="alert-text">
+                                        BIC: FRESPDE66XXX
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h4>Monatliche / Jährliche Spende</h4>
+                            <div class="alerts alerts-static">                               
+                                <div class="alert " role="alert">
+                                    <div class="alert-text">
+                                        Download: <a href="pdf/foerderkreis.pdf" target="_blank">Unterstützungsformular</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <p>&nbsp;</p>
+                            <p>
+                                Dazu zwei Anmerkungen:
+                                <ul>
+                                    <li>Das »Archiv Soziale Bewegung« wird getragen von einem Verein, dessen Gemeinnützigkeit von Finanzamt anerkannt ist; Spenden zugunsten des Archivs sind steuerlich absetzbar. </li>
+                                    <li>So sehr wir uns über größere Spenden freuen: auch kleine Beträge (etwa von 5.- Euro monatlich) sind uns willkommen, weil sie in ihrer Summe den Bestand und die Arbeit des Archivs sichern helfen und gegenüber der Stadt Freiburg die wichtige Verankerung des Archivs »in der Bevölkerung« (nicht nur Freiburgs) dokumentieren. </li>
+                                </ul>
+                            </p>
+                        </div>
+					</div>
+				</div>
+            </div>
+
+            <div class="section section">
+				<div class="container">
+					<div class="row items">
+						<div class="col-12">
+							<div class="section-heading heading-center">
+                                <h1>Förderkreis</h1>
+                            </div>
+                            <p>
+                                Im Haushaltsjahr 2005/2006 hat die Stadt Freiburg ihren jährlichen Zuschuß für das »Archiv Soziale Bewegungen« von bis dahin 31.000 Euro auf 25.000 Euro reduziert (nachdem eine komplette Einstellung der Unterstützung angedroht gewesen war). Als Antwort auf diese Kürzung hat sich am 24. Juni 2005 ein »Freundeskreis Archiv Soziale Bewegungen« gegründet, dem alle diejenigen angehören, die willens sind und sich imstande sehen, den Fortbestand des Archivs mit einem (kleineren oder größeren) Geldbetrag zu unterstützen. 
+                            </p>
+                            <p>
+                                Aus dem Gründungsaufruf von 2005: <br />
+
+»Die südbadischen Bürgerbewegungen waren aktiver Teil des konfliktreichen Demokratisierungsprozesses, den die Bundesrepublik seit den 50er Jahren erlebt hat. Seine Voraussetzungen und seine Notwendigkeit, seine Konflikte, Erfolge, Fehler und Irrwege spiegeln sich in der Geschichte des Dreyländerecks. Dokumente aus dieser Zeit, die sonst verloren wären, werden vom Archiv durch seine lokale Verankerung vor dem Verschwinden bewahrt; es ist für die Epoche das Gedächtnis der Region. Seine einzigartigen Bestände reichen jedoch weit über diesen engen Bereich hinaus. Sie geben auch Jüngeren und späteren Generationen die Chance, sich selbständig mit der Geschichte der Bundesrepublik auseinanderzusetzen. 
+
+Wir meinen, das Archiv muß erhalten und gefördert werden. Deshalb bitten wir um Unterstützung.«
+                            </p>
+                            <p>
+                                Der Förderkreis soll, ohne besondere Rechtsform, den Kontakt des Archivs mit seinen Unterstützerinnen und Unterstützern aufrecht erhalten. Seine Mitglieder werden vom Archiv zu dessen Veranstaltungen und einmal im Jahr gesondert zu einem Treffen in den Archivräumen, Adlerstr. 12 (Gretherfabrik) eingeladen; sie erhalten vom Archiv Nachricht über dessen Veröffentlichungen und jährlich einen ausführlichen Rechenschaftsbericht mit einer CD/DVD ihrer Wahl aus den »Materialien zur Bewegungsgeschichte«, die das Archiv herausgibt. Das letzte Mitgliedertreffen war am 03.05.2007. Die Rechenschaftsberichte 2005 und 2006 sind allgemein einsehbar. 
+                            </p>
+                            <p>
+                                2006 hat der Förderkreis mit einem Spendenaufkommen von insgesamt 10.300 Euro, zusammen mit eingeworbenen Projektgeldern, die Schließung des Archivs verhindern können und die öffentliche Zugänglichkeit seiner Bestände gesichert, die uns besonders wichtig ist. Seither pendelt die Spendensumme für das Archiv um die 10.000 € pro Jahr. Doch Kürzungen können jedezeit wieder auf der Tagesordnung stehen; deshalb ist eine Erweiterung des Förderkreises dringend erforderlich - unabhängig davon, daß das Archiv sich weiterhin intensiv um Projektgelder und andere Finanzquellen bemüht. 
+                            </p>
+                            <p>
+                                für den Freundeskreis:<br />
+
+Prof. Dr. Hans Peter Herrmann <br />
+Maximilianstr. 8<br />
+79100 Freiburg<br />
+Tel.: 0761/70 00 64<br />
+eMail: hpherrma@gmx.de
+                            </p>
+						</div>
+					</div>
+				</div>
+            </div>
+
+
+            <!-- End main content -->
+
+        </div>
+

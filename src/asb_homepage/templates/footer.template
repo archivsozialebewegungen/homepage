@@ -55,14 +55,14 @@
                                     <li>
                                         <i class="material-icons md-22 footer-contact-tel">smartphone</i>
                                         <div class="footer-contact-info">
-                                            Tel: +49 761/33362, Fax: +49 761/2024506
+                                            Tel: +49 761/33362
                                         </div>
                                     </li>
                                     <li>
                                         <i class="material-icons md-22 footer-contact-email">email</i>
                                         <div class="footer-contact-info">
                                             <a
-                                                href="mailto:ArchivSozialeBewegungen@gmx.de">ArchivSozialeBewegungen@gmx.de</a>
+                                                href="mailto:info@archivsozialebewegungen.de">info@archivsozialebewegungen.de</a>
                                         </div>
                                     </li>
                                 </ul>

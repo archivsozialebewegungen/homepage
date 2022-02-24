@@ -104,7 +104,7 @@
                                 <!-- Begin header top info -->
                                 <ul class="header-top-info">
                                     <li>
-                                        <a href="mailto:ArchivSozialeBewegungen@gmx.de">
+                                        <a href="mailto:info@archivsozialebewegungen.de">
                                             <i class="material-icons md-20">mail_outline</i>
                                             <span>Kontakt per E-Mail</span>
                                         </a>
@@ -162,10 +162,10 @@
                                                     <ul>
                                                         <li><a href="btable.html"
                                                                 data-title="Broschüren"><span>Broschüren</span></a></li>
-                                                        <li><a href="tables.html"
+                                                        <li><a href="buttons.html"
                                                                 data-title="Buttons"><span>Buttons</span></a>
                                                         </li>
-                                                        <li><a href="tables.html"
+                                                        <li><a href="feministischesarchiv.html"
                                                                 data-title="Feministischer Bestand"><span>Feministischer
                                                                     Bestand</span></a></li>                                                        
                                                         <li><a href="tables.html" data-title="Filme & Fotos"><span>Filme & Fotos</span></a>

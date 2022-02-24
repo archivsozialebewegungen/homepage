@@ -1,0 +1,27 @@
+								<!-- Begin news item -->
+								<article class="news-wide-item item">
+									<a href="news-single.html" class="news-wide-item-img img-style">
+										<img src="img/@image@">
+									</a>
+									<div class="news-wide-item-info">
+										<h4 class="news-wide-item-heading item-heading">
+											<a href="news-single.html">@heading@</a>
+										</h4>
+										<div class="news-wide-item-row">
+											<div class="news-wide-item-date">1. Juni 2021</div>
+											<div class="news-wide-item-author">
+												by <a href="#!">@author@</a>
+											</div>
+										</div>
+										<div class="news-wide-item-desc">
+											<p>@teaser@</p>
+										</div>
+										<div class="wrapp-btn-link">
+											<a href="@link@" class="btn-link">
+												<span>Mehr erfahren</span>
+												<svg class="btn-link-ico btn-link-ico-right" viewBox="0 0 13 9" width="13" height="9" width="13px" height="9px"><use xlink:href="assets/img/sprite.svg#arrow-right"></use></svg>
+											</a>
+										</div>
+									</div>
+								</article>
+								<!-- End news item -->

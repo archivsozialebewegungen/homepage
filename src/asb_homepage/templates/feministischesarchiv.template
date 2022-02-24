@@ -1,0 +1,40 @@
+            <!-- Begin main content -->
+            <div class="section comming-soon section-bg lazy" data-background-image="assets/img/intro-img1.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <h1>Diese Seite steht Ihnen bald zur Verfügung</h1>
+                            </div>
+                            <div class="wrapp-countdown">
+                                <div id="countdown" class="countdown" data-dedline="July 01 2021 00:00:00 GMT+0300">
+                                    <div class="countdown-number item-style">
+                                        <span class="days countdown-time">00</span>
+                                        <span class="countdown-text">Days</span>
+                                    </div>
+                                    <div class="countdown-number item-style">
+                                        <span class="hours countdown-time">00</span>
+                                        <span class="countdown-text">Hours</span>
+                                    </div>
+                                    <div class="countdown-number item-style">
+                                        <span class="minutes countdown-time">00</span>
+                                        <span class="countdown-text">Minutes</span>
+                                    </div>
+                                    <div class="countdown-number item-style">
+                                        <span class="seconds countdown-time">00</span>
+                                        <span class="countdown-text">Seconds</span>
+                                    </div>
+                                </div>
+                                <div id="deadline-message" class="deadline-message">
+                                    Time is up!
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End main content -->
+
+        </div>
