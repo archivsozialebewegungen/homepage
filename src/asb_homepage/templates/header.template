@@ -54,6 +54,8 @@
                                 <div class="mob-main-submnu-item">
                                     <ul>
                                         <li><a href="btable.html">Broschüren</a></li>
+                                        <li><a href="buttons.html">Buttons</a></li>
+                                        <li><a href="feministischesarchiv.html">Feministisches Archiv</a></li>
                                         <li><a href="ztable.html">Zeitschriften</a></li>
                                     </ul>
                                 </div>
@@ -166,9 +168,8 @@
                                                                 data-title="Buttons"><span>Buttons</span></a>
                                                         </li>
                                                         <li><a href="feministischesarchiv.html"
-                                                                data-title="Feministischer Bestand"><span>Feministischer
-                                                                    Bestand</span></a></li>                                                        
-                                                        <li><a href="tables.html" data-title="Filme & Fotos"><span>Filme & Fotos</span></a>
+                                                                data-title="Feministisches Archiv"><span>Feministisches Archiv</span></a>                                                                    
+                                                        <li><a href="coming-soon.html" data-title="Filme & Fotos"><span>Filme & Fotos</span></a>
                                                         </li>
                                                         <li><a href="ztable.html"
                                                                 data-title="Zeitschriften"><span>Zeitschriften</span></a>

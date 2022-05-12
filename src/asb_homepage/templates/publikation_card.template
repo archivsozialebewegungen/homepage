@@ -3,23 +3,28 @@
                                     <div class="item-style card">
                                         <header class="card-header">
                                             <a href="publikation@pubnr@.html" class="card-image">
-                                                <img src="assets/img/publikationen/gwg.jpg" />
-                                            </a> 
+                                                <img src="img/@image@" />
+                                            </a>  
+                                            <!--                                          
+                                            <div class="card-badges">
+                                                <div class="card-badge card-badge-sale">@badge@</div>
+                                            </div>
+                                            -->
                                         </header>
                                         <div class="card-info card-info-wide">
                                             <div class="card-info-main">
                                                 <h3 class="item-heading card-heading card-wide-item">
-                                                    <a href="publikation@pubnr@.html" title="Gleich wird's grün">Gleich wird's grün</a>
+                                                    <a href="publikation@pubnr@.html" title="AZ - Was sonst?">@title@</a>
                                                 </h3>
                                                 <div class="card-posted-in card-wide-item">
-                                                    <a href="publikation@pubnr@.html" class="card-category" title="CD-ROM">CD-ROM</a>
+                                                    <a href="publikation@pubnr@.html" class="card-category" title="CD-ROM">@type@</a>
                                                 </div>
                                                 <div class="card-prices card-wide-item">
-                                                    <div class="card-price">15 EUR</div>
+                                                    <div class="card-price">@price@</div>
                                                 </div>
                                                 <div class="card-desc card-wide-item">
                                                     <p>
-                                                        Das Archiv Soziale Bewegungen hat eine CD-ROM erstellt, die über 550 Dokumente zugänglich macht. Sie enthält Flugblätter, Fotos, Filme, städtische Akten und Interviews mit Akteuren vom Protest des 1. Februar 1968.
+@teaser@
                                                     </p>
                                                 </div>
                                             </div>
@@ -29,5 +34,6 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div><!-- End card -->
-                                </div>
+                                    </div>
+                                    <!-- End card -->
+								</div>

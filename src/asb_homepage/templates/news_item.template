@@ -1,16 +1,16 @@
 								<!-- Begin news item -->
 								<article class="news-wide-item item">
-									<a href="news-single.html" class="news-wide-item-img img-style">
+									<a href="@link@" class="news-wide-item-img img-style">
 										<img src="img/@image@">
 									</a>
 									<div class="news-wide-item-info">
 										<h4 class="news-wide-item-heading item-heading">
-											<a href="news-single.html">@heading@</a>
+											<a href="@link@">@heading@</a>
 										</h4>
 										<div class="news-wide-item-row">
 											<div class="news-wide-item-date">1. Juni 2021</div>
 											<div class="news-wide-item-author">
-												by <a href="#!">@author@</a>
+												by <a href="@link@">@author@</a>
 											</div>
 										</div>
 										<div class="news-wide-item-desc">

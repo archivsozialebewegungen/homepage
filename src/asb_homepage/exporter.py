@@ -30,45 +30,9 @@ from asb_homepage.ButtonsExporter import ButtonsExporter
 from pathlib import Path
 from shutil import copyfile
 import pysftp
-
-class NewsReader():
-    
-    def __init__(self):
-        
-        self.news_dir = path.join(path.dirname(__file__), "templates", "news")
-        self.sections = ('image', "heading", "date", "author", "shortteaser", "teaser", "text")
-        
-    def read(self):
-        
-        index = 0
-        news = []
-        while True:
-            index += 1
-            file_name = path.join(self.news_dir, "news%03d.info" % index)
-            print(file_name)
-            if not path.exists(file_name):
-                break
-            news.append(self.read_news(file_name))
-        return news
-                             
-    def read_news(self, filename):
-        
-        news_section = 0
-        news_item = {}
-        news_item[self.sections[0]] = ""
-            
-        with open(filename) as news_file:
-            for line in news_file.readlines():
-                if line.strip() == "" and news_section < len(self.sections) - 1:
-                    news_item[self.sections[news_section]] = news_item[self.sections[news_section]][:-1]  
-                    news_section += 1
-                    news_item[self.sections[news_section]] = ""
-                else:
-                    news_item[self.sections[news_section]] += line
-            
-        return news_item
-        
-        
+from asb_homepage.InfoReader import NEWS_READER, InfoReaderModule,\
+    PUBLICATION_READER
+from asb_zeitschriften.guiconstants import FILTER_PROPERTY_SYSTEMATIK
 
 @singleton
 class BroschuerenExporter():
@@ -156,7 +120,7 @@ class ZeitschriftenExporter():
         self.page_height = A4[1]
         self.page_width = A4[0]
         
-    def export(self, filename="/tmp/zeitschriften.pdf"):
+    def export(self, filename="/tmp/zeitschriften.pdf", z_filter=None):
         
         doc = SimpleDocTemplate(filename, 
                                 title = "Zeitschriften im Archiv Soziale Bewegungen",
@@ -175,7 +139,9 @@ class ZeitschriftenExporter():
 
         story.append(Spacer(1,10 * mm))
 
-        page_object = PageObject(self.zeitschriften_dao, Zeitschrift, ZeitschriftenFilter(), page_size=100)
+        if z_filter is None:
+            z_filter = ZeitschriftenFilter()
+        page_object = PageObject(self.zeitschriften_dao, Zeitschrift, z_filter, page_size=100)
         self.zeitschriften_dao.init_page_object(page_object)
         try:
             while True:
@@ -239,7 +205,8 @@ class Exporter:
                  broschueren_exporter: BroschuerenExporter,
                  zeitschriften_exporter: ZeitschriftenExporter,
                  buttons_exporter: ButtonsExporter,
-                 news_reader: NewsReader,
+                 news_reader: NEWS_READER,
+                 publication_reader: PUBLICATION_READER,
                  cd_generation_engine: GenerationEngine):
         
         self.template_dir = path.join(path.dirname(__file__), "templates")
@@ -250,6 +217,7 @@ class Exporter:
         self.zeitschriften_exporter = zeitschriften_exporter
         self.buttons_exporter = buttons_exporter
         self.news_reader = news_reader
+        self.publication_reader = publication_reader
         self.cd_generation_engine = cd_generation_engine
         self.outdir = "/var/www/html"
         self.pdfdir = path.join(self.outdir, "pdf")
@@ -286,10 +254,13 @@ class Exporter:
     
     def run(self):
         
-        self.write_static()
-        self.write_default_files()
+        #self.write_static()
+        #self.write_default_files()
+        #self.write_index_file()
+        
         #self.write_publikationen()
         self.write_news()
+        
         #self.write_broschueren_pdf()
         #self.write_zeitschriften_pdf()
         
@@ -313,32 +284,69 @@ class Exporter:
                 
     def write_default_files(self):
         
-        file_bases = ("index", "services", "bestaende", "buttons", "feministischesarchiv", "spenden", "coming-soon")
+        file_bases = ("services", "bestaende", "buttons", "feministischesarchiv", "spenden", "coming-soon")
         
         for file_base in file_bases:
             template = self.load_full_template(file_base)
             file = open("%s/%s.html" % (self.outdir, file_base), "w")
             file.write(template)
             file.close()
+    
+    def write_index_file(self):
+
+        template = self.load_full_template("index")
+        template = template.replace("@news@", self.get_news_for_index_page())
+        file = open("%s/index.html" % self.outdir, "w")
+        file.write(template)
+        file.close()
+        
+    def get_news_for_index_page(self):
+        
+        news = self.news_reader.read()
+        news_html = ""
+        for i in range(0, 3):
+            template = self.load_template("news_item_short")
+            news_item = news[-1-i]
+            for section in news_item.keys():
+                template = template.replace("@%s@" % section, news_item[section])
+            news_html += template
+        return news_html
             
     def write_publikationen(self):
         
-        counter = 0
+        infos = self.publication_reader.read()
         cards = ""
-        while True:
-            counter += 1
-            print("publikation%02d_card.template" % counter)
-            if not path.exists(path.join(self.template_dir, "publikation%02d_card.template" % counter)):
-                break
-            cards += self._load_template_parts("card", ("publikation%02d" % counter,))
-            cards = cards.replace("@pubnr@", "%02d" % counter, 4)
-            template = self.load_full_template("publikation%02d" % counter, "ecommerce", "ecommerce")
-            self.write_html_file("publikation%02d.html" % counter, template)
+        for idx in range(0, len(infos)):
+            
+            card = self.replace_sections(self.load_template("publikation_card"), infos[idx])
+            card = card.replace("@pubnr@", "%03d" % idx)
+            card = self.insert_images(card, infos[idx]['images'])
+            cards += card
+            
+            template = self.replace_sections(self.load_full_template("publikation", "ecommerce", "ecommerce"), infos[idx])
+            template = self.insert_images(template, infos[idx]['images'])
+            self.write_html_file("publikation%03d.html" % idx, template)
             
         template = self.load_full_template("publikationen", "ecommerce", "ecommerce")
         template = template.replace("@cards@", cards)
         self.write_html_file("publikationen.html", template)
     
+    def insert_images(self, template, images):
+        
+        imagelist1 = ""
+        imagelist2 = ""
+        imagelist = images.split(":")
+        for image in imagelist:
+            imagelist1 += """<div class="card-image pcm-item">
+                <img src="img/%s" alt="">
+            </div>""" % image
+            imagelist2 += """<div class="img-style pcth-item">
+                <img src="img/%s" alt="">
+            </div>""" % image
+        return template.replace("@imagelist1@", imagelist1).\
+            replace("@imagelist2@", imagelist2).\
+            replace("@image@", imagelist[0])
+ 
     def write_news(self):
         
         template = self.load_full_template("news")
@@ -354,11 +362,14 @@ class Exporter:
         
         news = self.news_reader.read()
         for i in range(0,len(news)):
-            template = self.load_full_template("news-single")
-            news_item = news[i]
-            for section in self.news_reader.sections:
-                template = template.replace("@%s@" % section, news_item[section].replace("\n\n", "</p><p>"))
+            template = self.replace_sections(self.load_full_template("news-single"), news[i])
             self.write_html_file("news-single-%03d.html" % (i + 1), template)
+    
+    def replace_sections(self, template, info):
+        
+        for section in info.keys():
+            template = template.replace("@%s@" % section, info[section].replace("\n\n", "</p><p>"))
+        return template
     
     def get_articles(self):
         
@@ -366,10 +377,7 @@ class Exporter:
         
         news = self.news_reader.read()
         for i in range(0,len(news)):
-            template = self.load_template("news_item")
-            news_item = news[-1-i]
-            for section in self.news_reader.sections:
-                template = template.replace("@%s@" % section, news_item[section])
+            template = self.replace_sections(self.load_template("news_item"), news[-1-i])
             template = template.replace('@link@', "news-single-%03d.html" % (len(news) - i))
             html += template
             
@@ -543,9 +551,14 @@ von vor 50 Jahren zu stöbern.
 if __name__ == '__main__':
  
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")    
-    injector = Injector([AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule])
+    injector = Injector([InfoReaderModule, AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule])
+    #injector = Injector([AlexandriaDbModule, DaoModule, InfoReaderModule, CDExporterBasePluginModule])
     
     exporter = injector.get(Exporter)
     exporter.run()
     #exporter.upload()
     
+    #z_filter = ZeitschriftenFilter()
+    #z_filter.set_property_value(FILTER_PROPERTY_SYSTEMATIK, "8")
+    #exporter = injector.get(ZeitschriftenExporter)
+    #exporter.export(z_filter=z_filter)

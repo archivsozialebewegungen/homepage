@@ -7,7 +7,7 @@
                                 <h1>Diese Seite steht Ihnen bald zur Verfügung</h1>
                             </div>
                             <div class="wrapp-countdown">
-                                <div id="countdown" class="countdown" data-dedline="July 01 2021 00:00:00 GMT+0300">
+                                <div id="countdown" class="countdown" data-dedline="March 31 2021 00:00:00 GMT+0300">
                                     <div class="countdown-number item-style">
                                         <span class="days countdown-time">00</span>
                                         <span class="countdown-text">Days</span>

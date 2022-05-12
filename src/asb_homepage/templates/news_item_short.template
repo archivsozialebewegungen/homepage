@@ -1,12 +1,13 @@
+						<div class="col-lg-4 col-md-6 col-12 item">
 							<!-- Begin news item -->
                             <article class="news-item item-style">
-                                <a href="news-single.html" class="news-item-img">
+                                <a href="@link@" class="news-item-img">
                                     <img src="img/@image@">
                                 </a>
                                 <div class="news-item-info">
-                                    <div class="news-item-date">01.06.2021</div>
+                                    <div class="news-item-date">@date@</div>
                                     <h4 class="news-item-heading item-heading">
-                                        <a href="news-single.html" title="">@heading@</a>
+                                        <a href="@link@" title="">@heading@</a>
                                     </h4>
                                     <div class="news-item-desc">
                                         <p>@shortteaser@</p>
@@ -14,3 +15,4 @@
                                 </div>
                             </article>                            	
                             <!-- End news item -->
+                         </div>
