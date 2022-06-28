@@ -239,14 +239,14 @@ class Exporter:
         for file in list(directory_path.iterdir()):
             if file.is_dir():
                 try:
-                    print("Erstelle Verzeichnis %s" % file.name)
+                    #print("Erstelle Verzeichnis %s" % file.name)
                     sftp.mkdir(file.name)
                 except IOError:
                     pass
                 with sftp.cd(file.name):
                     self.upload_dir(path.join(directory, file.name), sftp)
             else:
-                print("Lade Datei %s hoch" % file.name)
+                #print("Lade Datei %s hoch" % file.name)
                 sftp.put(path.join(directory, file.name))
     
     def run(self):
@@ -508,7 +508,7 @@ von vor 50 Jahren zu stöbern.
         try:
             while True:
                 for zeitschrift in page_object.objects:
-                    print(zeitschrift.titel)
+                    #print(zeitschrift.titel)
                     tablebody += "<tr><td>%s</td><td>%s</td></tr>\n" % (zeitschrift.titel, self.get_zeitsch_systematik_punkt(zeitschrift))
                 page_object.fetch_next()
         except DataError as e:
@@ -525,7 +525,7 @@ von vor 50 Jahren zu stöbern.
         try:
             while True:
                 for broschuere in page_object.objects:
-                    print(broschuere.titel)
+                    #print(broschuere.titel)
                     tablebody += "<tr><td>%s</td><td>%s</td></tr>\n" % (broschuere.titel, self.get_brosch_systematik_punkt(broschuere))
                 page_object.fetch_next()
         except DataError as e:
@@ -534,13 +534,8 @@ von vor 50 Jahren zu stöbern.
 
     def get_brosch_systematik_punkt(self, broschuere: Brosch):
         
-        #syst_ids = self.broschueren_dao.fetch_systematik_ids(broschuere)
-        #if len(syst_ids) == 0:
-        #    return "Unbekannt"
-        #else:
-        print(broschuere.hauptsystematik)
+        #print(broschuere.hauptsystematik)
         systematik_node = self.systmatik_dao.fetch_by_identifier_object(SystematikIdentifier("%s" % broschuere.hauptsystematik))
-            #root_node = self.systmatik_dao.fetch_root_node(systematik_node)
         return systematik_node.beschreibung
     
     def get_zeitsch_systematik_punkt(self, zeitschrift: Zeitschrift):
@@ -560,7 +555,10 @@ if __name__ == '__main__':
     injector = Injector([InfoReaderModule, AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule])
     
     exporter = injector.get(Exporter)
+    print("Starting build...")
     exporter.run()
     #exporter.tiny_run()
+    print("Starting upload...")
     exporter.upload()
+    print("Finished.")
     
