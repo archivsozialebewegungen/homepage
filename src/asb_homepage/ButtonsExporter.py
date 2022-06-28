@@ -17,6 +17,7 @@ from datetime import date
 from PIL import Image as PilImage
 import locale
 import re
+from _io import BytesIO
 
 styles = getSampleStyleSheet()
 re_time = re.compile("(\d+):(\d+):(\d+)\s+\d+:\d+:\d+")
@@ -131,8 +132,14 @@ class JpgPrinter:
             caption = Paragraph("<b>Fehlender Titel für %s</b>" % self.file_path.name, styles['Normal'])
         
         pil_image = PilImage.open(self.file_path, "r")
-        width, height = pil_image.size    
-        image = Image(self.file_path, width=100, height=int(100 * (height/width)))
+        width, height = pil_image.size
+        catalog_size = 100, int(100 * (height/width))
+        pil_image.thumbnail(catalog_size, PilImage.ANTIALIAS)
+        #image = Image(self.file_path, width=100, height=int(100 * (height/width)))
+        img_stream = BytesIO()
+        pil_image.save(img_stream, 'PNG')
+        img_stream.seek(0)
+        image = Image(img_stream)
         image.hAlign = "LEFT"
         
         caption_and_image = KeepTogether([caption, Spacer(1, 5*mm), image]) 

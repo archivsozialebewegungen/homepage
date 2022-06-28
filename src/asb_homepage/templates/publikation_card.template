@@ -2,7 +2,7 @@
                                     <!-- Begin card -->
                                     <div class="item-style card">
                                         <header class="card-header">
-                                            <a href="publikation@pubnr@.html" class="card-image">
+                                            <a href="@link@" class="card-image">
                                                 <img src="img/@image@" />
                                             </a>  
                                             <!--                                          
@@ -14,10 +14,10 @@
                                         <div class="card-info card-info-wide">
                                             <div class="card-info-main">
                                                 <h3 class="item-heading card-heading card-wide-item">
-                                                    <a href="publikation@pubnr@.html" title="AZ - Was sonst?">@title@</a>
+                                                    <a href="@link@" title="@title@">@title@</a>
                                                 </h3>
                                                 <div class="card-posted-in card-wide-item">
-                                                    <a href="publikation@pubnr@.html" class="card-category" title="CD-ROM">@type@</a>
+                                                    <a href="@link@" class="card-category" title="@type@">@type@</a>
                                                 </div>
                                                 <div class="card-prices card-wide-item">
                                                     <div class="card-price">@price@</div>
@@ -29,7 +29,7 @@
                                                 </div>
                                             </div>
                                             <div class="">
-                                                <a href="publikation@pubnr@.html" class="btn btn-small ripple">
+                                                <a href="@link@" class="btn btn-small ripple">
                                                     <span>Zur Publikation</span>
                                                 </a>
                                             </div>

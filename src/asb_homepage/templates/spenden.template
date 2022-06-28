@@ -8,105 +8,20 @@
                                     <a href="index.html">Über das Archiv</a>
                                     <i class="material-icons md-18">chevron_right</i>
                                 </li>                                
-                                <li><a href="#!">Sponsoren, Spenden & Förderkreis</a></li>
+                                <li><a href="#!">Spenden, Förderkreis & Sponsoren</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </nav><!-- End bread crumbs -->
 
-            <!-- Begin main content -->
-            <div class="section">
-                <div class="container">
-                    <div class="row items">
-                        <div class="col-12">
-                            <div class="section-heading heading-center">
-                                <div class="section-subheading">Die Möglichmacher</div>
-                                <h1>Unere Sponsoren</h1>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 content-item">
-                            <div class="contacts-info-item item-style sponsor-box">
-                                <div class="contacts-info-item-ico">
-                                    <a href="https://www.brillenladen.net/" target="_blank">
-                                        <img src="assets/img/sponsoren/brillenladen.jpg" class="sponsor-logo"/>
-                                    </a>
-                                </div>
-                                <div class="contacts-info-item-content">
-                                    <div>
-                                        <h4><a href="https://www.brillenladen.net/" target="_blank">Brillenladen im Stühlinger</a></h4>
-                                        <span>Klarastraße. 39</span><br />
-                                        <span>79106 Freiburg</span><br />
-                                        <span>Tel: +49 761 280537</span><br />
-                                        <a href="https://www.brillenladen.net/" target="_blank">brillenladen.net</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 content-item">
-                            <div class="contacts-info-item item-style sponsor-box">
-                                <div class="contacts-info-item-ico">
-                                    <a href="http://www.zumkeller-gaerten.de/" target="_blank">
-                                        <img src="assets/img/sponsoren/zumkeller.jpg" class="sponsor-logo"/>
-                                    </a>
-                                </div>
-                                <div class="contacts-info-item-content">
-                                    <div>
-                                        <h4><a href="http://www.zumkeller-gaerten.de/" target="_blank">Gartenbau Zumkeller</a></h4>
-                                        <span>Mühlenweg 2A</span><br />
-                                        <span>79249 Merzhausen</span><br />
-                                        <span>Tel: +49 761 408684</span><br />
-                                        <a href="http://www.zumkeller-gaerten.de/" target="_blank">zumkeller-gaerten.de</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>   
-                        <div class="col-md-3 col-12 content-item">
-                            <div class="contacts-info-item item-style sponsor-box">
-                                <div class="contacts-info-item-ico">
-                                    <a href="http://www.exlibris-archiv.de/" target="_blank">
-                                        <img src="assets/img/sponsoren/no-image.jpg" class="sponsor-logo"/>
-                                    </a>
-                                </div>
-                                <div class="contacts-info-item-content">
-                                    <div>
-                                        <h4><a href="http://www.exlibris-archiv.de/" target="_blank">Antiquariat Rieger</a></h4>
-                                        <span>Gruberhof 8</span><br />
-                                        <span>79110 Freiburg</span><br />
-                                        <span>Tel: +49 761 892350</span><br />
-                                        <a href="http://www.exlibris-archiv.de/" target="_blank">exlibris-archiv.de</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 content-item">
-                            <div class="contacts-info-item item-style sponsor-box">
-                                <div class="contacts-info-item-ico">
-                                    <a href="http://www.zapf.de/" target="_blank">
-                                        <img src="assets/img/sponsoren/zapf.jpg" class="sponsor-logo"/>
-                                    </a>
-                                </div>
-                                <div class="contacts-info-item-content">
-                                    <div>
-                                        <h4><a href="http://www.zapf.de/" target="_blank">Zett Umzüge GmbH</a></h4>
-                                        <span>Oltmannsstraße 34</span><br />
-                                        <span>79100 Freiburg</span><br />
-                                        <span>Tel: +49 761 459900</span><br />
-                                        <a href="http://www.zapf.de/" target="_blank">zapf.de</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>            
-                    </div>
-                </div>
-            </div>
             
             <div class="section section-bg">
 				<div class="container">
 					<div class="row items">
 						<div class="col-12">
 							<div class="section-heading heading-center">
-                                <div class="section-subheading">Wer das Archiv unterstützen will, der kann das tun</div>
+                                <div class="section-subheading">Wir freuen uns, wenn Ihr unsere Arbeit durch eine Spende unterstützt</div>
                                 <h1>Spenden</h1>
                             </div>
 						</div>
@@ -141,7 +56,7 @@
                                 Dazu zwei Anmerkungen:
                                 <ul>
                                     <li>Das »Archiv Soziale Bewegung« wird getragen von einem Verein, dessen Gemeinnützigkeit von Finanzamt anerkannt ist; Spenden zugunsten des Archivs sind steuerlich absetzbar. </li>
-                                    <li>So sehr wir uns über größere Spenden freuen: auch kleine Beträge (etwa von 5.- Euro monatlich) sind uns willkommen, weil sie in ihrer Summe den Bestand und die Arbeit des Archivs sichern helfen und gegenüber der Stadt Freiburg die wichtige Verankerung des Archivs »in der Bevölkerung« (nicht nur Freiburgs) dokumentieren. </li>
+                                    <li>So sehr wir uns über größere Spenden freuen: Auch kleine Beträge (etwa von 5.- Euro monatlich) sind uns willkommen, weil sie in ihrer Summe den Bestand und die Arbeit des Archivs sichern helfen und gegenüber der Stadt Freiburg die wichtige Verankerung des Archivs »in der Bevölkerung« (nicht nur Freiburgs) dokumentieren. </li>
                                 </ul>
                             </p>
                         </div>
@@ -186,6 +101,93 @@ eMail: hpherrma@gmx.de
 				</div>
             </div>
 
+            <!-- Begin main content -->
+            <div class="section">
+                <div class="container">
+                    <div class="row items">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <div class="section-subheading">Die Möglichmacher</div>
+                                <h1>Unsere Sponsoren</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 content-item">
+                            <div class="contacts-info-item item-style sponsor-box">
+                                <div class="contacts-info-item-ico">
+                                    <a href="https://www.brillenladen.net/" target="_blank">
+                                        <img src="assets/img/sponsoren/brillenladen.jpg" class="sponsor-logo"/>
+                                    </a>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <h4><a href="https://www.brillenladen.net/" target="_blank">Brillenladen im Stühlinger</a></h4>
+                                        <span>Klarastraße. 39</span><br />
+                                        <span>79106 Freiburg</span><br />
+                                        <span>Tel: +49 761 280537</span><br />
+                                        <a href="https://www.brillenladen.net/" target="_blank">brillenladen.net</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12 content-item">
+                            <div class="contacts-info-item item-style sponsor-box">
+                                <div class="contacts-info-item-ico">
+                                    <a href="http://www.zumkeller-gaerten.de/" target="_blank">
+                                        <img src="assets/img/sponsoren/zumkeller.jpg" class="sponsor-logo"/>
+                                    </a>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <h4><a href="http://www.zumkeller-gaerten.de/" target="_blank">Gartenbau Zumkeller</a></h4>
+                                        <span>Mühlenweg 2A</span><br />
+                                        <span>79249 Merzhausen</span><br />
+                                        <span>Tel: +49 761 408684</span><br />
+                                        <a href="http://www.zumkeller-gaerten.de/" target="_blank">zumkeller-gaerten.de</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                        <!--
+                        <div class="col-md-3 col-12 content-item">
+                            <div class="contacts-info-item item-style sponsor-box">
+                                <div class="contacts-info-item-ico">
+                                    <a href="http://www.exlibris-archiv.de/" target="_blank">
+                                        <img src="assets/img/sponsoren/no-image.jpg" class="sponsor-logo"/>
+                                    </a>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <h4><a href="http://www.exlibris-archiv.de/" target="_blank">Antiquariat Rieger</a></h4>
+                                        <span>Gruberhof 8</span><br />
+                                        <span>79110 Freiburg</span><br />
+                                        <span>Tel: +49 761 892350</span><br />
+                                        <a href="http://www.exlibris-archiv.de/" target="_blank">exlibris-archiv.de</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                        <div class="col-md-4 col-12 content-item">
+                            <div class="contacts-info-item item-style sponsor-box">
+                                <div class="contacts-info-item-ico">
+                                    <a href="http://www.zapf.de/" target="_blank">
+                                        <img src="assets/img/sponsoren/zapf.jpg" class="sponsor-logo"/>
+                                    </a>
+                                </div>
+                                <div class="contacts-info-item-content">
+                                    <div>
+                                        <h4><a href="http://www.zapf.de/" target="_blank">Zett Umzüge GmbH</a></h4>
+                                        <span>Oltmannsstraße 34</span><br />
+                                        <span>79100 Freiburg</span><br />
+                                        <span>Tel: +49 761 459900</span><br />
+                                        <a href="http://www.zapf.de/" target="_blank">zapf.de</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+            </div>
 
             <!-- End main content -->
 

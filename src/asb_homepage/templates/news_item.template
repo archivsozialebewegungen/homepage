@@ -8,7 +8,7 @@
 											<a href="@link@">@heading@</a>
 										</h4>
 										<div class="news-wide-item-row">
-											<div class="news-wide-item-date">1. Juni 2021</div>
+											<div class="news-wide-item-date">@date@</div>
 											<div class="news-wide-item-author">
 												by <a href="@link@">@author@</a>
 											</div>

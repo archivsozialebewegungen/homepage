@@ -9,7 +9,7 @@ from asb_zeitschriften.broschdaos import ZeitschriftenDao, Zeitschrift,\
     JahrgaengeDao
 from injector import Injector, inject, singleton
 from asb_systematik.SystematikDao import AlexandriaDbModule, SystematikDao,\
-    DataError
+    DataError, SystematikIdentifier
 import zipfile
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus.doctemplate import SimpleDocTemplate
@@ -229,14 +229,14 @@ class Exporter:
     
     def upload(self):
         
-        with pysftp.Connection('ssh.strato.de', username='archivsozialebewegungen.de', password='', port=22) as sftp:
-            try:
-                sftp.mkdir("neu")
-            except IOError:
-                pass
+        with pysftp.Connection('ssh.strato.de', username='archivsozialebewegungen.de', password='loth@ri00607', port=22) as sftp:
+            #try:
+            #    sftp.mkdir("neu")
+            #except IOError:
+            #    pass
             
-            with sftp.cd('neu'):             # temporarily chdir to public
-                self.upload_dir(self.outdir, sftp)
+            #with sftp.cd('.'):             # temporarily chdir to public
+            self.upload_dir(self.outdir, sftp)
         
     def upload_dir(self, directory, sftp):
         
@@ -244,30 +244,41 @@ class Exporter:
         for file in list(directory_path.iterdir()):
             if file.is_dir():
                 try:
+                    print("Erstelle Verzeichnis %s" % file.name)
                     sftp.mkdir(file.name)
                 except IOError:
                     pass
                 with sftp.cd(file.name):
                     self.upload_dir(path.join(directory, file.name), sftp)
             else:
+                print("Lade Datei %s hoch" % file.name)
                 sftp.put(path.join(directory, file.name))
     
     def run(self):
         
-        #self.write_static()
-        #self.write_default_files()
-        #self.write_index_file()
+        self.write_static()
+        self.write_default_files()
+        self.write_index_file()
         
-        #self.write_publikationen()
+        self.write_publikationen()
         self.write_news()
         
-        #self.write_broschueren_pdf()
-        #self.write_zeitschriften_pdf()
+        self.write_broschueren_pdf()
+        self.write_zeitschriften_pdf()
         
-        #self.write_zeitschriften()
-        #self.write_broschueren()
-        #self.write_buttons_pdf()
-        #self.write_vor_fuenf_jahren()
+        self.write_zeitschriften()
+        self.write_broschueren()
+        self.write_buttons_pdf()
+        self.write_vor_fuenf_jahren()
+        
+    def tiny_run(self):
+        
+        self.write_static()
+        self.write_default_files()
+        self.write_index_file()
+        
+        self.write_publikationen()
+        self.write_news()
         
     def write_static(self):
         
@@ -284,7 +295,7 @@ class Exporter:
                 
     def write_default_files(self):
         
-        file_bases = ("services", "bestaende", "buttons", "feministischesarchiv", "spenden", "coming-soon")
+        file_bases = ("services", "bestaende", "buttons", "feministischesarchiv", "spenden", "history", "fotos", "impressum", "coming-soon")
         
         for file_base in file_bases:
             template = self.load_full_template(file_base)
@@ -319,13 +330,12 @@ class Exporter:
         for idx in range(0, len(infos)):
             
             card = self.replace_sections(self.load_template("publikation_card"), infos[idx])
-            card = card.replace("@pubnr@", "%03d" % idx)
             card = self.insert_images(card, infos[idx]['images'])
             cards += card
             
             template = self.replace_sections(self.load_full_template("publikation", "ecommerce", "ecommerce"), infos[idx])
             template = self.insert_images(template, infos[idx]['images'])
-            self.write_html_file("publikation%03d.html" % idx, template)
+            self.write_html_file("publikation-single-%03d.html" % (idx+1), template)
             
         template = self.load_full_template("publikationen", "ecommerce", "ecommerce")
         template = template.replace("@cards@", cards)
@@ -529,13 +539,14 @@ von vor 50 Jahren zu stöbern.
 
     def get_brosch_systematik_punkt(self, broschuere: Brosch):
         
-        syst_ids = self.broschueren_dao.fetch_systematik_ids(broschuere)
-        if len(syst_ids) == 0:
-            return "Unbekannt"
-        else:
-            systematik_node = self.systmatik_dao.fetch_by_id(syst_ids[0])
-            root_node = self.systmatik_dao.fetch_root_node(systematik_node)
-            return root_node.beschreibung
+        #syst_ids = self.broschueren_dao.fetch_systematik_ids(broschuere)
+        #if len(syst_ids) == 0:
+        #    return "Unbekannt"
+        #else:
+        print(broschuere.hauptsystematik)
+        systematik_node = self.systmatik_dao.fetch_by_identifier_object(SystematikIdentifier("%s" % broschuere.hauptsystematik))
+            #root_node = self.systmatik_dao.fetch_root_node(systematik_node)
+        return systematik_node.beschreibung
     
     def get_zeitsch_systematik_punkt(self, zeitschrift: Zeitschrift):
         
@@ -552,13 +563,9 @@ if __name__ == '__main__':
  
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")    
     injector = Injector([InfoReaderModule, AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule])
-    #injector = Injector([AlexandriaDbModule, DaoModule, InfoReaderModule, CDExporterBasePluginModule])
     
     exporter = injector.get(Exporter)
     exporter.run()
-    #exporter.upload()
+    #exporter.tiny_run()
+    exporter.upload()
     
-    #z_filter = ZeitschriftenFilter()
-    #z_filter.set_property_value(FILTER_PROPERTY_SYSTEMATIK, "8")
-    #exporter = injector.get(ZeitschriftenExporter)
-    #exporter.export(z_filter=z_filter)

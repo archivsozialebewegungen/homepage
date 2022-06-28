@@ -1,0 +1,44 @@
+             <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="index.html">Über das Archiv</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>                                
+                                <li><a href="#!">Geschichte</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav><!-- End bread crumbs -->
+
+            <!-- Begin main content -->
+            <div class="section comming-soon section-bg lazy" data-background-image="assets/img/intro-img1.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <h1>Zur Geschichte des Archivs</h1>
+                            </div>
+                            <p>Die Idee zu einem Archiv
+der Sozialen Bewegungen entstand im sogenannten „Friedensherbst“ 1983. Beim Erstellen einer
+kritischen Auseinandersetzung mit der damaligen Friedensbewegung fiel der Mangel an einfach
+zugänglichem Quellenmaterial zur Geschichte der Bewegung auf – die Idee eines eigenen Archivs
+wurde geboren. Am 1. Mai 1985 konnte das Archiv aus der Taufe gehoben werden, damals noch in
+der Spechtpassage. Am Anfang stand die rein ehrenamtliche Arbeit, dann konnte der Betrieb des
+Archivs über erste ABM-Maßnahmen professionalisiert werden. Ab 1990 sicherte dann ein städtischer
+Zuschuss das Überleben des Archivs. Die Sammlung wuchs schnell an und erfuhr auch rege 
+Nachfrage: Weniger von Bewegungsaktivistinnen und -aktivisten, wie die Gründer erhofft hatten,
+sondern schon sehr früh von wissenschaftlichen Nutzerinnen und Nutzern. Aufgrund steigenden
+Platzbedarfes und statischer Mängel der Räume in der Spechtpassage zog das Archiv 2004 um auf das
+Grethergelände. 2013 erhielt das Archiv dann auch die Anerkennung durch das Land Baden-Württemberg,
+das seither ebenfalls einen Zuschuss zum Betrieb des Archivs zur Verfügung stellt.</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End main content -->
+
+        </div>

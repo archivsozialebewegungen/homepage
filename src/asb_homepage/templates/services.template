@@ -35,7 +35,10 @@
                                     <i class="material-icons material-icons-outlined">schedule</i>
                                 </div>
                                 <h4 class="services-item-heading">Öffnungszeiten</h4>
-                                <div class="services-item-desc">Das Archiv ist in der Regel Mittwochs zwischen 10 und 15 Uhr geöffnet, am Donnerstag zwischen 11 und 18 Uhr. Aber auch an anderen Tagen und zu anderen Zeiten ist oft jemand da. Ein Anruf unter +49 761/33362 lohnt sich.
+                                <div class="services-item-desc">Wir sind in der Regel von Montag bis Donnerstag zwischen 10h und 16h erreichbar. Für
+                                unangemeldete Besuche ist das Archiv am Donnerstag zwischen 10 und 17 Uhr geöffnet.
+                                Für die anderen Tage können Termine vereinbart werden. Das geht in der Regel schnell und unkompliziert: Einfach kurz
+                                anrufen (+49 761/33362) - oft kann man dann auch sofort kommen.
                                 </div>
                             </a><!-- End services item -->
                         </div>
@@ -49,7 +52,9 @@
                                     <i class="material-icons material-icons-outlined">touch_app</i>
                                 </div>
                                 <h4 class="services-item-heading">Archivnutzung</h4>
-                                <div class="services-item-desc">Die Nutzung des Archivs während der Öffnungszeiten ist grundsätzlich kostenlos. Während der anderen Zeiten berechnen wir pro Stunde 15,- EUR. In besonderen Fällen kann auf diese Regel verzichtet werden.</div>
+                                <div class="services-item-desc">Die Nutzung des Archivs ist grundsätzlich kostenlos. Für Besuchswünsche von Montag bis Mittwoch
+                                bitten wir um telefonische Anmeldung (+49 761/33362), Donnerstag ist das Archiv zwischen 10h und 17h für den Publikumsverkehr
+                                ohne Anmeldung geöffnet.</div>
                             </a><!-- End services item -->
                         </div>
                         <div class="col-lg-6 col-md-12 col-12 item">
@@ -62,7 +67,9 @@
                                     <i class="material-icons material-icons-outlined">local_shipping</i>
                                 </div>
                                 <h4 class="services-item-heading">Fernleihe</h4>
-                                <div class="services-item-desc">Über den Leihverkehr der deutschen Bibliotheken können ausschließlich Kopien aus den nachgewiesenen Zeitschriften geordert werden. Textdateien gewünschter Artikel aus allen hier lagernden Zeitschriften können aber auch direkt via Email bezogen werden.</div>
+                                <div class="services-item-desc">Über den Leihverkehr der deutschen Bibliotheken können ausschließlich Kopien aus den nachgewiesenen Zeitschriften geordert werden.
+                                Einfacher ist es, uns direkt zu kontaktieren, dann können wir Scans erstellen und daraus durchsuchbare Pdf-Dateien generieren. Kosten siehe unten, bei größeren Aufträgen
+                                sind die Preise verhandelbar.</div>
                             </a><!-- End services item -->
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 item">
@@ -75,7 +82,7 @@
                                     <i class="material-icons material-icons-outlined">plagiarism</i>
                                 </div>
                                 <h4 class="services-item-heading">Recherche</h4>
-                                <div class="services-item-desc">Auf Wunsch erstellen wir Dossiers oder führen themenbezogene Recherchen durch. Die Kosten richten sich nach dem Arbeitsaufwand und werden pro Stunde mi 35.- EUR berechnet. Bei der Erstellung von CD-ROM's fallen zusätzliche Produktionskosten an.</div>
+                                <div class="services-item-desc">Auf Wunsch erstellen wir Dossiers oder führen themenbezogene Recherchen durch. Die Kosten richten sich nach dem Arbeitsaufwand und sind Verhandlungssache. Bei der Erstellung von CD-ROM's fallen zusätzliche Produktionskosten an.</div>
                             </a><!-- End services item -->
                         </div>                        
                     </div>
@@ -87,22 +94,24 @@
 					<div class="row items">
 						<div class="col-12">
 							<div class="section-heading heading-center">
-                                <div class="section-subheading">KOPIEN KÖNNEN IM ARCHIV SELBST ERSTELLT - ODER IN AUFTRAG GEGEBEN WERDEN</div>
-                                <h1>Kopien</h1>
+                                <div class="section-subheading">SCANS KÖNNEN IM ARCHIV SELBST ERSTELLT ODER IN AUFTRAG GEGEBEN WERDEN.</div>
+                                <h1>Scans</h1>
+                                <p>Die Scans werden als jpg-Dateien erstellt. Als zusätzlichen Service bieten wir an, die Scans in pdf-Dateien zusammenzufassen (bei Doppelseiten von Broschüren und Zeitschriften teilen wir die Scans) und
+                                eine Texterkennung auszuführen. Dafür wird eine zusätzliche Servicegebühr fällig.</p>
                             </div>
 						</div>
 						<div class="col-lg-4 col-md-6 col-12 item">
 							<!-- Begin pricing item -->
 							<div class="pricing-item item-style">
 								<header class="pricing-item-header">
-									<div class="pricing-item-heading">Selbsterstellt</div>
-									<div class="pricing-item-price">0,20 EUR</div>
+									<div class="pricing-item-heading">Selbsterstellte Scans</div>
+									<div class="pricing-item-price">20 ¢</div>
 								</header>
 								<div class="pricing-item-content">
 									<ul class="pricing-item-list">
 										<li class="active">
 											<i class="material-icons md-24">check</i>
-											DINA4 Kopie
+											Scans bis DIN A3
 										</li>
 									</ul>
 								</div>
@@ -112,14 +121,14 @@
 							<!-- Begin pricing item -->
 							<div class="pricing-item item-style">
 								<header class="pricing-item-header">
-									<div class="pricing-item-heading">Angefertigt</div>
-									<div class="pricing-item-price">0,35 EUR</div>
+									<div class="pricing-item-heading">Von uns erstellte Scans</div>
+									<div class="pricing-item-price">40 ¢</div>
 								</header>
 								<div class="pricing-item-content">
 									<ul class="pricing-item-list">
 										<li class="active">
 											<i class="material-icons md-24">check</i>
-											DINA4 Kopie
+											Scans bis DIN A3
 										</li>
 									</ul>
 								</div>
@@ -129,14 +138,14 @@
 							<!-- Begin pricing item -->
 							<div class="pricing-item item-style">
 								<header class="pricing-item-header">
-									<div class="pricing-item-heading">Für Fördermitglieder</div>
-									<div class="pricing-item-price">0,10 EUR</div>
+									<div class="pricing-item-heading">Pdf aus Scans (bis 50 Seiten)</div>
+									<div class="pricing-item-price">2,50€</div>
 								</header>
 								<div class="pricing-item-content">
 									<ul class="pricing-item-list">
 										<li class="active">
 											<i class="material-icons md-24">check</i>
-											DINA4 Kopie
+											Durchsuchbare pdf-Datei
 										</li>
 									</ul>
 								</div>

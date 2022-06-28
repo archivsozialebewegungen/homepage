@@ -1,0 +1,69 @@
+            <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>
+                                <li><a href="#!">Impressum</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav><!-- End bread crumbs -->
+
+            <!-- Begin main content -->
+            <div class="section section-single-product">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading">
+								<h1>Impressum</h1>
+							</div>
+							<div class="section-subheading">
+								<h3>Angaben gem&auml;&szlig; &sect; 5 TMG</h3>
+							</div>
+							<div class="section-item">
+								<p>Archiv Soziale Bewegungen e.V.<br />
+								Adlerstr.12<br />
+								79098 Freiburg</p>
+
+								<p>Vereinsregister: VR 1410<br />
+								Registergericht: Amtsgericht Freiburg</p>
+
+								<p><strong>Vertreten durch:</strong><br />
+								Ina El-Kadhi</p>
+							<div>
+							<div class="section-subheading">
+								<h3>Kontakt</h3>
+							</div>
+							<div>
+								<p>Telefon: 0761 / 33362<br />
+								E-Mail: info@archivsozialebewegungen.de</p>
+							</div>
+							<div class="section-subheading">
+								<h3>Redaktionell verantwortlich</h3>
+							</div>
+							<div>
+								<p>Michael Koltan<br />
+								c/o Archiv Soziale Bewegungen e.V.<br />
+								Adlerstr. 12<br />
+								79098 Freiburg</p>
+							</div>
+							<div class="section-subheading">
+
+								<h3>Verbraucher&shy;streit&shy;beilegung / Universal&shy;schlichtungs&shy;stelle</h3>
+							</div>
+							<div>
+								<p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+								<p>Quelle: <a href="https://www.e-recht24.de">https://www.e-recht24.de</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End main content -->
+
+            </div>

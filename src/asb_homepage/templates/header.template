@@ -54,7 +54,7 @@
                                 <div class="mob-main-submnu-item">
                                     <ul>
                                         <li><a href="btable.html">Broschüren</a></li>
-                                        <li><a href="buttons.html">Buttons</a></li>
+                                        <li><a href="pdf/buttons.pdf" target="_blank">Buttons</a></li>
                                         <li><a href="feministischesarchiv.html">Feministisches Archiv</a></li>
                                         <li><a href="ztable.html">Zeitschriften</a></li>
                                     </ul>
@@ -68,14 +68,14 @@
                             <a href="index.html#kontakt">Kontakt</a>
                         </li>
                         <li>
-                            <a href="bestaende.html">Über das Archiv</a>
+                            <a href="history.html">Über das Archiv</a>
                             <div class="mmm-btn"><i class="material-icons md-24">expand_more</i></div>
                             <div class="mob-main-submnu">
                                 <div class="mob-main-submnu-item">
                                     <ul>
-                                        <li><a href="coming-soon.html">Geschichte</a></li>
+                                        <li><a href="history.html">Geschichte</a></li>
                                         <li><a href="coming-soon.html">Recherchemöglichkeiten</a></li>
-                                        <li><a href="coming-soon.html">Spenden &amp; Sponsoren</a></li>
+                                        <li><a href="spenden.html">Spenden &amp; Sponsoren</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -164,12 +164,12 @@
                                                     <ul>
                                                         <li><a href="btable.html"
                                                                 data-title="Broschüren"><span>Broschüren</span></a></li>
-                                                        <li><a href="buttons.html"
+                                                        <li><a href="pdf/buttons.pdf" target="_blank"
                                                                 data-title="Buttons"><span>Buttons</span></a>
                                                         </li>
-                                                        <li><a href="feministischesarchiv.html"
+                                                        <li><a href="https://www.femwerkstatt.de/das-archiv/"
                                                                 data-title="Feministisches Archiv"><span>Feministisches Archiv</span></a>                                                                    
-                                                        <li><a href="coming-soon.html" data-title="Filme & Fotos"><span>Filme & Fotos</span></a>
+                                                        <li><a href="fotos.html" data-title="Filme & Fotos"><span>Filme & Fotos</span></a>
                                                         </li>
                                                         <li><a href="ztable.html"
                                                                 data-title="Zeitschriften"><span>Zeitschriften</span></a>
@@ -187,16 +187,16 @@
                                                     </a>
                                                 </li>
                                                 <li class="main-mnu-item-has-child">
-                                                    <a href="coming-soon.html" data-title="Über das Archiv">
+                                                    <a href="history.html" data-title="Über das Archiv">
                                                         <span>Über das Archiv</span>
                                                         <i class="material-icons">expand_more</i>
                                                     </a>
                                                     <ul>
-                                                        <li><a href="coming-soon.html"
+                                                        <li><a href="history.html"
                                                                 data-title="Geschichte"><span>Geschichte</span></a></li>
-                                                                <li><a href="coming-soon.html"
-                                                                    data-title="Recherchemöglichkeiten"><span>Recherchemöglichkeiten</span></a></li>
                                                         <li><a href="coming-soon.html"
+                                                                    data-title="Recherchemöglichkeiten"><span>Recherchemöglichkeiten</span></a></li>
+                                                        <li><a href="spenden.html"
                                                                 data-title="Spenden & Sponsoren"><span>Spenden &
                                                                     Sponsoren</span></a></li>
                                                     </ul>
