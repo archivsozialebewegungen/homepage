@@ -33,6 +33,7 @@ import pysftp
 from asb_homepage.InfoReader import NEWS_READER, InfoReaderModule,\
     PUBLICATION_READER
 from asb_zeitschriften.guiconstants import FILTER_PROPERTY_SYSTEMATIK
+import os
 
 @singleton
 class BroschuerenExporter():
@@ -229,13 +230,7 @@ class Exporter:
     
     def upload(self):
         
-        with pysftp.Connection('ssh.strato.de', username='archivsozialebewegungen.de', password='loth@ri00607', port=22) as sftp:
-            #try:
-            #    sftp.mkdir("neu")
-            #except IOError:
-            #    pass
-            
-            #with sftp.cd('.'):             # temporarily chdir to public
+        with pysftp.Connection('ssh.strato.de', username='archivsozialebewegungen.de', password=os.environ['FTPPW'], port=22) as sftp:
             self.upload_dir(self.outdir, sftp)
         
     def upload_dir(self, directory, sftp):
