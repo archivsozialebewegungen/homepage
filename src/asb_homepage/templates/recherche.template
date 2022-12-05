@@ -1,0 +1,38 @@
+             <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="index.html">Über das Archiv</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>                                
+                                <li><a href="#!">Geschichte</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav><!-- End bread crumbs -->
+
+            <!-- Begin main content -->
+            <div class="section comming-soon section-bg lazy" data-background-image="assets/img/intro-img1.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <h1>Recherche</h1>
+                            </div>
+                            <p>Der wichtigste Zugang zu unserem Archiv ist seine Systematik. Diese ist als Baumstruktur organisiert.
+                            20 Hauptsystematikpunkte, die jeweils verschiedene Bewegungen repräsentieren (beispielsweise
+                            die Hausbesetzer:innenbewegung oder die Anti-AKW-Bewegung) verästeln
+                            sich in immer feinere Aufgliederungen. Hier auf der Homepage ist die Systematik als
+                            <a href="pdf/systematik.pdf">pdf-Datei</a>
+                            zugänglich. Zur Suche verwenden Sie am besten die Suchfunktion ihres pdf-Readers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End main content -->
+
+        </div>

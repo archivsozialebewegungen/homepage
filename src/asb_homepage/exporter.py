@@ -34,6 +34,8 @@ from asb_homepage.InfoReader import NEWS_READER, InfoReaderModule,\
     PUBLICATION_READER
 from asb_zeitschriften.guiconstants import FILTER_PROPERTY_SYSTEMATIK
 import os
+from asb_homepage.SystematikExporter import SystematikExporter,\
+    SystematikExporterModule
 
 @singleton
 class BroschuerenExporter():
@@ -205,6 +207,7 @@ class Exporter:
                  systematik_dao: SystematikDao,
                  broschueren_exporter: BroschuerenExporter,
                  zeitschriften_exporter: ZeitschriftenExporter,
+                 systematik_exporter: SystematikExporter,
                  buttons_exporter: ButtonsExporter,
                  news_reader: NEWS_READER,
                  publication_reader: PUBLICATION_READER,
@@ -216,6 +219,7 @@ class Exporter:
         self.systmatik_dao = systematik_dao
         self.broschueren_exporter = broschueren_exporter
         self.zeitschriften_exporter = zeitschriften_exporter
+        self.systematik_exporter = systematik_exporter
         self.buttons_exporter = buttons_exporter
         self.news_reader = news_reader
         self.publication_reader = publication_reader
@@ -264,6 +268,7 @@ class Exporter:
         self.write_zeitschriften()
         self.write_broschueren()
         self.write_buttons_pdf()
+        self.write_systematik_pdf()
         self.write_vor_fuenf_jahren()
         
     def tiny_run(self):
@@ -290,7 +295,7 @@ class Exporter:
                 
     def write_default_files(self):
         
-        file_bases = ("services", "bestaende", "buttons", "feministischesarchiv", "spenden", "history", "fotos", "impressum", "coming-soon")
+        file_bases = ("services", "bestaende", "buttons", "feministischesarchiv", "spenden", "history", "recherche", "fotos", "impressum", "coming-soon")
         
         for file_base in file_bases:
             template = self.load_full_template(file_base)
@@ -399,6 +404,10 @@ class Exporter:
     def write_buttons_pdf(self):
         
         self.buttons_exporter.export(filename = path.join(self.pdfdir, "buttons.pdf"))
+                
+    def write_systematik_pdf(self):
+        
+        self.systematik_exporter.export(filename = path.join(self.pdfdir, "systematik.pdf"))
                 
     def write_html_file(self, name, content):    
         
@@ -552,11 +561,11 @@ von vor 50 Jahren zu stöbern.
 if __name__ == '__main__':
  
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")    
-    injector = Injector([InfoReaderModule, AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule])
+    injector = Injector([InfoReaderModule, AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule, SystematikExporterModule])
     
     exporter = injector.get(Exporter)
     print("Starting build...")
-    exporter.run()
+    #exporter.run()
     #exporter.tiny_run()
     print("Starting upload...")
     exporter.upload()

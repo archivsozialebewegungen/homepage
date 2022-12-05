@@ -53,6 +53,7 @@
                             <div class="mob-main-submnu">
                                 <div class="mob-main-submnu-item">
                                     <ul>
+                                        <li><a href="pdf/systematik.pdf" target="_blank">Systematik</a></li>
                                         <li><a href="btable.html">Broschüren</a></li>
                                         <li><a href="pdf/buttons.pdf" target="_blank">Buttons</a></li>
                                         <li><a href="feministischesarchiv.html">Feministisches Archiv</a></li>
@@ -74,7 +75,7 @@
                                 <div class="mob-main-submnu-item">
                                     <ul>
                                         <li><a href="history.html">Geschichte</a></li>
-                                        <li><a href="coming-soon.html">Recherchemöglichkeiten</a></li>
+                                        <!-- <li><a href="recherche.html">Recherchemöglichkeiten</a></li> -->
                                         <li><a href="spenden.html">Spenden &amp; Sponsoren</a></li>
                                     </ul>
                                 </div>
@@ -162,6 +163,8 @@
                                                         <i class="material-icons">expand_more</i>
                                                     </a>
                                                     <ul>
+                                                        <li><a target="_blank" href="pdf/systematik.pdf"
+                                                                data-title="Systematik"><span>Systematik</span></a></li>
                                                         <li><a href="btable.html"
                                                                 data-title="Broschüren"><span>Broschüren</span></a></li>
                                                         <li><a href="pdf/buttons.pdf" target="_blank"
@@ -194,8 +197,8 @@
                                                     <ul>
                                                         <li><a href="history.html"
                                                                 data-title="Geschichte"><span>Geschichte</span></a></li>
-                                                        <li><a href="coming-soon.html"
-                                                                    data-title="Recherchemöglichkeiten"><span>Recherchemöglichkeiten</span></a></li>
+                                                        <!-- <li><a href="recherche.html"
+                                                                    data-title="Recherchemöglichkeiten"><span>Recherchemöglichkeiten</span></a></li> -->
                                                         <li><a href="spenden.html"
                                                                 data-title="Spenden & Sponsoren"><span>Spenden &
                                                                     Sponsoren</span></a></li>

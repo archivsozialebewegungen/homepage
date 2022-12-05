@@ -51,8 +51,9 @@
                                 digitalisierter Form publiziert. Nähere Hinweise finden Sie bei der Chronologie bzw.
                                 beim Projekt Alexandria.
 
-                                Das Archiv ist eine Präsenzbibliothek und an zwei Tagen für die Öffentlichkeit
-                                zugänglich. Jährlich werden etwa 600 Besucher betreut, darunter auch Doktoranden,
+                                Das Archiv ist eine Präsenzbibliothek und an vier Tagen für die Öffentlichkeit
+                                zugänglich (Montag bis Donnerstag). Jährlich werden etwa 600 Besucher betreut,
+                                darunter Doktoranden,
                                 Journalisten, Studenten und Privatpersonen aus europäischen und außereuropäischen
                                 Ländern. Über die ZDB-Berlin ist das Archiv mit der nationalen und internationalen
                                 Fernleihe verbunden.
@@ -61,6 +62,17 @@
                                 <div class="row gutters-default">
                                     <div class="col-lg-6 col-12">
                                         <ul class="accordion-list">  
+                                            <li class="accordion-item section-bg">
+                                                <div class="accordion-trigger">Systematik</div>
+                                                <div class="accordion-content content">
+                                                <p>Der wichtigste Zugang zu unserem Archiv ist seine Systematik. Diese ist als Baumstruktur organisiert.
+                            20 Hauptsystematikpunkte, die jeweils verschiedene Bewegungen repräsentieren (beispielsweise
+                            die Hausbesetzer:innenbewegung oder die Anti-AKW-Bewegung) verästeln
+                            sich in immer feinere Aufgliederungen. Hier auf der Homepage ist die Systematik als
+                            <a href="pdf/systematik.pdf">pdf-Datei</a>
+                            zugänglich. Zur Suche verwenden Sie am besten die Suchfunktion ihres pdf-Readers.
+                            </p>
+                                            </li>
                                             <li class="accordion-item section-bg">
                                                 <div class="accordion-trigger">Broschüren</div>
                                                 <div class="accordion-content content">
@@ -78,6 +90,10 @@
                                                     <p>Der Bestand an Buttons kann über den <a href="pdf/buttons.pdf">Katalog</a> eingesehen werden</p>
                                                 </div>
                                             </li>                                           
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
+                                        <ul class="accordion-list">
                                             <li class="accordion-item section-bg">
                                                 <div class="accordion-trigger">Feministisches Archiv</div>
                                                 <div class="accordion-content content">
@@ -91,21 +107,11 @@
                                                     </p>
                                                 </div>
                                             </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6 col-12">
-                                        <ul class="accordion-list">
                                             <li class="accordion-item section-bg">
                                                 <div class="accordion-trigger">Filme & Fotos</div>
                                                 <div class="accordion-content content">
                                                     <p>Unsere Film- und Fotobestände werden aktuell neu erschlossen und digitalisiert. Sobald
                             wir einen benutzerfreundlichen Katalog haben, werden wir diesen hier verfügbar machen.</p>
-                                                </div>
-                                            </li>
-                                            <li class="accordion-item section-bg">
-                                                <div class="accordion-trigger">Sonstige Archivalien</div>
-                                                <div class="accordion-content content">
-                                                    <p>TBD</p>
                                                 </div>
                                             </li>
                                             <li class="accordion-item section-bg">
