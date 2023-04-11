@@ -15,6 +15,7 @@ import locale
 import re
 from asb_systematik.SystematikDao import SystematikTree,\
     AlexandriaDbModule, SystematikDao
+import roman
 
 styles = getSampleStyleSheet()
 re_time = re.compile("(\d+):(\d+):(\d+)\s+\d+:\d+:\d+")
@@ -55,7 +56,7 @@ class SystematikExporter(SystematikTree):
         if node.is_sub():
             story.append(Paragraph("&nbsp;&nbsp;&nbsp;<b>-</b> %s" % (node.beschreibung), styles["Normal"]))
         elif node.is_roman():
-            story.append(Paragraph("<b>%s</b> %s" % (roemisch[node.identifier.roemisch], node.beschreibung), styles["Normal"]))
+            story.append(Paragraph("<b>%s</b> %s" % (roman.toRoman(node.identifier.roemisch), node.beschreibung), styles["Normal"]))
         elif depth == 0:
                 pass
         elif depth == 1:
