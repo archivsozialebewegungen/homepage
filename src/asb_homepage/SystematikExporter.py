@@ -3,23 +3,17 @@ Created on 21.02.2022
 
 @author: michael
 '''
-from pathlib import Path
-import os
-from xml.dom.minidom import parse
 from injector import singleton, inject, Injector, Module, provider
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus.doctemplate import SimpleDocTemplate
 from reportlab.lib.units import mm
-from reportlab.platypus.flowables import Spacer, Image, KeepTogether, PageBreak,\
-    ListFlowable, ListItem
+from reportlab.platypus.flowables import Spacer
 from reportlab.platypus.paragraph import Paragraph
 from datetime import date
-from PIL import Image as PilImage
 import locale
 import re
-from _io import BytesIO
-from asb_systematik.SystematikDao import SystematikTree, roemisch,\
+from asb_systematik.SystematikDao import SystematikTree,\
     AlexandriaDbModule, SystematikDao
 
 styles = getSampleStyleSheet()

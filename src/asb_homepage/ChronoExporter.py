@@ -108,7 +108,40 @@ class ChronoExporter():
         image = Image(img_stream)
         image.hAlign = "LEFT"
         return image
+    
+    def export_achter_maerz(self, filename="/tmp/AchterMaerz.pdf"):
+
+        self.year = 0
+        doc = SimpleDocTemplate(filename, 
+                                title = "Chronologie feministische Bewegungen",
+                                subject = "Ereignisse aus der Alexandria-Datenbank",
+                                keywords = ("Neue Soziale Bewegungen", "Buttons"),
+                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
         
+        story = [Spacer(1, 50 * mm)]
+        
+        story.append(Spacer(1, 10 * mm))
+
+        event_ids = self.get_events(7)
+        event_ids.sort()
+        for event_id in event_ids:
+
+            if self.is_achter_maerz(event_id):
+                
+                print(event_id)
+                event = self.event_dao.get_by_id(event_id)
+                self.print_event(story, event)
+
+        doc.build(story, onFirstPage=self.first_page, onLaterPages=self.other_pages)
+
+    def is_achter_maerz(self, event_id):
+        
+        string_id = "%d" % event_id
+        month_day = string_id[4:8]
+        print(month_day) 
+        
+        return month_day == "0308"
+             
     def export_uebersicht(self, filename="/tmp/FeministischeChronologieUebersicht.pdf"):
         
         self.year = 0
@@ -415,6 +448,7 @@ if __name__ == '__main__':
     exporter = injector.get(ChronoExporter)
     exporter.ohne_quellen = False
     exporter.mit_ereignis_id = True
-    exporter.export_haeuserkampf()
+    #exporter.export_haeuserkampf()
+    exporter.export_achter_maerz()
     #exporter.export_uebersicht()
     #exporter.export_ausstellung()
