@@ -36,6 +36,7 @@ from asb_zeitschriften.guiconstants import FILTER_PROPERTY_SYSTEMATIK
 import os
 from asb_homepage.SystematikExporter import SystematikExporter,\
     SystematikExporterModule
+from alexandriabase.tools import PlakatExporter
 
 @singleton
 class BroschuerenExporter():
@@ -209,6 +210,7 @@ class Exporter:
                  zeitschriften_exporter: ZeitschriftenExporter,
                  systematik_exporter: SystematikExporter,
                  buttons_exporter: ButtonsExporter,
+                 plakat_exporter: PlakatExporter,
                  news_reader: NEWS_READER,
                  publication_reader: PUBLICATION_READER,
                  cd_generation_engine: GenerationEngine):
@@ -221,6 +223,7 @@ class Exporter:
         self.zeitschriften_exporter = zeitschriften_exporter
         self.systematik_exporter = systematik_exporter
         self.buttons_exporter = buttons_exporter
+        self.plakat_exporter = plakat_exporter
         self.news_reader = news_reader
         self.publication_reader = publication_reader
         self.cd_generation_engine = cd_generation_engine
@@ -269,6 +272,7 @@ class Exporter:
         self.write_broschueren()
         self.write_buttons_pdf()
         self.write_systematik_pdf()
+        self.write_poster_pdf()
         self.write_vor_fuenf_jahren()
         
     def tiny_run(self):
@@ -408,6 +412,11 @@ class Exporter:
     def write_systematik_pdf(self):
         
         self.systematik_exporter.export(filename = path.join(self.pdfdir, "systematik.pdf"))
+        
+    def write_poster_pdf(self):
+        
+        self.plakat_exporter.export_to_tex()
+        os.system("pdflatex -output-directory %s /tmp/plakate.tex" % self.pdfdir)
                 
     def write_html_file(self, name, content):    
         

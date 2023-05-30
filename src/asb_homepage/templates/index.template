@@ -173,7 +173,7 @@
                         </div>
                         <div class="col-xl-4 col-md-12 col-12 item">
                             <!-- Begin services item -->
-                            <a href="coming-soon.html" class="services-item services-item-row item-style">
+                            <a href="recherche.html" class="services-item services-item-row item-style">
                                 <div class="services-item-ico">
                                     <i class="material-icons material-icons-outlined md-48">find_in_page</i>
                                 </div>
