@@ -6,7 +6,7 @@ Created on 02.02.2022
 from os import path, makedirs
 from asb_zeitschriften.broschdaos import ZeitschriftenDao, Zeitschrift,\
     BroschDao, Brosch, PageObject, BroschFilter, ZeitschriftenFilter,\
-    JahrgaengeDao
+    JahrgaengeDao, GenericFilter, BooleanFilterProperty, ZEITSCH_TABLE
 from injector import Injector, inject, singleton
 from asb_systematik.SystematikDao import AlexandriaDbModule, SystematikDao,\
     DataError, SystematikIdentifier
@@ -32,7 +32,8 @@ from shutil import copyfile
 import pysftp
 from asb_homepage.InfoReader import NEWS_READER, InfoReaderModule,\
     PUBLICATION_READER
-from asb_zeitschriften.guiconstants import FILTER_PROPERTY_SYSTEMATIK
+from asb_zeitschriften.guiconstants import FILTER_PROPERTY_SYSTEMATIK,\
+    FILTER_PROPERTY_DIGITALISIERT
 import os
 from asb_homepage.SystematikExporter import SystematikExporter,\
     SystematikExporterModule
@@ -140,6 +141,7 @@ class ZeitschriftenExporter():
         self._print_field(story, "vollständig", "K")
         self._print_field(story, "beschädigte Exemplare", "B")
         self._print_field(story, "Sondernummern vorhanden", "S")
+        self._print_field(story, "Digitalisiert", "D")
 
         story.append(Spacer(1,10 * mm))
 
@@ -150,9 +152,15 @@ class ZeitschriftenExporter():
         try:
             while True:
                 for zeitschrift in page_object.objects:
-                    story.append(Paragraph(zeitschrift.titel, self.styles['h2']))
+                    if zeitschrift.digitalisiert:
+                        story.append(Paragraph("%s [D]" % zeitschrift.titel, self.styles['h2']))
+                    else:
+                        story.append(Paragraph(zeitschrift.titel, self.styles['h2']))
                     if zeitschrift.untertitel is not None:
                         story.append(Paragraph(zeitschrift.untertitel, self.styles['h3']))
+                        story.append(Spacer(1, 3 * mm))
+                    if zeitschrift.bemerkung is not None:
+                        story.append(Paragraph(zeitschrift.bemerkung, style))
                         story.append(Spacer(1, 3 * mm))
                     story.append(Paragraph(zeitschrift.basic_info, style))
                     self.append_jahrgaenge(zeitschrift, story)
@@ -197,7 +205,6 @@ class ZeitschriftenExporter():
         if value is None or value.strip() == '':
             return
         story.append(Paragraph("<b>%s:</b> %s" % (definition, value), self.styles['Normal']))        
-
 
 @singleton
 class Exporter:
@@ -579,4 +586,10 @@ if __name__ == '__main__':
     print("Starting upload...")
     exporter.upload()
     print("Finished.")
+    
+    #z_filter = ZeitschriftenFilter()
+    #z_filter.set_property_value(FILTER_PROPERTY_DIGITALISIERT, True)
+    
+    #exporter = injector.get(ZeitschriftenExporter)
+    #exporter.export("/tmp/digitalisierte_zeitschriften.pdf", z_filter)
     
