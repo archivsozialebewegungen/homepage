@@ -24,7 +24,7 @@ from alexandriabase import AlexBaseModule
 from alexplugins.cdexporter.base import CDExporterBasePluginModule
 from alexplugins.systematic.base import SystematicIdentifier
 from alexandriabase.daos import DaoModule, DocumentEventRelationsDao, EventDao,\
-    EventCrossreferencesDao, DocumentDao
+    EventCrossreferencesDao, DocumentDao, DOCUMENT_TABLE
 from asb_systematik.SystematikDao import AlexandriaDbModule
 from reportlab.platypus.tables import LongTable, TableStyle
 from PIL import Image as PilImage
@@ -42,6 +42,7 @@ class ChronoExporter():
     @inject
     def __init__(self, systematik_service: SystematicService,
                  reference_dao: DocumentEventRelationsDao,
+                 systematic_references_dao: DocumentSystematicRelationsDao,
                  event_xref_dao: EventCrossreferencesDao,
                  event_dao: EventDao,
                  document_dao: DocumentDao):
@@ -94,6 +95,7 @@ class ChronoExporter():
         self.systematik_service = systematik_service
         self.event_dao = event_dao
         self.reference_dao = reference_dao
+        self.systematic_references_dao = systematic_references_dao
         self.event_xref_dao = event_xref_dao
         self.document_dao = document_dao
         
@@ -122,7 +124,7 @@ class ChronoExporter():
         
         story.append(Spacer(1, 10 * mm))
 
-        event_ids = self.get_events(7)
+        event_ids = self.get_events_for_main_systematic(7)
         event_ids.sort()
         for event_id in event_ids:
 
@@ -155,7 +157,7 @@ class ChronoExporter():
         
         story.append(Spacer(1, 10 * mm))
 
-        event_ids = self.get_events(7)
+        event_ids = self.get_events_for_main_systematic(7)
         event_ids.sort()
         for event_id in event_ids:
             if event_id in self.ignore_ids:
@@ -183,13 +185,34 @@ class ChronoExporter():
         
         story.append(Spacer(1, 10 * mm))
 
-        event_ids = self.get_events(14)
+        event_ids = self.get_events_for_main_systematic(14)
         event_ids.sort()
         for event_id in event_ids:
             event = self.event_dao.get_by_id(event_id)
             self.print_event(story, event)
 
         doc.build(story, onFirstPage=self.first_page, onLaterPages=self.other_pages)
+    
+    def export_chile(self, filename="/tmp/ChronologieChileSolidarität.pdf"):
+        
+        self.year = 0
+        doc = SimpleDocTemplate(filename, 
+                                title = "Chronologie zur Chilesolidarität in Freiburg",
+                                subject = "Ereignisse aus der Alexandria-Datenbank",
+                                keywords = ("Chile", "Internationale Solidarität"),
+                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
+        
+        story = [Spacer(1, 50 * mm)]
+        
+        story.append(Spacer(1, 10 * mm))
+
+        event_ids = self.get_events_for_systematic(SystematicIdentifier("5.5.5", 1))
+        event_ids.sort()
+        for event_id in event_ids:
+            event = self.event_dao.get_by_id(event_id)
+            self.print_event(story, event)
+
+        doc.build(story, onFirstPage=self.first_page_chile, onLaterPages=self.other_pages)
     
     def export_ausstellung(self, filename="/tmp/FeministischeChronologieA3.pdf"):
         
@@ -320,7 +343,7 @@ class ChronoExporter():
         
         story = []
         
-        event_ids = self.get_events(7)
+        event_ids = self.get_events_for_main_systematic(7)
         event_ids.sort()
         table_data = []
         for event_id in event_ids:
@@ -364,6 +387,19 @@ class ChronoExporter():
 
         canvas.restoreState()
         
+    def first_page_chile(self, canvas, doc):
+        
+        canvas.saveState()
+        canvas.setFont('Times-Bold',45)
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-108, "Chile Solidaritätsbe-")
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-160, "wegung")
+        canvas.setFont('Times-Bold',14)
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-190, "Archiv Soziale Bewegungen e.V.")
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-205, "Adlerstr.12, 79098 Freiburg")
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-220, "Stand: %s" % date.today().strftime("%d. %B %Y"))
+
+        canvas.restoreState()
+
     def other_pages(self, canvas, doc):
         
         canvas.saveState()
@@ -371,9 +407,22 @@ class ChronoExporter():
         canvas.drawString(20 * mm, 15 * mm, "Chronologie, Seite %d" % doc.page)
         canvas.restoreState()
         
-    def get_events(self, systematic: int):
+    def get_events_for_main_systematic(self, systematic: int):
         
         document_ids = self.systematik_service.fetch_document_ids_for_main_systematic(systematic)
+        return self._build_event_list(document_ids)
+        
+        
+    def get_events_for_systematic(self, systematic: SystematicIdentifier):
+    
+        document_ids = self.systematic_references_dao.fetch_document_ids_for_systematic_id(systematic)
+    
+        for document in  self.document_dao.find(DOCUMENT_TABLE.c.standort == "%s" % systematic):
+            document_ids.append(document.id)
+        return self._build_event_list(document_ids)
+        
+    def _build_event_list(self, document_ids):
+        
         event_dict = {}
         for document_id in document_ids:
             for id in self.reference_dao.fetch_ereignis_ids_for_dokument_id(document_id):
@@ -449,6 +498,7 @@ if __name__ == '__main__':
     exporter.ohne_quellen = False
     exporter.mit_ereignis_id = True
     #exporter.export_haeuserkampf()
-    exporter.export_achter_maerz()
+    #exporter.export_achter_maerz()
+    exporter.export_chile()
     #exporter.export_uebersicht()
     #exporter.export_ausstellung()
