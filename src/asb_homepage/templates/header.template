@@ -54,10 +54,11 @@
                                 <div class="mob-main-submnu-item">
                                     <ul>
                                         <li><a href="pdf/systematik.pdf" target="_blank">Systematik</a></li>
+                                        <li><a href="ztable.html">Zeitschriften</a></li>
                                         <li><a href="btable.html">Broschüren</a></li>
+                                        <li><a href="plakate.html" target="_blank">Plakate</a></li>
                                         <li><a href="pdf/buttons.pdf" target="_blank">Buttons</a></li>
                                         <li><a href="feministischesarchiv.html">Feministisches Archiv</a></li>
-                                        <li><a href="ztable.html">Zeitschriften</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -165,18 +166,21 @@
                                                     <ul>
                                                         <li><a target="_blank" href="pdf/systematik.pdf"
                                                                 data-title="Systematik"><span>Systematik</span></a></li>
-                                                        <li><a href="btable.html"
-                                                                data-title="Broschüren"><span>Broschüren</span></a></li>
-                                                        <li><a href="pdf/buttons.pdf" target="_blank"
-                                                                data-title="Buttons"><span>Buttons</span></a>
-                                                        </li>
-                                                        <li><a href="https://www.femwerkstatt.de/das-archiv/"
-                                                                data-title="Feministisches Archiv"><span>Feministisches Archiv</span></a>                                                                    
-                                                        <li><a href="fotos.html" data-title="Filme & Fotos"><span>Filme & Fotos</span></a>
-                                                        </li>
                                                         <li><a href="ztable.html"
                                                                 data-title="Zeitschriften"><span>Zeitschriften</span></a>
                                                         </li>
+                                                        <li><a href="btable.html"
+                                                                data-title="Broschüren"><span>Broschüren</span></a></li>
+                                                        <li><a href="plakate.html"
+                                                                data-title="Plakate"><span>Plakate</span></a>
+                                                        </li>
+                                                        <li><a href="pdf/buttons.pdf" target="_blank"
+                                                                data-title="Buttons"><span>Buttons</span></a>
+                                                        </li>
+                                                        <li><a href="fotos.html" data-title="Filme & Fotos"><span>Filme & Fotos</span></a>
+                                                        </li>
+                                                        <li><a href="https://www.femwerkstatt.de/das-archiv/"
+                                                                data-title="Feministisches Archiv"><span>Feministisches Archiv</span></a>                                                                    
                                                     </ul>
                                                 </li>
                                                 <li class="main-mnu-item-has-child">

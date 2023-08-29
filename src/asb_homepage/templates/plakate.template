@@ -1,0 +1,49 @@
+            <!-- Begin bread crumbs -->
+            <nav class="bread-crumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="bread-crumbs-list">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>
+                                <li>
+                                    <a href="bestaende.html">Bestände</a>
+                                    <i class="material-icons md-18">chevron_right</i>
+                                </li>
+                                <li><a href="#!">Plakate</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav><!-- End bread crumbs -->
+
+            <!-- Begin main content -->
+            <div class="section comming-soon section-bg lazy" data-background-image="assets/img/intro-img1.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading heading-center">
+                                <h1>Plakate</h1>
+                            </div>
+                            <p>Im Augenblick sind mehr als 3.800 Plakate in unserer Datenbank verzeichnet. Vor Ort
+                            sind die Plakate für Besucher:innen nicht direkt einsehbar, da sie in Plakatschränken lagern,
+                            zu denen die Nutzer:innen keinen Zugang haben. Vor Ort können die Plakate, soweit sie erfasst
+                            sind, in der Datenbank gesucht werden.</p>
+                            <p>Alternativ empfiehlt es sich aber, die hier auf der homepage vorliegende
+                            <a href="pdf/plakate.pdf" target="_blank">Pdf-Datei</a> zu nutzen.
+                            Achtung: Die Plakat-Datei ist sehr groß (mehrere hundert Megabyte), insofern ist es
+                            nicht ratsam, das auf einem Mobiltelefon zu versuchen!</p>
+                            <p>Von manchen Plakaten gibt es bereits HD-Scans (mit einer Auflösung von 600dpi). Wenn das
+                            der Fall ist, wird das auch in der pdf-Datei mit verzeichnet. Damit ist es möglich,
+                            Reproduktionen in Originalgröße zu erstellen. Auf Wunsch können wir auch HD-Scans erstellen,
+                            die Kosten richten sich nach der Vorlage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            	
+            <!-- End main content -->
+
+        </div>

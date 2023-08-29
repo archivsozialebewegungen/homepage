@@ -287,6 +287,7 @@ class Exporter:
         self.write_static()
         self.write_default_files()
         self.write_index_file()
+        self.write_systematik_pdf()
         
         self.write_publikationen()
         self.write_news()
@@ -306,7 +307,7 @@ class Exporter:
                 
     def write_default_files(self):
         
-        file_bases = ("services", "bestaende", "buttons", "feministischesarchiv", "spenden", "history", "recherche", "fotos", "impressum", "coming-soon")
+        file_bases = ("services", "bestaende", "plakate", "buttons", "feministischesarchiv", "spenden", "history", "recherche", "fotos", "impressum", "coming-soon")
         
         for file_base in file_bases:
             template = self.load_full_template(file_base)
