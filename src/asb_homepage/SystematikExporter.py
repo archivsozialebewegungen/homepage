@@ -53,26 +53,44 @@ class SystematikExporter(SystematikTree):
 
         depth = node.get_depth()
         
+        date_range = ""
+        
+        if node.startjahr is not None:
+            date_range = " (%d)" % node.startjahr
+            if node.endjahr is not None:
+                if node.endjahr != node.startjahr:
+                    date_range = " (%d - %d)" % (node.startjahr, node.endjahr)
+        
+        
         if node.is_sub():
-            story.append(Paragraph("&nbsp;&nbsp;&nbsp;<b>-</b> %s" % (node.beschreibung), styles["Normal"]))
+            story.append(Spacer(1, 2 * mm))
+            story.append(Paragraph("&nbsp;&nbsp;&nbsp;<b>-</b> <i>%s</i>%s" % (node.beschreibung, date_range), styles["Normal"]))
         elif node.is_roman():
-            story.append(Paragraph("<b>%s</b> %s" % (roman.toRoman(node.identifier.roemisch), node.beschreibung), styles["Normal"]))
+            story.append(Spacer(1, 2 * mm))
+            story.append(Paragraph("<b>%s</b> <i>%s</i>%s" % (roman.toRoman(node.identifier.roemisch), node.beschreibung, date_range), styles["Normal"]))
         elif depth == 0:
                 pass
         elif depth == 1:
             # TODO Pagebreak
-            story.append(Paragraph("%s %s" % (node.identifier, node.beschreibung), styles["h1"]))
+            story.append(Paragraph("%s %s%s" % (node.identifier, node.beschreibung, date_range), styles["h1"]))
         elif depth == 2:
-            story.append(Paragraph("%s %s" % (node.identifier, node.beschreibung), styles["h2"]))
+            story.append(Paragraph("%s %s%s" % (node.identifier, node.beschreibung, date_range), styles["h2"]))
         elif depth == 3:
-            story.append(Paragraph("%s %s" % (node.identifier, node.beschreibung), styles["h3"]))
+            story.append(Paragraph("%s %s%s" % (node.identifier, node.beschreibung, date_range), styles["h3"]))
         elif depth == 4:
-            story.append(Paragraph("%s %s" % (node.identifier, node.beschreibung), styles["h4"]))
+            story.append(Paragraph("%s %s%s" % (node.identifier, node.beschreibung, date_range), styles["h4"]))
         elif depth == 5: 
-            story.append(Paragraph("%s %s" % (node.identifier, node.beschreibung), styles["h5"]))
+            story.append(Paragraph("%s %s%s" % (node.identifier, node.beschreibung, date_range), styles["h5"]))
         else:
-            story.append(Paragraph("<b>%s</b> %s" % (node.identifier, node.beschreibung), styles["Normal"]))
+            story.append(Paragraph("<b>%s</b> %s%s" % (node.identifier, node.beschreibung, date_range), styles["Normal"]))
             
+        if node.kommentar is not None and node.kommentar.strip() != "":
+            story.append(Spacer(1, 2 * mm))
+            for part in node.kommentar.split("\n"):
+                story.append(Paragraph("%s" % part))
+                story.append(Spacer(1, 2 * mm))
+            story.append(Spacer(1, 1 * mm))
+
         for child in node.children:
             story = self._append_node(child, story)
         return story
