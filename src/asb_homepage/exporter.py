@@ -582,10 +582,10 @@ if __name__ == '__main__':
     
     exporter = injector.get(Exporter)
     print("Starting build...")
-    #exporter.run()
-    exporter.tiny_run()
+    exporter.run()
+    #exporter.tiny_run()
     print("Starting upload...")
-    #exporter.upload()
+    exporter.upload()
     print("Finished.")
     
     #z_filter = ZeitschriftenFilter()
