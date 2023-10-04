@@ -32,9 +32,23 @@ from _io import BytesIO
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from copy import deepcopy
+from alexandriabase.domain import Event
+from sqlalchemy.sql.expression import or_
 
 styles = getSampleStyleSheet()
 re_time = re.compile("(\d+):(\d+):(\d+)\s+\d+:\d+:\d+")
+
+class SortEvent(object):
+    
+    def __init__(self, event, sort_id=None):
+        
+        self.event = event
+        if sort_id is None:
+            self.sort_id=event.id
+        else:
+            self.sort_id=sort_id
+        
+        
 
 @singleton
 class ChronoExporter():
@@ -206,10 +220,7 @@ class ChronoExporter():
         
         story.append(Spacer(1, 10 * mm))
 
-        event_ids = self.get_events_for_systematic(SystematicIdentifier("5.5.5", 1))
-        event_ids.sort()
-        for event_id in event_ids:
-            event = self.event_dao.get_by_id(event_id)
+        for event in self.get_chile_events():
             self.print_event(story, event)
 
         doc.build(story, onFirstPage=self.first_page_chile, onLaterPages=self.other_pages)
@@ -373,6 +384,83 @@ class ChronoExporter():
         canvas.saveState()
         canvas.drawImage(os.path.join(os.path.dirname(__file__), "templates", "img", "aufbrechen_header_chrono_sw.tif"), 0, A3[1] - 44.96 * mm, width=A3[0], height=44.96 * mm)
         canvas.restoreState()
+
+    def get_chile_event_ids(self):
+        
+        event_ids = self.get_events_for_systematic(SystematicIdentifier("5.5.5", 1))
+        for event_id in self.get_events_for_systematic(SystematicIdentifier("13.2.2.5")):
+            if not event_id in event_ids:
+                event_ids.append(event_id)
+        event_ids.sort()
+
+        return event_ids
+    
+    def get_chile_events(self):
+        
+        self.sort_ids = {1973090003: 1973091500}
+        
+        event_ids = self.get_chile_event_ids()
+        sort_events = []
+        for event_id in event_ids:
+            event = self.event_dao.get_by_id(event_id)
+            if event_id in self.sort_ids.keys():
+                sort_events.append(SortEvent(event, self.sort_ids[event_id]))
+            else:
+                sort_events.append(SortEvent(event))
+                
+        sort_events.sort(key=lambda e: e.sort_id)
+        events = []
+        for sort_event in sort_events:
+            events.append(sort_event.event)
+            
+        return events
+                
+        
+    
+    def export_ausstellung_chile(self, filename="/tmp/ChronologieChileA3.pdf"):
+        
+        self.year = 0
+        skip_ids = []
+        maybe_ids = []
+        self.ignore_ids = self.irrelevant_ids + skip_ids + maybe_ids
+        
+        doc = SimpleDocTemplate(filename,
+                                pagesize=A3,
+                                topMargin=self.topMargin,
+                                leftMargin=self.leftMargin,
+                                rightMargin=self.rightMargin,
+                                title = "Chronologie der Chile-Solidaritätsbewegung 1972 - 1978",
+                                subject = "Ereignisse aus der Alexandria-Datenbank",
+                                keywords = ("Internationale Solidarität", "Chile"),
+                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
+        
+        story = []
+        
+        events = self.get_chile_events()
+
+        table_data = []
+        for event in events:
+            if event.id in self.ignore_ids:
+                continue
+        
+            table_data.append(self.get_columns(event))
+            table_data.append(["", ""])
+            
+        table_style = TableStyle(
+            [
+                ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+            ]
+            )    
+        story.append(LongTable(data=table_data, colWidths=[self.jahr_breite, None], style=table_style))
+
+        doc.build(story, onFirstPage=self.chrono_page_a3_chile, onLaterPages=self.chrono_page_a3_chile)
+    
+    def chrono_page_a3_chile(self, canvas, doc):
+        
+        canvas.saveState()
+        canvas.drawImage(os.path.join(os.path.dirname(__file__), "templates", "img", "chile_header.tif"), 0, A3[1] - 44.96 * mm, width=A3[0], height=44.96 * mm)
+        canvas.restoreState()
     
     def first_page(self, canvas, doc):
         
@@ -417,7 +505,10 @@ class ChronoExporter():
     
         document_ids = self.systematic_references_dao.fetch_document_ids_for_systematic_id(systematic)
     
-        for document in  self.document_dao.find(DOCUMENT_TABLE.c.standort == "%s" % systematic):
+        like = "%s.%%" % systematic
+        if systematic.roman is not None:
+            like = "%s-%%" % systematic
+        for document in  self.document_dao.find(or_(DOCUMENT_TABLE.c.standort == "%s" % systematic,DOCUMENT_TABLE.c.standort.like(like))):
             document_ids.append(document.id)
         return self._build_event_list(document_ids)
         
@@ -500,5 +591,6 @@ if __name__ == '__main__':
     #exporter.export_haeuserkampf()
     #exporter.export_achter_maerz()
     exporter.export_chile()
+    exporter.export_ausstellung_chile()
     #exporter.export_uebersicht()
     #exporter.export_ausstellung()
