@@ -10,7 +10,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 source $DIR/env
 
-source $DIR/../venv/bin/activate
+source $DIR/../venv11/bin/activate
 
 export PYTHONPATH=$DIR/../src:$DIR/../AlexandriaBase:$DIR/../AlexandriaPlugins:$DIR/../Zeitschriften/src:$DIR/../Zeitschriften/Systematik/src:$PYTHONPATH
 python3 $DIR/../src/asb_homepage/exporter.py
