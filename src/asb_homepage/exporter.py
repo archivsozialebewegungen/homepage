@@ -38,6 +38,7 @@ import os
 from asb_homepage.SystematikExporter import SystematikExporter,\
     SystematikExporterModule
 from alexandriabase.tools import PlakatExporter
+from asb_homepage.PosterExporter import PosterExporter
 
 @singleton
 class BroschuerenExporter():
@@ -217,7 +218,7 @@ class Exporter:
                  zeitschriften_exporter: ZeitschriftenExporter,
                  systematik_exporter: SystematikExporter,
                  buttons_exporter: ButtonsExporter,
-                 plakat_exporter: PlakatExporter,
+                 plakat_exporter: PosterExporter,
                  news_reader: NEWS_READER,
                  publication_reader: PUBLICATION_READER,
                  cd_generation_engine: GenerationEngine):
@@ -423,8 +424,7 @@ class Exporter:
         
     def write_poster_pdf(self):
         
-        self.plakat_exporter.export_to_tex()
-        os.system("pdflatex -output-directory %s /tmp/plakate.tex" % self.pdfdir)
+        self.plakat_exporter.export_to_pdf("%s/plakate.pdf" % self.pdfdir)
                 
     def write_html_file(self, name, content):    
         
