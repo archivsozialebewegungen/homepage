@@ -203,6 +203,8 @@ class ChronoExporter():
         event_ids.sort()
         for event_id in event_ids:
             event = self.event_dao.get_by_id(event_id)
+            if "asta info" in event.description.lower():
+                continue
             self.print_event(story, event)
 
         doc.build(story, onFirstPage=self.first_page, onLaterPages=self.other_pages)
@@ -221,6 +223,24 @@ class ChronoExporter():
         story.append(Spacer(1, 10 * mm))
 
         for event in self.get_chile_events():
+            self.print_event(story, event)
+
+        doc.build(story, onFirstPage=self.first_page_chile, onLaterPages=self.other_pages)
+    
+    def export_hausbesetzungen(self, filename="/tmp/Hausbesetzungen.pdf"):
+        
+        self.year = 0
+        doc = SimpleDocTemplate(filename, 
+                                title = "Chronologie zur Freiburger Hausbesetzer:innenbewegung",
+                                subject = "Ereignisse aus der Alexandria-Datenbank",
+                                keywords = ("Freiburg", "Hausbesetzungen", "Dreisameck", "Schwarzwaldhof", "AZ"),
+                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
+        
+        story = [Spacer(1, 50 * mm)]
+        
+        story.append(Spacer(1, 10 * mm))
+
+        for event in self.get_hausbesetzungen_events():
             self.print_event(story, event)
 
         doc.build(story, onFirstPage=self.first_page_chile, onLaterPages=self.other_pages)
@@ -415,6 +435,32 @@ class ChronoExporter():
             
         return events
                 
+    def get_hausbesetzungen_event_ids(self):
+        
+        event_ids = self.get_events_for_systematic(SystematicIdentifier("14"))
+        event_ids.sort()
+
+        return event_ids
+    
+    def get_hausbesetungen_events(self):
+        
+        self.sort_ids = {}
+        
+        event_ids = self.get_hausbesetzungen_event_ids()
+        sort_events = []
+        for event_id in event_ids:
+            event = self.event_dao.get_by_id(event_id)
+            if event_id in self.sort_ids.keys():
+                sort_events.append(SortEvent(event, self.sort_ids[event_id]))
+            else:
+                sort_events.append(SortEvent(event))
+                
+        sort_events.sort(key=lambda e: e.sort_id)
+        events = []
+        for sort_event in sort_events:
+            events.append(sort_event.event)
+            
+        return events
         
     
     def export_ausstellung_chile(self, filename="/tmp/ChronologieChileA3.pdf"):
@@ -586,11 +632,11 @@ if __name__ == '__main__':
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     injector = Injector([InfoReaderModule, AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule])
     exporter = injector.get(ChronoExporter)
-    exporter.ohne_quellen = False
-    exporter.mit_ereignis_id = True
-    #exporter.export_haeuserkampf()
+    exporter.ohne_quellen = True
+    exporter.mit_ereignis_id = False
+    exporter.export_haeuserkampf()
     #exporter.export_achter_maerz()
-    exporter.export_chile()
-    exporter.export_ausstellung_chile()
+    #exporter.export_chile()
+    #exporter.export_ausstellung_chile()
     #exporter.export_uebersicht()
     #exporter.export_ausstellung()

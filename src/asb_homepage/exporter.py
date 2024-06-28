@@ -38,7 +38,7 @@ import os
 from asb_homepage.SystematikExporter import SystematikExporter,\
     SystematikExporterModule
 from alexandriabase.tools import PlakatExporter
-from asb_homepage.PosterExporter import PosterExporter
+from asb_homepage.PosterExporter import PosterExporter, SystematikPunktExporter
 
 @singleton
 class BroschuerenExporter():
@@ -219,6 +219,7 @@ class Exporter:
                  systematik_exporter: SystematikExporter,
                  buttons_exporter: ButtonsExporter,
                  plakat_exporter: PosterExporter,
+                 systematik_poster_exporter: SystematikPunktExporter,
                  news_reader: NEWS_READER,
                  publication_reader: PUBLICATION_READER,
                  cd_generation_engine: GenerationEngine):
@@ -232,6 +233,7 @@ class Exporter:
         self.systematik_exporter = systematik_exporter
         self.buttons_exporter = buttons_exporter
         self.plakat_exporter = plakat_exporter
+        self.systematik_poster_exporter = systematik_poster_exporter
         self.news_reader = news_reader
         self.publication_reader = publication_reader
         self.cd_generation_engine = cd_generation_engine
@@ -288,10 +290,10 @@ class Exporter:
         self.write_static()
         self.write_default_files()
         self.write_index_file()
-        self.write_systematik_pdf()
-        
-        self.write_publikationen()
-        self.write_news()
+        #self.write_systematik_pdf()
+        self.write_poster_pdf()
+        #self.write_publikationen()
+        #self.write_news()
         
     def write_static(self):
         
@@ -425,6 +427,7 @@ class Exporter:
     def write_poster_pdf(self):
         
         self.plakat_exporter.export_to_pdf("%s/plakate.pdf" % self.pdfdir)
+        self.systematik_poster_exporter.export_posters_by_systematik(self.pdfdir)
                 
     def write_html_file(self, name, content):    
         
@@ -582,10 +585,10 @@ if __name__ == '__main__':
     
     exporter = injector.get(Exporter)
     print("Starting build...")
-    exporter.run()
-    #exporter.tiny_run()
+    #exporter.run()
+    exporter.tiny_run()
     print("Starting upload...")
-    exporter.upload()
+    #exporter.upload()
     print("Finished.")
     
     #z_filter = ZeitschriftenFilter()
