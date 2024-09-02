@@ -24,7 +24,7 @@ from alexandriabase import AlexBaseModule
 from alexplugins.cdexporter.base import CDExporterBasePluginModule
 from alexplugins.systematic.base import SystematicIdentifier
 from alexandriabase.daos import DaoModule, DocumentEventRelationsDao, EventDao,\
-    EventCrossreferencesDao, DocumentDao, DOCUMENT_TABLE
+    EventCrossreferencesDao, DocumentDao, DOCUMENT_TABLE, EVENT_TABLE
 from asb_systematik.SystematikDao import AlexandriaDbModule
 from reportlab.platypus.tables import LongTable, TableStyle
 from PIL import Image as PilImage
@@ -34,6 +34,7 @@ from reportlab.pdfbase import pdfmetrics
 from copy import deepcopy
 from alexandriabase.domain import Event
 from sqlalchemy.sql.expression import or_
+from sqlalchemy.sql.functions import func
 
 styles = getSampleStyleSheet()
 re_time = re.compile("(\d+):(\d+):(\d+)\s+\d+:\d+:\d+")
@@ -61,7 +62,374 @@ class ChronoExporter():
                  event_dao: EventDao,
                  document_dao: DocumentDao):
 
-        self.irrelevant_ids = [1973050004, 1982102802, 1984062601, 1985042701, 1985071701,
+        self.systematik_service = systematik_service
+        self.event_dao = event_dao
+        self.reference_dao = reference_dao
+        self.systematic_references_dao = systematic_references_dao
+        self.event_xref_dao = event_xref_dao
+        self.document_dao = document_dao
+
+        self.ignore_ids = []
+        
+        self.title = "Chronologie"
+        self.subject = None
+        self.author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12"
+        self.keywords = []
+        
+        pdfmetrics.registerFont(TTFont("Akzidenz", os.path.join(os.path.dirname(__file__), "templates", "fonts", "FontsFree-Net-Akzidenz-grotesk-roman.ttf")))
+        pdfmetrics.registerFont(TTFont("AkzidenzBd", os.path.join(os.path.dirname(__file__), "templates", "fonts", "Akzidenz-grotesk-black.ttf")))
+
+        self.mit_ereignis_id = False
+        self.ohne_quellen = False
+        self.year = 0
+        
+        self.page_size = None
+       
+    def config_for_a3(self):
+
+        self.page_size = A3
+        
+        self.h1_style = deepcopy(styles["h1"])
+        self.h1_style.fontSize = 40
+        self.h1_style.fontName = "AkzidenzBd"
+        self.h1_style.spaceAfter = 32
+
+        self.h2_style = deepcopy(styles["h2"])
+        self.h2_style.fontSize = 32
+        self.h2_style.fontName = "AkzidenzBd"
+        self.h2_style.spaceAfter = 18
+
+        self.h3_style = deepcopy(styles["h3"])
+        self.h3_style.fontSize = 24
+        self.h3_style.fontName = "AkzidenzBd"
+        #self.h3_style.leading = 13
+        self.h3_style.spaceAfter = 14
+
+        self.normal_style = deepcopy(styles["Normal"])
+        self.normal_style.fontSize = 24
+        self.normal_style.fontName = "Akzidenz"
+        self.normal_style.leading = 26
+        #self.normal_style.spaceAfter = 60
+        
+        self.jahr_style = deepcopy(styles["h1"])
+        self.jahr_style.fontSize = 32
+        self.jahr_style.fontName = "AkzidenzBd"
+        self.jahr_breite = 36 * mm
+        
+        self.topMargin=50*mm
+        self.bottomMargin = 45 * mm
+        self.leftMargin=15*mm
+        self.rightMargin=10*mm
+
+        self.page_height = A3[1]
+        self.page_width = A3[0]
+
+        self.graphics_file = os.path.join(os.path.dirname(__file__), "templates", "img", "asb_logo.png")
+        self.graphics_height = 35.0 * mm
+        self.graphics_width = self._calculate_graphics_width(self.graphics_file, self.graphics_height)
+        self.graphics_position = (self.page_size[0] - self.graphics_width - 10*mm, self.page_size[1] - self.graphics_height - 5*mm)
+
+    def config_for_a4(self):
+        
+        self.page_size = A4
+   
+        self.h1_style = deepcopy(styles["h1"])
+        self.h1_style.fontSize = 32
+        self.h1_style.fontName = "AkzidenzBd"
+        self.h1_style.spaceAfter = 24
+        self.h1_style.spaceBefore = 16
+
+        self.h2_style = deepcopy(styles["h2"])
+        self.h2_style.fontSize = 18
+        self.h2_style.fontName = "AkzidenzBd"
+        self.h2_style.spaceAfter = 10
+
+        self.h3_style = deepcopy(styles["h3"])
+        self.h3_style.fontSize = 12
+        self.h3_style.fontName = "AkzidenzBd"
+        self.h3_style.spaceAfter = 8
+
+        self.normal_style = deepcopy(styles["Normal"])
+        self.normal_style.fontSize = 12
+        self.normal_style.fontName = "Akzidenz"
+        self.normal_style.leading = 13
+        self.normal_style.spaceAfter = 5
+        
+        self.jahr_style = deepcopy(styles["h1"])
+        self.jahr_style.fontSize = 24
+        self.jahr_style.fontName = "AkzidenzBd"
+        self.jahr_breite = 24 * mm
+
+        self.topMargin = 25 * mm
+        self.bottomMargin = 20 * mm
+        self.leftMargin = 10 * mm
+        self.rightMargin = 10 * mm
+
+        self.page_height = A4[1]
+        self.page_width = A4[0]
+        
+        self.graphics_file = os.path.join(os.path.dirname(__file__), "templates", "img", "asb_logo.png")
+        self.graphics_height = 20.0 * mm
+        self.graphics_width = self._calculate_graphics_width(self.graphics_file, self.graphics_height)
+        self.graphics_position = (self.page_size[0] - self.graphics_width - 10*mm, self.page_size[1] - self.graphics_height - 5*mm)
+        
+    def _calculate_graphics_width(self, graphics_file, graphics_height):
+
+        pil_image = PilImage.open(graphics_file)
+        width, height = pil_image.size
+        return (graphics_height / height) * width
+
+    def get_events_with_text(self, searchterms:str):
+
+        conditions = []
+        for searchterm in searchterms:
+            conditions.append(func.upper(EVENT_TABLE.c.ereignis).contains(func.upper(searchterm)))
+        condition = or_(*conditions)
+
+        return self.event_dao.find(condition)
+    
+    def get_events_for_main_systematic(self, systematic: int):
+        
+        document_ids = self.systematik_service.fetch_document_ids_for_main_systematic(systematic)
+        return self._build_event_list(document_ids)
+        
+        
+    def get_events_for_systematic(self, systematic: SystematicIdentifier):
+    
+        document_ids = self.systematic_references_dao.fetch_document_ids_for_systematic_id(systematic)
+    
+        like = "%s.%%" % systematic
+        if systematic.roman is not None:
+            like = "%s-%%" % systematic
+        for document in  self.document_dao.find(or_(DOCUMENT_TABLE.c.standort == "%s" % systematic,DOCUMENT_TABLE.c.standort.like(like))):
+            document_ids.append(document.id)
+        return self._build_event_list(document_ids)
+    
+    def _build_event_list(self, document_ids):
+        
+        event_dict = {}
+        for document_id in document_ids:
+            for id in self.reference_dao.fetch_ereignis_ids_for_dokument_id(document_id):
+                event_dict[id] = 1
+        
+        no_of_events = len(event_dict.keys())
+        references_found = True
+        while references_found:
+            ref_events = {}
+            for event_id in event_dict.keys():
+                for ref in self.event_xref_dao.get_cross_references(event_id):
+                    ref_events[ref] = 1
+            for event_id in ref_events.keys():
+                event_dict[event_id] = 1
+            if len(event_dict.keys()) > no_of_events:
+                no_of_events = len(event_dict.keys())
+            else:
+                references_found = False
+        
+        return list(event_dict.keys())
+    
+    def init_document(self, filename):
+        
+        if self.subject is None:
+            default_subject = "Auszug aus der Alexandria-Datenbank des ASB Freiburg e.V."
+        else:
+            default_subject = self.subject
+        
+        return SimpleDocTemplate(filename,
+                                pagesize=self.page_size,
+                                topMargin=self.topMargin,
+                                bottomMargin = self.bottomMargin,
+                                leftMargin=self.leftMargin,
+                                rightMargin=self.rightMargin,
+                                title = self.title,
+                                subject = default_subject,
+                                keywords = self.keywords,
+                                author = self.author)
+        
+    def build_story(self, doc, story):
+
+        doc.build(story, onFirstPage=self.first_page, onLaterPages=self.other_pages)
+        
+    def print_event(self, story, event):
+        
+        main_pars = []
+        if self.year < event.daterange.start_date.year:
+            self.year = event.daterange.start_date.year
+            main_pars.append(Paragraph("%s" % self.year, self.h1_style))
+        if self.mit_ereignis_id:
+            main_pars.append(Paragraph("%s ( %d )" % (event.daterange, event.id), self.h2_style))
+        else:
+            main_pars.append(Paragraph("%s" % event.daterange, self.h2_style))
+            
+        if len(main_pars) > 0:
+            main_pars.append(Paragraph(event.description, self.normal_style))
+            story.append(KeepTogether(main_pars))
+        else:
+            story.append(Paragraph(event.description, self.normal_style))
+        
+        if self.ohne_quellen:
+            #story.append(Spacer(1, 10 * mm))
+            return
+        
+        document_ids = self.reference_dao.fetch_document_ids_for_event_id(event.id)
+        pars = []
+        for document_id in document_ids:
+            document = self.document_dao.get_by_id(document_id)
+            if "Dummy" in document.description:
+                continue
+
+            pars.append(Paragraph("<b>%s</b>: %s (Alexandria %s)" % (document.document_type, document.description, document.id), self.normal_style))
+        if len(pars) == 0:
+        #    story.append(Spacer(1, 10 * mm))
+            return
+        
+        if len(pars) == 1:
+            story.append(KeepTogether([Paragraph("Quelle", self.h3_style)] + pars))
+        else:
+            story.append(KeepTogether([Paragraph("Quellen", self.h3_style)] + [pars[0]]))
+            story += pars[1:]
+        #story.append(Spacer(1, 10 * mm))
+    
+    def get_columns(self, event):
+        
+        left_column = ""
+        if self.year < event.daterange.start_date.year:
+            self.year = event.daterange.start_date.year
+            left_column = "%s" % self.year
+        if self.mit_ereignis_id:
+            right_column = "<b>%s:</b> %s ( %s )" % (event.daterange, event.description, event.id)
+        else:
+            right_column = "<b>%s:</b> %s" % (event.daterange, event.description)
+            
+        return [Paragraph(left_column, self.jahr_style), Paragraph(right_column, self.normal_style)]
+            
+    def simple_export(self, filename=os.path.join("/", "tmp", "chrono.pdf")):
+
+        if self.page_size is None:
+            raise Exception("Please run config_for_a4() oder config_for_a3() first!")
+
+        doc = self.init_document(filename)
+
+        story = [Spacer(1, 50 * mm)]
+        story.append(Spacer(1, 10 * mm))
+
+        for event in self.get_events():
+            self.print_event(story, event)
+
+        self.build_story(doc, story)
+
+    def table_export(self, filename=os.path.join("/", "tmp", "chrono.pdf")):
+
+        if self.page_size is None:
+            raise Exception("Please run config_for_a4() oder config_for_a3() first!")
+
+        doc = self.init_document(filename)
+
+        story = [Spacer(1, 50 * mm)]
+        story.append(Spacer(1, 10 * mm))
+
+        table_data = []
+        for event in self.get_events():
+            table_data.append(self.get_columns(event))
+            table_data.append(["", ""])
+            
+        table_style = TableStyle(
+            [
+                ('VALIGN', (0,0), (-1,-1), 'TOP'),
+                ('ALIGN', (0,0), (-1,-1), 'LEFT'),
+            ]
+            )    
+        story.append(LongTable(data=table_data, colWidths=[self.jahr_breite, None], style=table_style))
+
+        self.build_story(doc, story)
+
+    def get_events(self):
+        
+        raise Exception("Override export method in subclass")
+    
+    def first_page(self, canvas, doc):
+        
+        canvas.saveState()
+        canvas.setFont('Times-Bold',45)
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-108, "Chronologie")
+        if self.subject is not None:
+            canvas.drawCentredString(self.page_width/2.0, self.page_height-160, self.subject)
+        canvas.setFont('Times-Bold',14)
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-190, "Archiv Soziale Bewegungen e.V.")
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-205, "Adlerstr.12, 79098 Freiburg")
+        canvas.drawCentredString(self.page_width/2.0, self.page_height-220, "Stand: %s" % date.today().strftime("%d. %B %Y"))
+
+        canvas.restoreState()
+        
+    def other_pages(self, canvas, doc):
+        
+        canvas.saveState()
+        canvas.setFont('Times-Roman', 12)
+        canvas.drawString(self.leftMargin, self.bottomMargin - (10 * mm), "Chronologie, Seite %d" % doc.page)
+        if self.graphics_file is not None:
+            canvas.drawImage(self.graphics_file, self.graphics_position[0], self.graphics_position[1],
+                             width=self.graphics_width, height=self.graphics_height)
+        canvas.restoreState()
+            
+class AchterMaerzExporter(ChronoExporter):
+    
+        
+    def get_events(self):
+
+        events = []
+        
+        event_ids = self.get_events_for_main_systematic(7)
+        event_ids.sort()
+
+        for event_id in event_ids:
+
+            if self.is_achter_maerz(event_id):
+                
+                events.append(self.event_dao.get_by_id(event_id))
+                
+        return events
+        
+    def is_achter_maerz(self, event_id):
+        
+        string_id = "%d" % event_id
+        month_day = string_id[4:8]
+        print(month_day) 
+        
+        return month_day == "0308"
+    
+class Paragraph218Exporter(ChronoExporter):
+    
+    @inject
+    def __init__(self, systematik_service:SystematicService, 
+        reference_dao:DocumentEventRelationsDao, 
+        systematic_references_dao:DocumentSystematicRelationsDao, 
+        event_xref_dao:EventCrossreferencesDao, 
+        event_dao:EventDao, 
+        document_dao:DocumentDao):
+        
+        ChronoExporter.__init__(self, systematik_service, reference_dao, systematic_references_dao, event_xref_dao, event_dao, document_dao)
+        self.subject = "Kampf gegen den §218"
+        self.config_for_a4()
+    
+    def get_events(self):
+        
+        return self.get_events_with_text(["218", "Abtreibung", "Lebensschützer", "Lebensschutz", "Pius"])
+
+class FemChronologie(ChronoExporter):
+    
+    @inject
+    def __init__(self, systematik_service:SystematicService, 
+        reference_dao:DocumentEventRelationsDao, 
+        systematic_references_dao:DocumentSystematicRelationsDao, 
+        event_xref_dao:EventCrossreferencesDao, 
+        event_dao:EventDao, 
+        document_dao:DocumentDao):
+        
+        ChronoExporter.__init__(self, systematik_service, reference_dao, systematic_references_dao, event_xref_dao, event_dao, document_dao)
+        
+        self.config_for_a3()
+        
+        irrelevant_ids = [1973050004, 1982102802, 1984062601, 1985042701, 1985071701,
                            1986012801, 1987051701, 1990000003, 1990041301, 1990061201,
                            1990070901, 1991062901, 1991121601, 1992032701, 1992091601,
                            1993031501, 1994031401, 1994091004, 1995011401, 1995031401,
@@ -79,175 +447,7 @@ class ChronoExporter():
                            2001090007, 2004021105, 2007030801, 2009030801, 2016010801,
                            1982050401, 1998041802, 1998042101, 1998052303, ]
         
-        self.ignore_ids = self.irrelevant_ids
-        
-        pdfmetrics.registerFont(TTFont("Akzidenz", os.path.join(os.path.dirname(__file__), "templates", "fonts", "FontsFree-Net-Akzidenz-grotesk-roman.ttf")))
-        pdfmetrics.registerFont(TTFont("AkzidenzBd", os.path.join(os.path.dirname(__file__), "templates", "fonts", "Akzidenz-grotesk-black.ttf")))
 
-        self.mit_ereignis_id = True
-        self.normal_style = deepcopy(styles["Normal"])
-        self.normal_style.fontSize = 24
-        self.normal_style.fontName = "Akzidenz"
-        self.normal_style.leading = 26
-        self.normal_style.spaceAfter = 60
-        
-        self.jahr_style = deepcopy(styles["h1"])
-        self.jahr_style.fontSize = 32
-        self.jahr_style.fontName = "AkzidenzBd"
-        self.jahr_breite = 36 * mm
-        
-        self.topMargin=50*mm
-        self.leftMargin=15*mm
-        self.rightMargin=10*mm
-        
-        self.ohne_quellen = False
-
-        self.page_height = A4[1]
-        self.page_width = A4[0]
-        self.year = 0
-        
-        self.systematik_service = systematik_service
-        self.event_dao = event_dao
-        self.reference_dao = reference_dao
-        self.systematic_references_dao = systematic_references_dao
-        self.event_xref_dao = event_xref_dao
-        self.document_dao = document_dao
-        
-        self.header = self.load_header()
-   
-    def load_header(self):
-        
-        pil_image = PilImage.open(os.path.join(os.path.dirname(__file__), "templates", "img", "header_chrono.png"), "r")
-        img_stream = BytesIO()
-        pil_image.save(img_stream, 'PNG')
-        img_stream.seek(0)
-        image = Image(img_stream)
-        image.hAlign = "LEFT"
-        return image
-    
-    def export_achter_maerz(self, filename="/tmp/AchterMaerz.pdf"):
-
-        self.year = 0
-        doc = SimpleDocTemplate(filename, 
-                                title = "Chronologie feministische Bewegungen",
-                                subject = "Ereignisse aus der Alexandria-Datenbank",
-                                keywords = ("Neue Soziale Bewegungen", "Buttons"),
-                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
-        
-        story = [Spacer(1, 50 * mm)]
-        
-        story.append(Spacer(1, 10 * mm))
-
-        event_ids = self.get_events_for_main_systematic(7)
-        event_ids.sort()
-        for event_id in event_ids:
-
-            if self.is_achter_maerz(event_id):
-                
-                print(event_id)
-                event = self.event_dao.get_by_id(event_id)
-                self.print_event(story, event)
-
-        doc.build(story, onFirstPage=self.first_page, onLaterPages=self.other_pages)
-
-    def is_achter_maerz(self, event_id):
-        
-        string_id = "%d" % event_id
-        month_day = string_id[4:8]
-        print(month_day) 
-        
-        return month_day == "0308"
-             
-    def export_uebersicht(self, filename="/tmp/FeministischeChronologieUebersicht.pdf"):
-        
-        self.year = 0
-        doc = SimpleDocTemplate(filename, 
-                                title = "Chronologie feministische Bewegungen",
-                                subject = "Ereignisse aus der Alexandria-Datenbank",
-                                keywords = ("Neue Soziale Bewegungen", "Buttons"),
-                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
-        
-        story = [Spacer(1, 50 * mm)]
-        
-        story.append(Spacer(1, 10 * mm))
-
-        event_ids = self.get_events_for_main_systematic(7)
-        event_ids.sort()
-        for event_id in event_ids:
-            if event_id in self.ignore_ids:
-                continue
-        
-            event = self.event_dao.get_by_id(event_id)
-        
-            if "Schwul in Freiburg" in event.description:
-                continue
-        
-            self.print_event(story, event)
-
-        doc.build(story, onFirstPage=self.first_page, onLaterPages=self.other_pages)
-    
-    def export_haeuserkampf(self, filename="/tmp/ChronologieHausbesetzungen.pdf"):
-        
-        self.year = 0
-        doc = SimpleDocTemplate(filename, 
-                                title = "Chronologie der Hausbesetzer:innenbewegung",
-                                subject = "Ereignisse aus der Alexandria-Datenbank",
-                                keywords = ("Neue Soziale Bewegungen", "Hausbesetzungen"),
-                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
-        
-        story = [Spacer(1, 50 * mm)]
-        
-        story.append(Spacer(1, 10 * mm))
-
-        event_ids = self.get_events_for_main_systematic(14)
-        event_ids.sort()
-        for event_id in event_ids:
-            event = self.event_dao.get_by_id(event_id)
-            if "asta info" in event.description.lower():
-                continue
-            self.print_event(story, event)
-
-        doc.build(story, onFirstPage=self.first_page, onLaterPages=self.other_pages)
-    
-    def export_chile(self, filename="/tmp/ChronologieChileSolidarität.pdf"):
-        
-        self.year = 0
-        doc = SimpleDocTemplate(filename, 
-                                title = "Chronologie zur Chilesolidarität in Freiburg",
-                                subject = "Ereignisse aus der Alexandria-Datenbank",
-                                keywords = ("Chile", "Internationale Solidarität"),
-                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
-        
-        story = [Spacer(1, 50 * mm)]
-        
-        story.append(Spacer(1, 10 * mm))
-
-        for event in self.get_chile_events():
-            self.print_event(story, event)
-
-        doc.build(story, onFirstPage=self.first_page_chile, onLaterPages=self.other_pages)
-    
-    def export_hausbesetzungen(self, filename="/tmp/Hausbesetzungen.pdf"):
-        
-        self.year = 0
-        doc = SimpleDocTemplate(filename, 
-                                title = "Chronologie zur Freiburger Hausbesetzer:innenbewegung",
-                                subject = "Ereignisse aus der Alexandria-Datenbank",
-                                keywords = ("Freiburg", "Hausbesetzungen", "Dreisameck", "Schwarzwaldhof", "AZ"),
-                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
-        
-        story = [Spacer(1, 50 * mm)]
-        
-        story.append(Spacer(1, 10 * mm))
-
-        for event in self.get_hausbesetzungen_events():
-            self.print_event(story, event)
-
-        doc.build(story, onFirstPage=self.first_page_chile, onLaterPages=self.other_pages)
-    
-    def export_ausstellung(self, filename="/tmp/FeministischeChronologieA3.pdf"):
-        
-        self.year = 0
         skip_ids = [1968111701, 1968112001, 1972121502, 1974042503, 1974100402, 1974100601,
                     1974101501, 1974102401, 1974111301, 1975012301, 1975102101, 1975102202,
                     1975102301, 1975102403, 1975102504, 1975121701, 1977022501, 1975021502,
@@ -349,6 +549,7 @@ class ChronoExporter():
                     
                     1969042302, 1969050903, 1969060201, 1972041701,
                     ]
+        
         maybe_ids = [1991061901, 1992061902, 1992062701, 2001081801, 2003040005, 2004043002,
                      2004070004, 2004043002, 2004070004, 2015060302, 2017060901, 2020030601,
                      2020110602, 2021070301,
@@ -360,24 +561,17 @@ class ChronoExporter():
                      
                      2001032102, 2016100301, 1974050004, 1979062201
                      ]
-        self.ignore_ids = self.irrelevant_ids + skip_ids + maybe_ids
+        self.ignore_ids = irrelevant_ids + skip_ids + maybe_ids
+         
+    def get_events(self):
         
-        doc = SimpleDocTemplate(filename,
-                                pagesize=A3,
-                                topMargin=self.topMargin,
-                                leftMargin=self.leftMargin,
-                                rightMargin=self.rightMargin,
-                                title = "Chronologie feministischer Bewegungen",
-                                subject = "Ereignisse aus der Alexandria-Datenbank",
-                                keywords = ("Neue Soziale Bewegungen", "Buttons"),
-                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
-        
-        story = []
+        events = []
         
         event_ids = self.get_events_for_main_systematic(7)
         event_ids.sort()
-        table_data = []
+        
         for event_id in event_ids:
+
             if event_id in self.ignore_ids:
                 continue
         
@@ -386,36 +580,28 @@ class ChronoExporter():
             if "Schwul in Freiburg" in event.description:
                 continue
         
-            table_data.append(self.get_columns(event))
-            table_data.append(["", ""])
-            
-        table_style = TableStyle(
-            [
-                ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-            ]
-            )    
-        story.append(LongTable(data=table_data, colWidths=[self.jahr_breite, None], style=table_style))
+            events.append(event)
 
-        doc.build(story, onFirstPage=self.chrono_page_a3, onLaterPages=self.chrono_page_a3)
+        return events
     
-    def chrono_page_a3(self, canvas, doc):
+class HausbesetzungenExporter(ChronoExporter):
+    
+    def get_events(self):
         
-        canvas.saveState()
-        canvas.drawImage(os.path.join(os.path.dirname(__file__), "templates", "img", "aufbrechen_header_chrono_sw.tif"), 0, A3[1] - 44.96 * mm, width=A3[0], height=44.96 * mm)
-        canvas.restoreState()
-
-    def get_chile_event_ids(self):
-        
-        event_ids = self.get_events_for_systematic(SystematicIdentifier("5.5.5", 1))
-        for event_id in self.get_events_for_systematic(SystematicIdentifier("13.2.2.5")):
-            if not event_id in event_ids:
-                event_ids.append(event_id)
+        events = []
+        event_ids = self.get_events_for_main_systematic(14)
         event_ids.sort()
+        for event_id in event_ids:
+            event = self.event_dao.get_by_id(event_id)
+            if "asta info" in event.description.lower():
+                continue
+            events.append(event)
 
-        return event_ids
+        return events
+
+class ChileSolidaritaetExporter():
     
-    def get_chile_events(self):
+    def get_events(self):
         
         self.sort_ids = {1973090003: 1973091500}
         
@@ -435,72 +621,15 @@ class ChronoExporter():
             
         return events
                 
-    def get_hausbesetzungen_event_ids(self):
+    def get_chile_event_ids(self):
         
-        event_ids = self.get_events_for_systematic(SystematicIdentifier("14"))
+        event_ids = self.get_events_for_systematic(SystematicIdentifier("5.5.5", 1))
+        for event_id in self.get_events_for_systematic(SystematicIdentifier("13.2.2.5")):
+            if not event_id in event_ids:
+                event_ids.append(event_id)
         event_ids.sort()
 
         return event_ids
-    
-    def get_hausbesetungen_events(self):
-        
-        self.sort_ids = {}
-        
-        event_ids = self.get_hausbesetzungen_event_ids()
-        sort_events = []
-        for event_id in event_ids:
-            event = self.event_dao.get_by_id(event_id)
-            if event_id in self.sort_ids.keys():
-                sort_events.append(SortEvent(event, self.sort_ids[event_id]))
-            else:
-                sort_events.append(SortEvent(event))
-                
-        sort_events.sort(key=lambda e: e.sort_id)
-        events = []
-        for sort_event in sort_events:
-            events.append(sort_event.event)
-            
-        return events
-        
-    
-    def export_ausstellung_chile(self, filename="/tmp/ChronologieChileA3.pdf"):
-        
-        self.year = 0
-        skip_ids = []
-        maybe_ids = []
-        self.ignore_ids = self.irrelevant_ids + skip_ids + maybe_ids
-        
-        doc = SimpleDocTemplate(filename,
-                                pagesize=A3,
-                                topMargin=self.topMargin,
-                                leftMargin=self.leftMargin,
-                                rightMargin=self.rightMargin,
-                                title = "Chronologie der Chile-Solidaritätsbewegung 1972 - 1978",
-                                subject = "Ereignisse aus der Alexandria-Datenbank",
-                                keywords = ("Internationale Solidarität", "Chile"),
-                                author = "Archiv Soziale Bewegungen e.V., 79098 Freiburg, Adlerstr. 12" )
-        
-        story = []
-        
-        events = self.get_chile_events()
-
-        table_data = []
-        for event in events:
-            if event.id in self.ignore_ids:
-                continue
-        
-            table_data.append(self.get_columns(event))
-            table_data.append(["", ""])
-            
-        table_style = TableStyle(
-            [
-                ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                ('ALIGN', (0,0), (-1,-1), 'LEFT'),
-            ]
-            )    
-        story.append(LongTable(data=table_data, colWidths=[self.jahr_breite, None], style=table_style))
-
-        doc.build(story, onFirstPage=self.chrono_page_a3_chile, onLaterPages=self.chrono_page_a3_chile)
     
     def chrono_page_a3_chile(self, canvas, doc):
         
@@ -508,133 +637,14 @@ class ChronoExporter():
         canvas.drawImage(os.path.join(os.path.dirname(__file__), "templates", "img", "chile_header.tif"), 0, A3[1] - 44.96 * mm, width=A3[0], height=44.96 * mm)
         canvas.restoreState()
     
-    def first_page(self, canvas, doc):
-        
-        canvas.saveState()
-        canvas.setFont('Times-Bold',45)
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-108, "Chronologie femini-")
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-160, "stischer Bewegungen")
-        canvas.setFont('Times-Bold',14)
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-190, "Archiv Soziale Bewegungen e.V.")
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-205, "Adlerstr.12, 79098 Freiburg")
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-220, "Stand: %s" % date.today().strftime("%d. %B %Y"))
-
-        canvas.restoreState()
-        
-    def first_page_chile(self, canvas, doc):
-        
-        canvas.saveState()
-        canvas.setFont('Times-Bold',45)
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-108, "Chile Solidaritätsbe-")
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-160, "wegung")
-        canvas.setFont('Times-Bold',14)
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-190, "Archiv Soziale Bewegungen e.V.")
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-205, "Adlerstr.12, 79098 Freiburg")
-        canvas.drawCentredString(self.page_width/2.0, self.page_height-220, "Stand: %s" % date.today().strftime("%d. %B %Y"))
-
-        canvas.restoreState()
-
-    def other_pages(self, canvas, doc):
-        
-        canvas.saveState()
-        canvas.setFont('Times-Roman',9)
-        canvas.drawString(20 * mm, 15 * mm, "Chronologie, Seite %d" % doc.page)
-        canvas.restoreState()
-        
-    def get_events_for_main_systematic(self, systematic: int):
-        
-        document_ids = self.systematik_service.fetch_document_ids_for_main_systematic(systematic)
-        return self._build_event_list(document_ids)
-        
-        
-    def get_events_for_systematic(self, systematic: SystematicIdentifier):
-    
-        document_ids = self.systematic_references_dao.fetch_document_ids_for_systematic_id(systematic)
-    
-        like = "%s.%%" % systematic
-        if systematic.roman is not None:
-            like = "%s-%%" % systematic
-        for document in  self.document_dao.find(or_(DOCUMENT_TABLE.c.standort == "%s" % systematic,DOCUMENT_TABLE.c.standort.like(like))):
-            document_ids.append(document.id)
-        return self._build_event_list(document_ids)
-        
-    def _build_event_list(self, document_ids):
-        
-        event_dict = {}
-        for document_id in document_ids:
-            for id in self.reference_dao.fetch_ereignis_ids_for_dokument_id(document_id):
-                event_dict[id] = 1
-        
-        no_of_events = len(event_dict.keys())
-        references_found = True
-        while references_found:
-            ref_events = {}
-            for event_id in event_dict.keys():
-                for ref in self.event_xref_dao.get_cross_references(event_id):
-                    ref_events[ref] = 1
-            for event_id in ref_events.keys():
-                event_dict[event_id] = 1
-            if len(event_dict.keys()) > no_of_events:
-                no_of_events = len(event_dict.keys())
-            else:
-                references_found = False
-        
-        return list(event_dict.keys())
-    
-    def print_event(self, story, event):
-        
-        if self.year < event.daterange.start_date.year:
-            self.year = event.daterange.start_date.year
-            story.append(Paragraph("%s" % self.year, styles["h1"]))
-        if self.mit_ereignis_id:
-            story.append(Paragraph("%s ( %d )" % (event.daterange, event.id), styles["h2"]))
-        else:
-            story.append(Paragraph("%s" % event.daterange, styles["h2"]))
-        story.append(Paragraph(event.description, styles["Normal"]))
-        
-        if self.ohne_quellen:
-            story.append(Spacer(1, 10 * mm))
-            return
-        
-        document_ids = self.reference_dao.fetch_document_ids_for_event_id(event.id)
-        pars = []
-        for document_id in document_ids:
-            document = self.document_dao.get_by_id(document_id)
-            if "Poppen" in document.description:
-                continue 
-            if "Dummy" in document.description:
-                continue
-            pars.append(Paragraph("<b>%s</b>: %s (Alexandria %s)" % (document.document_type, document.description, document.id), styles["Normal"]))
-        if len(pars) == 0:
-            story.append(Spacer(1, 10 * mm))
-            return
-        if len(pars) == 1:
-            story.append(Paragraph("Quelle", styles["h3"]))
-        else:
-            story.append(Paragraph("Quellen", styles["h3"]))
-        story += pars
-        story.append(Spacer(1, 10 * mm))
-    
-    def get_columns(self, event):
-        
-        left_column = ""
-        if self.year < event.daterange.start_date.year:
-            self.year = event.daterange.start_date.year
-            left_column = "%s" % self.year
-        if self.mit_ereignis_id:
-            right_column = "<b>%s:</b> %s ( %s )" % (event.daterange, event.description, event.id)
-        else:
-            right_column = "<b>%s:</b> %s" % (event.daterange, event.description)
-            
-        return [Paragraph(left_column, self.jahr_style), Paragraph(right_column, self.normal_style)]
-            
 if __name__ == '__main__':
     locale.setlocale(locale.LC_TIME, "de_DE.UTF-8")
     injector = Injector([InfoReaderModule, AlexandriaDbModule, AlexBaseModule, CDExporterBasePluginModule, DaoModule, ServiceModule])
-    exporter = injector.get(ChronoExporter)
-    exporter.ohne_quellen = True
-    exporter.mit_ereignis_id = False
-    exporter.export_haeuserkampf()
+    exporter = injector.get(Paragraph218Exporter)
+    #exporter.simple_export()
+    exporter.config_for_a4()
+    exporter.simple_export()
+
     #exporter.export_achter_maerz()
     #exporter.export_chile()
     #exporter.export_ausstellung_chile()
