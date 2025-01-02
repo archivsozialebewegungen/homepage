@@ -54,7 +54,7 @@ class InfoReaderModule(Module):
     @provider
     def news_reader_provider(self) -> NEWS_READER:
         
-        return InfoReader('news', ('image', "heading", "date", "author", "shortteaser", "teaser", "text"))        
+        return InfoReader('news', ('images', "heading", "date", "author", "shortteaser", "teaser", "text"))        
 
 
     @provider

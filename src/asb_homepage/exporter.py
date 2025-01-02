@@ -33,7 +33,7 @@ import pysftp
 from asb_homepage.InfoReader import NEWS_READER, InfoReaderModule,\
     PUBLICATION_READER
 from asb_zeitschriften.guiconstants import FILTER_PROPERTY_SYSTEMATIK,\
-    FILTER_PROPERTY_DIGITALISIERT
+    FILTER_PROPERTY_DIGITALISIERT, FILTER_PROPERTY_ORT
 import os
 from asb_homepage.SystematikExporter import SystematikExporter,\
     SystematikExporterModule
@@ -51,7 +51,7 @@ class BroschuerenExporter():
         self.page_height = A4[1]
         self.page_width = A4[0]
         
-    def export(self, filename="/tmp/broschueren.pdf"):
+    def export(self, filename="/tmp/broschueren.pdf", broschfilter=BroschFilter()):
         
         doc = SimpleDocTemplate(filename, 
                                 title = "Broschüren im Archiv Soziale Bewegungen",
@@ -62,7 +62,7 @@ class BroschuerenExporter():
         story = [Spacer(1,50 * mm)]
         style = self.styles["Normal"]
 
-        page_object = PageObject(self.brosch_dao, Brosch, BroschFilter(), page_size=100)
+        page_object = PageObject(self.brosch_dao, Brosch, broschfilter, page_size=100)
         self.brosch_dao.init_page_object(page_object)
         try:
             while True:
@@ -291,9 +291,9 @@ class Exporter:
         self.write_default_files()
         self.write_index_file()
         #self.write_systematik_pdf()
-        self.write_poster_pdf()
+        #self.write_poster_pdf()
         #self.write_publikationen()
-        #self.write_news()
+        self.write_news()
         
     def write_static(self):
         
@@ -333,6 +333,9 @@ class Exporter:
         for i in range(0, 3):
             template = self.load_template("news_item_short")
             news_item = news[-1-i]
+            images = news_item["images"].split()
+            news_item["image"] = images[-1]
+
             for section in news_item.keys():
                 template = template.replace("@%s@" % section, news_item[section])
             news_html += template
@@ -387,6 +390,8 @@ class Exporter:
         
         news = self.news_reader.read()
         for i in range(0,len(news)):
+            images = news[i]["images"].split()
+            news[i]["image"] = images[-1]
             template = self.replace_sections(self.load_full_template("news-single"), news[i])
             self.write_html_file("news-single-%03d.html" % (i + 1), template)
     
@@ -402,6 +407,8 @@ class Exporter:
         
         news = self.news_reader.read()
         for i in range(0,len(news)):
+            images = news[i]["images"].split()
+            news[i]["image"] = images[0]
             template = self.replace_sections(self.load_template("news_item"), news[-1-i])
             template = template.replace('@link@', "news-single-%03d.html" % (len(news) - i))
             html += template
@@ -591,9 +598,15 @@ if __name__ == '__main__':
     exporter.upload()
     print("Finished.")
     
+    #b_exporter = injector.get(BroschuerenExporter)
+    #b_filter = BroschFilter()
+    #b_filter.set_property_value(FILTER_PROPERTY_ORT, "Tübingen")
+    #b_exporter.export(broschfilter=b_filter)
+    
+    
     #z_filter = ZeitschriftenFilter()
-    #z_filter.set_property_value(FILTER_PROPERTY_DIGITALISIERT, True)
+    #z_filter.set_property_value(FILTER_PROPERTY_SYSTEMATIK, "8")
     
     #exporter = injector.get(ZeitschriftenExporter)
-    #exporter.export("/tmp/digitalisierte_zeitschriften.pdf", z_filter)
+    #exporter.export("/tmp/schwule_zeitschriften.pdf", z_filter)
     
