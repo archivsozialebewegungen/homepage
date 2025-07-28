@@ -601,12 +601,13 @@ if __name__ == '__main__':
     #b_exporter = injector.get(BroschuerenExporter)
     #b_filter = BroschFilter()
     #b_filter.set_property_value(FILTER_PROPERTY_ORT, "Tübingen")
+    #b_filter.set_property_value(FILTER_PROPERTY_SYSTEMATIK, "12.2")
     #b_exporter.export(broschfilter=b_filter)
     
     
     #z_filter = ZeitschriftenFilter()
-    #z_filter.set_property_value(FILTER_PROPERTY_SYSTEMATIK, "8")
+    #z_filter.set_property_value(FILTER_PROPERTY_SYSTEMATIK, "12.2")
     
     #exporter = injector.get(ZeitschriftenExporter)
-    #exporter.export("/tmp/schwule_zeitschriften.pdf", z_filter)
+    #exporter.export("/tmp/ökologie_zeitschriften.pdf", z_filter)
     
