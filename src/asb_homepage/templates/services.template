@@ -35,10 +35,9 @@
                                     <i class="material-icons material-icons-outlined">schedule</i>
                                 </div>
                                 <h4 class="services-item-heading">Öffnungszeiten</h4>
-                                <div class="services-item-desc">Wir sind in der Regel von Montag bis Donnerstag zwischen 10h und 16h erreichbar. Für
-                                unangemeldete Besuche ist das Archiv am Donnerstag zwischen 10 und 17 Uhr geöffnet.
-                                Für die anderen Tage können Termine vereinbart werden. Das geht in der Regel schnell und unkompliziert: Einfach kurz
-                                anrufen (+49 761/33362) - oft kann man dann auch sofort kommen.
+                                <div class="services-item-desc">Wir sind in der Regel von Montag bis Donnerstag zwischen 10h und 16h erreichbar. Bitte meldet
+                                euch an. Einfach kurz anrufen (+49 761/33362) - oft kann man dann auch sofort kommen.<br/>Das Problem ist einfach, dass wir
+                                zu wenig Personal haben und deshalb manchmal einfach weg sind, weil wir Material abholen oder auf einer Tagung sind.
                                 </div>
                             </a><!-- End services item -->
                         </div>
@@ -52,9 +51,8 @@
                                     <i class="material-icons material-icons-outlined">touch_app</i>
                                 </div>
                                 <h4 class="services-item-heading">Archivnutzung</h4>
-                                <div class="services-item-desc">Die Nutzung des Archivs ist grundsätzlich kostenlos. Für Besuchswünsche von Montag bis Mittwoch
-                                bitten wir um telefonische Anmeldung (+49 761/33362), Donnerstag ist das Archiv zwischen 10h und 17h für den Publikumsverkehr
-                                ohne Anmeldung geöffnet.</div>
+                                <div class="services-item-desc">Die Nutzung des Archivs ist grundsätzlich kostenlos. Wir freuen uns aber immer über
+                                Spenden - vor allem wenn wir Euch digitales Material überlassen, damit ihr auch zu Hause weiterarbeiten könnt.</div>
                             </a><!-- End services item -->
                         </div>
                         <div class="col-lg-6 col-md-12 col-12 item">
